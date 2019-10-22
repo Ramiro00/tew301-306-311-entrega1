@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14468168361820" configfile="/gestioneitorv3_0/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf15716879667636" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15716879667638 pf157169084440216 pf157169084440217 pf157169084440218 pf157169084440219" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf157168796676311" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf157169115675331 pf157169115675332" inlinks="pf15716879667638" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/opciones.xhtml" id="pf157169084440222" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf157169084440217 pf157169115675331" path="/restricted/opciones.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="faces/restricted/error.xhtml" id="pf157169084440323" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf157169084440216" path="/faces/restricted/error.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/altaForm.xhtml" id="pf157169084440324" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf157169084440325" inlinks="pf157169084440218" path="/restricted/altaForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/listado.xhtml" id="pf157169084440326" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" outlinks="pf157169084440327 pf157169084440328" inlinks="pf157169084440219 pf157169084440327 pf157169084440325 pf157169084440329" path="/restricted/listado.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/editForm.xhtml" id="pf157169084440330" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf157169084440329" inlinks="pf157169084440328" path="/restricted/editForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/index.xhtml" id="pf157169115675433" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf157169115675332" path="/restricted/index.xhtml"/>
+  <links id="pf15716879667638" target="pf157168796676311" source="pf15716879667636" outcome="login"/>
+  <links id="pf157169084440216" target="pf157169084440323" source="pf15716879667636" outcome="error"/>
+  <links id="pf157169084440217" target="pf157169084440222" source="pf15716879667636" outcome="casa"/>
+  <links id="pf157169084440218" target="pf157169084440324" source="pf15716879667636" outcome="alta"/>
+  <links id="pf157169084440219" target="pf157169084440326" source="pf15716879667636" outcome="exito" fromaction="#{controller.listado}"/>
+  <links id="pf157169084440327" target="pf157169084440326" source="pf157169084440326" outcome="exito" fromaction="#{controller.baja(valumno)}"/>
+  <links id="pf157169084440328" target="pf157169084440330" source="pf157169084440326" outcome="editar"/>
+  <links id="pf157169084440325" target="pf157169084440326" source="pf157169084440324" outcome="exito" fromaction="#{controller.salva}"/>
+  <links id="pf157169084440329" target="pf157169084440326" source="pf157169084440330" outcome="exito" fromaction="#{controller.salva}"/>
+  <links id="pf157169115675331" target="pf157169084440222" source="pf157168796676311" outcome="success" fromaction="#{login.verify}"/>
+  <links id="pf157169115675332" target="pf157169115675433" source="pf157168796676311" outcome="login" fromaction="#{login.verify}"/>
+</pageflow:Pageflow>
