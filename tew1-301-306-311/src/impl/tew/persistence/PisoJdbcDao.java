@@ -194,7 +194,7 @@ public class PisoJdbcDao implements PisoDao {
 	}
 
 	@Override
-	public void delete(Long id) throws NotPersistedException {
+	public void delete(int id) throws NotPersistedException {
 		PreparedStatement ps = null;
 		Connection con = null;
 		int rows = 0;
@@ -244,7 +244,7 @@ public class PisoJdbcDao implements PisoDao {
 	}
 
 	@Override
-	public Piso findById(Long id) {
+	public Piso findById(int id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = null;
@@ -309,5 +309,9 @@ public class PisoJdbcDao implements PisoDao {
 
 		return piso;
 	}
+
+	
+
+	
 
 }

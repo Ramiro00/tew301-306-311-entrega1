@@ -24,8 +24,8 @@ public interface PisoDao {
 
 	void update(Piso p) throws NotPersistedException;
 
-	void delete(Long p) throws NotPersistedException;
+	void delete(int id) throws NotPersistedException;
 
-	Piso findById(Long id);
+	Piso findById(int id);
 
 }

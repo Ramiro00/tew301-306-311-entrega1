@@ -4,8 +4,9 @@ import impl.tew.business.LoginService;
 
 public interface ServicesFactory {
 	
-	AlumnosService createAlumnosService();
 
 	LoginService createLoginService();
+
+	PisosService createPisosService();
 
 }

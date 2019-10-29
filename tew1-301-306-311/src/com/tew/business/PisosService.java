@@ -28,10 +28,10 @@ public interface PisosService {
 
 	Piso findById(int id) throws EntityNotFoundException;
 
-	void saveAlumno(Piso p) throws EntityAlreadyExistsException;
+	void savePiso(Piso p) throws EntityAlreadyExistsException;
 
-	void updateAlumno(Piso p) throws EntityNotFoundException;
+	void updatePiso(Piso p) throws EntityNotFoundException;
 
-	void deleteAlumno(int id) throws EntityNotFoundException;
+	void deletePiso(int id) throws EntityNotFoundException;
 
 }

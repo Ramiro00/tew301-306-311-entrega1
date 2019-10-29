@@ -9,7 +9,7 @@ import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-@ManagedBean
+@ManagedBean(name="settings")
 @SessionScoped
 public class BeanSettings implements Serializable {
 	private static final long serialVersionUID = 2L;
@@ -17,23 +17,23 @@ public class BeanSettings implements Serializable {
 	private static final Locale SPANISH = new Locale("es");
 	private Locale locale = new Locale("es");
 
-	// uso de inyección de dependencia
-	@ManagedProperty(value = "#{alumno}")
-	private BeanAlumno alumno;
+	// uso de inyecciÃ³n de dependencia
+	@ManagedProperty(value = "#{piso}")
+	private BeanPiso piso;
 
-	public BeanAlumno getAlumno() {
-		return alumno;
+	public BeanPiso getPiso() {
+		return piso;
 	}
 
-	public void setAlumno(BeanAlumno alumno) {
-		this.alumno = alumno;
+	public void setPiso(BeanPiso piso) {
+		this.piso = piso;
 	}
 
 	public Locale getLocale() {
-		// Aqui habria que cambiar algo de código para coger locale del
+		// Aqui habria que cambiar algo de cÃ³digo para coger locale del
 		// navegador
 		// la primera vez que se accede a getLocale(), de momento dejamos como
-		// idioma de partida “es”
+		// idioma de partida â€œesâ€�
 		return (locale);
 	}
 
@@ -41,9 +41,9 @@ public class BeanSettings implements Serializable {
 		locale = SPANISH;
 		try {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-			if (alumno != null)
-				if (alumno.getId()==null) //valores por defecto del alumno, si no NO inicializar
-					alumno.iniciaAlumno(null);
+			if (piso != null)
+				if (piso.getId()==0) //valores por defecto del alumno, si no NO inicializar
+					piso.iniciaPiso(event);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -53,9 +53,9 @@ public class BeanSettings implements Serializable {
 		locale = ENGLISH;
 		try {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-			if (alumno != null)
-				if (alumno.getId()==null) //valores por defecto del alumno, si no NO inicializar
-					alumno.iniciaAlumno(null);
+			if (piso != null)
+				if (piso.getId()==0) //valores por defecto del alumno, si no NO inicializar
+					piso.iniciaPiso(event);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -64,28 +64,28 @@ public class BeanSettings implements Serializable {
 	// Se inicia correctamente el Managed Bean inyectado si JSF lo hubiera
 	// creado
 	// y en caso contrario se crea.
-	// (hay que tener en cuenta que es un Bean de sesión)
+	// (hay que tener en cuenta que es un Bean de sesionn)
 
-	// Se usa @PostConstruct, ya que en el contructor no se sabe todavía si
+	// Se usa @PostConstruct, ya que en el contructor no se sabe todavia
 	// el MBean ya estaba construido y en @PostConstruct SI.
 	@PostConstruct
 	public void init() {
 		System.out.println("BeanSettings - PostConstruct");
-		// Buscamos el alumno en la sesión. Esto es un patrón factoría
+		// Buscamos el alumno en la sesiÃ³n. Esto es un patron factoria
 		// claramente.
-		alumno = (BeanAlumno) FacesContext.getCurrentInstance()
+		piso = (BeanPiso) FacesContext.getCurrentInstance()
 				.getExternalContext().getSessionMap().get(new String("alumno"));
 
 		// si no existe lo creamos e inicializamos
-		if (alumno == null) {
+		if (piso == null) {
 			System.out.println("BeanSettings - No existia");
-			alumno = new BeanAlumno();
+			piso = new BeanPiso();
 			FacesContext.getCurrentInstance().getExternalContext()
-					.getSessionMap().put("alumno", alumno);
+					.getSessionMap().put("piso", piso);
 		}
 	}
 
-	// Es sólo a modo de traza.
+	//  a modo de traza.
 	@PreDestroy
 	public void end() {
 		System.out.println("BeanSettings - PreDestroy");

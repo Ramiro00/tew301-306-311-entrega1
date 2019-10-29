@@ -1,6 +1,5 @@
 package com.tew.persistence;
 
-import com.tew.persistence.AlumnoDao;
 
 /**
  * Interfaz de la factoria que suministra implementaciones reales de la fachada
@@ -11,8 +10,6 @@ import com.tew.persistence.AlumnoDao;
  *
  */
 public interface PersistenceFactory {
-
-	AlumnoDao createAlumnoDao();
 
 	PisoDao createPisoDao();
 

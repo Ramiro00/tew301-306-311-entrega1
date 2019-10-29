@@ -1,10 +1,9 @@
 package impl.tew.business.classes;
 
 import java.util.List;
-
 import com.tew.infrastructure.Factories;
-import com.tew.model.Alumno;
-import com.tew.persistence.AlumnoDao;
+import com.tew.model.Piso;
+import com.tew.persistence.PisoDao;
 
 /**
  * Esta clase pertenece a la capa de persistencia y ejecuta un proceso 
@@ -19,16 +18,16 @@ import com.tew.persistence.AlumnoDao;
  * actualizar y diversas consultas.
  * 
  */
-public class AlumnosListado {
+public class PisosListado {
 
-	public List<Alumno> getAlumnos() throws Exception {
+	public List<Piso> getPisos() throws Exception {
 		// Aqu?????? iria l??????gica de negocio que ejecutase alg??????n proceso ...
 		//... en este caso el ejemplo estan sencillo que no hay nada que hacer
 		
 		// Acceso a la capa de persistencia a traves de su fachada
 		// La fachada se obtiene de la factor??????a
-		AlumnoDao dao = Factories.persistence.createAlumnoDao();
-		return  dao.getAlumnos();
+		PisoDao dao = Factories.persistence.createPisoDao();
+		return  dao.getPisos();
 
 		// Aqu?????? podr??????a ir m??????s l??????gica de negocio que procesase los datos traidos 
 		// de persistencia

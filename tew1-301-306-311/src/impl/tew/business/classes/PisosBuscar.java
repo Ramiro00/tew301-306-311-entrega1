@@ -2,14 +2,14 @@ package impl.tew.business.classes;
 
 import com.tew.business.exception.EntityNotFoundException;
 import com.tew.infrastructure.Factories;
-import com.tew.model.Alumno;
-import com.tew.persistence.AlumnoDao;
+import com.tew.model.Piso;
+import com.tew.persistence.PisoDao;
 
-public class AlumnosBuscar {
+public class PisosBuscar {
 
-	public Alumno find(Long id) throws EntityNotFoundException {
-		AlumnoDao dao = Factories.persistence.createAlumnoDao();
-		Alumno a = dao.findById(id);
+	public Piso find(int id) throws EntityNotFoundException {
+		PisoDao dao = Factories.persistence.createPisoDao();
+		Piso a = dao.findById(id);
 		if ( a == null) {
 			throw new EntityNotFoundException("No se ha encontrado el alumno");
 		}

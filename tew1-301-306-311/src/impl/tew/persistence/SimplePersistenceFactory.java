@@ -1,6 +1,4 @@
 package impl.tew.persistence;
-
-import com.tew.persistence.AlumnoDao;
 import com.tew.persistence.PersistenceFactory;
 import com.tew.persistence.PisoDao;
 
@@ -17,12 +15,6 @@ public class SimplePersistenceFactory implements PersistenceFactory {
 	public PisoDao createPisoDao() {
 		// TODO Auto-generated method stub
 		return new PisoJdbcDao();
-	}
-
-	@Override
-	public AlumnoDao createAlumnoDao() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
