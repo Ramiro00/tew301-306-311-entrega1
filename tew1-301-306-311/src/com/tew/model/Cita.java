@@ -1,8 +1,8 @@
 package com.tew.model;
 
-public class Citas {
+public class Cita {
 	private int idPiso;
-	private long idCliente;
+	private int idCliente;
 	private long cita;
 	private int estado;
 
@@ -10,7 +10,7 @@ public class Citas {
 		return idPiso;
 	}
 
-	public long getIdCliente() {
+	public int getIdCliente() {
 		return idCliente;
 	}
 
@@ -26,7 +26,7 @@ public class Citas {
 		this.idPiso = idPiso;
 	}
 
-	public void setIdCliente(long idCliente) {
+	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
 
