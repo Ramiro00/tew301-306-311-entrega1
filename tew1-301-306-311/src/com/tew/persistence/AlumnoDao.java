@@ -9,10 +9,10 @@ import com.tew.persistence.exception.NotPersistedException;
 /**
  * Interfaz de la fachada a servicios de persistencia para la entidad Alumno.
  * 
- * En esta versi��n aparecen los otros m��todos b��sicos de un servicio 
+ * En esta version aparecen los otros metodos basicos de un servicio 
  * de persistencia
  * 
- * @author alb
+ * @author Enrique
  *
  */
 public interface AlumnoDao {
