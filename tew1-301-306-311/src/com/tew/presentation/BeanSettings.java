@@ -73,7 +73,7 @@ public class BeanSettings implements Serializable {
 		System.out.println("BeanSettings - PostConstruct");
 		// Buscamos el alumno en la sesiÃ³n. Esto es un patron factoria
 		// claramente.
-		piso = (BeanPiso) FacesContext.getCurrentInstance()
+		/*piso = (BeanPiso) FacesContext.getCurrentInstance()
 				.getExternalContext().getSessionMap().get(new String("alumno"));
 
 		// si no existe lo creamos e inicializamos
@@ -83,8 +83,7 @@ public class BeanSettings implements Serializable {
 			FacesContext.getCurrentInstance().getExternalContext()
 					.getSessionMap().put("piso", piso);
 		}
-	}
-
+	*/}
 	//  a modo de traza.
 	@PreDestroy
 	public void end() {
