@@ -14,13 +14,19 @@
             <p:dataTable id="tablaListado" var="valumno"
                 value="#{controller.alumnos}" border="1">
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaNombre}</f:facet>#{valumno.nombre}</p:column>
+                    <f:facet name="header">#{msgs.tablaID}</f:facet>#{valumno.nombre}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaApellidos}</f:facet>#{valumno.apellidos}</p:column>
+                    <f:facet name="header">#{msgs.tablaIDAgente}</f:facet>#{valumno.apellidos}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaIdUser}</f:facet>#{valumno.iduser}</p:column>
+                    <f:facet name="header">#{msgs.tablaPrecio}</f:facet>#{valumno.iduser}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaCorreo}</f:facet>#{valumno.email}</p:column>
+                    <f:facet name="header">#{msgs.tablaDireccion}</f:facet>#{valumno.email}</p:column>
+                <p:column>
+                    <f:facet name="header">#{msgs.tablaCiudad}</f:facet>#{valumno.email}</p:column>
+                <p:column>
+                    <f:facet name="header">#{msgs.tablaAno}</f:facet>#{valumno.email}</p:column>
+                     <p:column>
+                    <f:facet name="header">#{msgs.tablaEstadp}</f:facet>#{valumno.email}</p:column>
                 <p:column>
                     <f:facet name="header">#{msgs.tablaBaja}</f:facet>
                     <p:commandLink action="#{controller.baja(valumno)}"
