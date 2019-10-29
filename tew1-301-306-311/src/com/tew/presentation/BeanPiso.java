@@ -9,7 +9,7 @@ import javax.faces.event.ActionEvent;
 import com.tew.model.Alumno;
 import com.tew.model.Piso;
 
-@ManagedBean(name="alumno")
+@ManagedBean(name="piso")
 @SessionScoped
 public class BeanPiso extends Piso implements Serializable {
 	private static final long serialVersionUID = 55556L;
