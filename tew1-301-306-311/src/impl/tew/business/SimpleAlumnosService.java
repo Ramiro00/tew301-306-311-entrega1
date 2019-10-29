@@ -2,7 +2,6 @@ package impl.tew.business;
 
 import impl.tew.business.classes.*;
 
-
 import java.util.List;
 
 import com.tew.business.AlumnosService;
@@ -20,7 +19,7 @@ import com.tew.model.Alumno;
 public class SimpleAlumnosService implements AlumnosService {
 
 	@Override
-	public List<Alumno> getAlumnos() throws Exception{
+	public List<Alumno> getAlumnos() throws Exception {
 		return new AlumnosListado().getAlumnos();
 	}
 
