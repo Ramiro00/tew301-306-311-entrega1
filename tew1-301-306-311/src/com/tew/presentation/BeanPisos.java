@@ -1,6 +1,7 @@
 package com.tew.presentation;
 
 import java.io.Serializable;
+
 import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
@@ -8,14 +9,12 @@ import javax.annotation.PreDestroy;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-
-import com.tew.business.AlumnosService;
 import com.tew.business.PisosService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Alumno;
 import com.tew.model.Piso;
 
-@ManagedBean(name = "controller")
+@ManagedBean(name = "control")
 @SessionScoped
 public class BeanPisos implements Serializable {
 	private static final long serialVersionUID = 55555L;
@@ -61,7 +60,7 @@ public class BeanPisos implements Serializable {
 		piso.setPrecio(Integer.valueOf((String) bundle.getObject("valorDefectoPrecio")));
 		piso.setDireccion(bundle.getString("valorDefectoDireccion"));
 		piso.setCiudad(bundle.getString("valorDefectoCiudad"));
-		piso.setAnyo(Integer.valueOf((String) bundle.getObject("valorDefectoAnyo")));
+		piso.setAno(Integer.valueOf((String) bundle.getObject("valorDefectoAnyo")));
 		piso.setEstado(Integer.valueOf((String) bundle.getObject("valorDefectoEstado")));
 	}
 

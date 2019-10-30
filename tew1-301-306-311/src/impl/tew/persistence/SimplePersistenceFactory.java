@@ -1,11 +1,6 @@
 package impl.tew.persistence;
-<<<<<<< HEAD
-=======
 
-
-import com.tew.persistence.AlumnoDao;
 import com.tew.persistence.CitaDao;
->>>>>>> refs/remotes/origin/Generales
 import com.tew.persistence.PersistenceFactory;
 import com.tew.persistence.PisoDao;
 
@@ -24,8 +19,8 @@ public class SimplePersistenceFactory implements PersistenceFactory {
 		return new PisoJdbcDao();
 	}
 
-	
 	public CitaDao createCitaDao() {
 		return new CitasJdbcDao();
 	}
+
 }

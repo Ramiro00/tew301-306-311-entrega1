@@ -12,8 +12,8 @@
     </application>
 
     <managed-bean>
-        <managed-bean-name>controller</managed-bean-name>
-        <managed-bean-class>com.tew.presentation.BeanAlumnos</managed-bean-class>
+        <managed-bean-name>control</managed-bean-name>
+        <managed-bean-class>com.tew.presentation.BeanPisos</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 
@@ -22,8 +22,7 @@
         <managed-bean-class>com.tew.presentation.BeanSettings</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
-
-<<<<<<< HEAD
+    
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -43,7 +42,7 @@
 			<to-view-id>/restricted/altaForm.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-action>#{controller.listado}</from-action>
+			<from-action>#{control.listado}</from-action>
 			<from-outcome>exito</from-outcome>
 			<to-view-id>/restricted/listado.xhtml</to-view-id>
 		</navigation-case>
@@ -62,7 +61,7 @@
 			<to-view-id>/restricted/index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-=======
+
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
@@ -82,12 +81,12 @@
             <to-view-id>/restricted/altaForm.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>#{controller.listado}</from-action>
+            <from-action>#{control.listado}</from-action>
             <from-outcome>exito</from-outcome>
             <to-view-id>/restricted/listado.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
->>>>>>> refs/remotes/origin/Generales
+
 
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
@@ -106,7 +105,7 @@
     <navigation-rule>
         <from-view-id>/restricted/listado.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{controller.baja(valumno)}</from-action>
+            <from-action>#{control.baja(vpiso)}</from-action>
             <from-outcome>exito</from-outcome>
             <to-view-id>/restricted/listado.xhtml</to-view-id>
         </navigation-case>
@@ -120,7 +119,7 @@
     <navigation-rule>
         <from-view-id>/restricted/altaForm.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{controller.salva}</from-action>
+            <from-action>#{control.salva}</from-action>
             <from-outcome>exito</from-outcome>
             <to-view-id>/restricted/listado.xhtml</to-view-id>
         </navigation-case>
@@ -129,7 +128,7 @@
     <navigation-rule>
         <from-view-id>/restricted/editForm.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{controller.salva}</from-action>
+            <from-action>#{control.salva}</from-action>
             <from-outcome>exito</from-outcome>
             <to-view-id>/restricted/listado.xhtml</to-view-id>
         </navigation-case>

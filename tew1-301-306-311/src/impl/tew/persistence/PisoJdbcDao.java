@@ -33,7 +33,7 @@ public class PisoJdbcDao implements PisoDao {
 			// Obtenemos la conexi��n a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("select * from Piso");
+			ps = con.prepareStatement("select * from PISOS");
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -43,7 +43,7 @@ public class PisoJdbcDao implements PisoDao {
 				piso.setPrecio(rs.getInt("Precio"));
 				piso.setDireccion(rs.getString("Direccion"));
 				piso.setCiudad(rs.getString("Ciudad"));
-				piso.setAnyo(rs.getInt("Ano"));
+				piso.setAno(rs.getInt("Ano"));
 
 				pisos.add(piso);
 			}
@@ -105,7 +105,7 @@ public class PisoJdbcDao implements PisoDao {
 			ps.setInt(2, p.getPrecio());
 			ps.setString(3, p.getDireccion());
 			ps.setString(4, p.getCiudad());
-			ps.setInt(5, p.getAnyo());
+			ps.setInt(5, p.getAno());
 			ps.setInt(6, p.getEstado());
 
 			rows = ps.executeUpdate();
@@ -160,7 +160,7 @@ public class PisoJdbcDao implements PisoDao {
 			ps.setInt(2, p.getPrecio());
 			ps.setString(3, p.getDireccion());
 			ps.setString(4, p.getCiudad());
-			ps.setInt(5, p.getAnyo());
+			ps.setInt(5, p.getAno());
 			ps.setInt(6, p.getEstado());
 
 			rows = ps.executeUpdate();
@@ -272,7 +272,7 @@ public class PisoJdbcDao implements PisoDao {
 				piso.setPrecio(rs.getInt("Precio"));
 				piso.setDireccion(rs.getString("Direccion"));
 				piso.setCiudad(rs.getString("Ciudad"));
-				piso.setAnyo(rs.getInt("Ano"));
+				piso.setAno(rs.getInt("Ano"));
 				piso.setEstado(rs.getInt("Estado"));
 
 			}
@@ -309,9 +309,5 @@ public class PisoJdbcDao implements PisoDao {
 
 		return piso;
 	}
-
-	
-
-	
 
 }

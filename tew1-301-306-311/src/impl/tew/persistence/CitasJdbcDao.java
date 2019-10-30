@@ -36,7 +36,7 @@ public class CitasJdbcDao implements CitaDao {
 			// Obtenemos la conexion a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("select * from alumno");
+			ps = con.prepareStatement("select * from PISOS");
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -129,8 +129,9 @@ public class CitasJdbcDao implements CitaDao {
 		}
 
 	}
-	
-/*	INSERT INTO "PUBLIC"."PISOPARAVISITAR"
-	( "IDPISO", "IDCLIENTE", "FECHAHORACITA", "ESTADO" )
-	VALUES (0 ,3 ,1572358635 ,1 )*/
+
+	/*
+	 * INSERT INTO "PUBLIC"."PISOPARAVISITAR" ( "IDPISO", "IDCLIENTE",
+	 * "FECHAHORACITA", "ESTADO" ) VALUES (0 ,3 ,1572358635 ,1 )
+	 */
 }

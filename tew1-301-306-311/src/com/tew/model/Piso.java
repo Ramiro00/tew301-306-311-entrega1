@@ -7,7 +7,7 @@ public class Piso {
 	private int precio;
 	private String direccion;
 	private String ciudad;
-	private int anyo;
+	private int ano;
 	private int estado;
 
 	public int getId() {
@@ -50,12 +50,12 @@ public class Piso {
 		this.ciudad = ciudad;
 	}
 
-	public int getAnyo() {
-		return anyo;
+	public int getAno() {
+		return ano;
 	}
 
-	public void setAnyo(int anyo) {
-		this.anyo = anyo;
+	public void setAno(int ano) {
+		this.ano = ano;
 	}
 
 	public int getEstado() {

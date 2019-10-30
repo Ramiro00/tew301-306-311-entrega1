@@ -12,7 +12,7 @@
     <ui:define name="cuerpo">
         <h:form>
             <p:dataTable id="tablaListado" var="vpiso"
-                value="#{controller.pisos}" border="1">
+                value="#{control.pisos}" border="1">
                 <p:column>
                     <f:facet name="header">#{msgs.tablaID}</f:facet>#{vpiso.id}</p:column>
                 <p:column>
@@ -27,21 +27,7 @@
                     <f:facet name="header">#{msgs.tablaAno}</f:facet>#{vpiso.ano}</p:column>
                      <p:column>
                     <f:facet name="header">#{msgs.tablaEstado}</f:facet>#{vpiso.estado}</p:column>
-                <p:column>
-                    <f:facet name="header">#{msgs.tablaBaja}</f:facet>
-                    <p:commandLink action="#{controller.baja(valumno)}"
-                        type="submit" value="#{msgs.tablaBaja}"
-                        immediate="true" update="tablaListado">
-                    </p:commandLink>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">#{msgs.tablaEditar}</f:facet>
-                    <p:commandLink action="editar" type="submit"
-                        value="#{msgs.tablaEditar}"
-                        actionListener="#{piso.setPiso(vpiso)}"
-                        immediate="true">
-                    </p:commandLink>
-                </p:column>
+       
             </p:dataTable>
         </h:form>
     </ui:define>
