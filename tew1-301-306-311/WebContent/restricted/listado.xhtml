@@ -12,7 +12,7 @@
     <ui:define name="cuerpo">
         <h:form>
             <p:dataTable id="tablaListado" var="vpiso"
-                value="#{controller.alumnos}" border="1">
+                value="#{controller.pisos}" border="1">
                 <p:column>
                     <f:facet name="header">#{msgs.tablaID}</f:facet>#{vpiso.id}</p:column>
                 <p:column>
@@ -22,7 +22,7 @@
                 <p:column>
                     <f:facet name="header">#{msgs.tablaDireccion}</f:facet>#{vpiso.direccion}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaCiudad}</f:facet>#{vpiso.ciudad}</p:column>
+                    <f:facet name="header" filterby="#{vpiso.ciudad}" filterMatchMode="contains">#{msgs.tablaCiudad}</f:facet>#{vpiso.ciudad}</p:column>
                 <p:column>
                     <f:facet name="header">#{msgs.tablaAno}</f:facet>#{vpiso.ano}</p:column>
                      <p:column>
@@ -38,13 +38,17 @@
                     <f:facet name="header">#{msgs.tablaEditar}</f:facet>
                     <p:commandLink action="editar" type="submit"
                         value="#{msgs.tablaEditar}"
-                        actionListener="#{alumno.setAlumno(valumno)}"
+                        actionListener="#{piso.setPiso(vpiso)}"
                         immediate="true">
                     </p:commandLink>
                 </p:column>
             </p:dataTable>
         </h:form>
     </ui:define>
+    
+    
+    
+    
     <ui:define name="pie">
         <ui:include src="/snippets/pie-casa.xhtml" />
     </ui:define>

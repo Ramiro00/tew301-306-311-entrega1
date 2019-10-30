@@ -9,7 +9,7 @@ import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-@ManagedBean(name="settings")
+@ManagedBean(name = "settings")
 @SessionScoped
 public class BeanSettings implements Serializable {
 	private static final long serialVersionUID = 2L;
@@ -42,7 +42,7 @@ public class BeanSettings implements Serializable {
 		try {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 			if (piso != null)
-				if (piso.getId()==0) //valores por defecto del alumno, si no NO inicializar
+				if (piso.getId() == 0) // valores por defecto del alumno, si no NO inicializar
 					piso.iniciaPiso(event);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -54,7 +54,7 @@ public class BeanSettings implements Serializable {
 		try {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 			if (piso != null)
-				if (piso.getId()==0) //valores por defecto del alumno, si no NO inicializar
+				if (piso.getId() == 0) // valores por defecto del alumno, si no NO inicializar
 					piso.iniciaPiso(event);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -73,18 +73,19 @@ public class BeanSettings implements Serializable {
 		System.out.println("BeanSettings - PostConstruct");
 		// Buscamos el alumno en la sesiÃ³n. Esto es un patron factoria
 		// claramente.
-		/*piso = (BeanPiso) FacesContext.getCurrentInstance()
-				.getExternalContext().getSessionMap().get(new String("alumno"));
+
+		piso = (BeanPiso) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.get(new String("piso"));
 
 		// si no existe lo creamos e inicializamos
 		if (piso == null) {
 			System.out.println("BeanSettings - No existia");
 			piso = new BeanPiso();
-			FacesContext.getCurrentInstance().getExternalContext()
-					.getSessionMap().put("piso", piso);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("settings", piso);
 		}
-	*/}
-	//  a modo de traza.
+	}
+
+	// a modo de traza.
 	@PreDestroy
 	public void end() {
 		System.out.println("BeanSettings - PreDestroy");

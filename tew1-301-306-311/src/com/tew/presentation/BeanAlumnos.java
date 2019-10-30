@@ -10,70 +10,66 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import com.tew.business.AlumnosService;
-import com.tew.business.PisosService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Alumno;
-import com.tew.model.Piso;
 
-@ManagedBean(name = "controller")
+@ManagedBean
 @SessionScoped
-public class BeanPisos implements Serializable {
+public class BeanAlumnos implements Serializable {
 	private static final long serialVersionUID = 55555L;
-	// Se añade este atributo de entidad para recibir el alumno concreto
-	// selecionado de la tabla o de un formulario
+	// Se añade este atributo de entidad para recibir el alumno concreto selecionado
+	// de la tabla o de un formulario
 	// Es necesario inicializarlo para que al entrar desde el formulario de
 	// AltaForm.xml se puedan
 	// dejar los avalores en un objeto existente.
 
-	private Piso[] pisos = null;
+	private Alumno[] alumnos = null;
 
 	// uso de inyección de dependencia
-	@ManagedProperty(value = "#{piso}")
-	private BeanPiso piso;
+	@ManagedProperty(value = "#{alumno}")
+	private BeanAlumno alumno;
 
-	public BeanPiso getAlumno() {
-		return piso;
+	public BeanAlumno getAlumno() {
+		return alumno;
 	}
 
-	public void setAlumno(BeanPiso piso) {
-		this.piso = piso;
+	public void setAlumno(BeanAlumno alumno) {
+		this.alumno = alumno;
 	}
 
 	/*
 	 * public BeanAlumnos() { iniciaAlumno(null); }
 	 */
 
-	public Piso[] getPisos() {
-		return (pisos);
+	public Alumno[] getAlumnos() {
+		return (alumnos);
 	}
 
-	public void setAlumnos(Piso[] pisos) {
-		this.pisos = pisos;
+	public void setAlumnos(Alumno[] alumnos) {
+		this.alumnos = alumnos;
 	}
 
-	public void iniciaPisos(ActionEvent event) {
+	public void iniciaAlumno(ActionEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		// Obtenemos el archivo de propiedades correspondiente al idioma que
 		// tengamos seleccionado y que viene envuelto en facesContext
 		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
-		piso.setId(Integer.valueOf((String) bundle.getObject("valorDefectoPisoId")));
-		piso.setIdagente(Integer.valueOf((String) bundle.getObject("valorDefectoIdAgente")));
-		piso.setPrecio(Integer.valueOf((String) bundle.getObject("valorDefectoPrecio")));
-		piso.setDireccion(bundle.getString("valorDefectoDireccion"));
-		piso.setCiudad(bundle.getString("valorDefectoCiudad"));
-		piso.setAnyo(Integer.valueOf((String) bundle.getObject("valorDefectoAnyo")));
-		piso.setEstado(Integer.valueOf((String) bundle.getObject("valorDefectoEstado")));
+		alumno.setId(null);
+		alumno.setIduser(bundle.getString("valorDefectoUserId"));
+		alumno.setNombre(bundle.getString("valorDefectoNombre"));
+		alumno.setApellidos(bundle.getString("valorDefectoApellidos"));
+		alumno.setEmail(bundle.getString("valorDefectoCorreo"));
 	}
 
 	public String listado() {
-		PisosService service;
+		AlumnosService service;
 		try {
 			// Acceso a la implementacion de la capa de negocio
 			// a trav��s de la factor��a
-			service = Factories.services.createPisosService();
-			// De esta forma le damos informaci��n a toArray para poder hacer el casting
-			// a Alumno[]
-			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
+			service = Factories.services.createAlumnosService();
+			// De esta forma le damos informaci��n a toArray para poder hacer el casting a
+			// Alumno[]
+			alumnos = (Alumno[]) service.getAlumnos().toArray(new Alumno[0]);
 
 			return "exito";
 
@@ -84,16 +80,16 @@ public class BeanPisos implements Serializable {
 
 	}
 
-	public String baja(Piso piso) {
-		PisosService service;
+	public String baja(Alumno alumno) {
+		AlumnosService service;
 		try {
 			// Acceso a la implementacion de la capa de negocio
 			// a trav��s de la factor��a
-			service = Factories.services.createPisosService();
+			service = Factories.services.createAlumnosService();
 			// Aliminamos el alumno seleccionado en la tabla
-			service.deletePiso(piso.getId());
+			service.deleteAlumno(alumno.getId());
 			// Actualizamos el javabean de alumnos inyectado en la tabla.
-			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
+			alumnos = (Alumno[]) service.getAlumnos().toArray(new Alumno[0]);
 			return "exito";
 
 		} catch (Exception e) {
@@ -104,14 +100,14 @@ public class BeanPisos implements Serializable {
 	}
 
 	public String edit() {
-		PisosService service;
+		AlumnosService service;
 		try {
 			// Acceso a la implementacion de la capa de negocio
 			// a trav��s de la factor��a
-			service = Factories.services.createPisosService();
+			service = Factories.services.createAlumnosService();
 			// Recargamos el alumno seleccionado en la tabla de la base de datos por si
 			// hubiera cambios.
-			piso = (BeanPiso) service.findById(piso.getId());
+			alumno = (BeanAlumno) service.findById(alumno.getId());
 			return "exito";
 
 		} catch (Exception e) {
@@ -122,20 +118,20 @@ public class BeanPisos implements Serializable {
 	}
 
 	public String salva() {
-		PisosService service;
+		AlumnosService service;
 		try {
 			// Acceso a la implementacion de la capa de negocio
 			// a trav��s de la factor��a
-			service = Factories.services.createPisosService();
+			service = Factories.services.createAlumnosService();
 			// Salvamos o actualizamos el alumno segun sea una operacion de alta o de
 			// edici��n
-			if (piso.getId() == 0) {
-				service.savePiso(piso);
+			if (alumno.getId() == null) {
+				service.saveAlumno(alumno);
 			} else {
-				service.updatePiso(piso);
+				service.updateAlumno(alumno);
 			}
 			// Actualizamos el javabean de alumnos inyectado en la tabla
-			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
+			alumnos = (Alumno[]) service.getAlumnos().toArray(new Alumno[0]);
 			return "exito";
 
 		} catch (Exception e) {
@@ -144,30 +140,30 @@ public class BeanPisos implements Serializable {
 		}
 
 	}
+
 	// Se inicia correctamente el MBean inyectado si JSF lo hubiera crea
 	// y en caso contrario se crea. (hay que tener en cuenta que es un Bean de
 	// sesión)
 	// Se usa @PostConstruct, ya que en el contructor no se sabe todavía si el
 	// Managed Bean
 	// ya estaba construido y en @PostConstruct SI.
-
 	@PostConstruct
 	public void init() {
-		System.out.println("BeanPisos - PostConstruct");
+		System.out.println("BeanAlumnos - PostConstruct");
 		// Buscamos el alumno en la sesión. Esto es un patrón factoría claramente.
-		piso = (BeanPiso) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+		alumno = (BeanAlumno) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get(new String("alumno"));
 		// si no existe lo creamos e inicializamos
-		if (piso == null) {
-			System.out.println("BeanPisos - No existia");
-			piso = new BeanPiso();
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("piso", piso);
+		if (alumno == null) {
+			System.out.println("BeanAlumnos - No existia");
+			alumno = new BeanAlumno();
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("alumno", alumno);
 		}
 	}
 
 	@PreDestroy
 	public void end() {
-		System.out.println("BeanPisos - PreDestroy");
+		System.out.println("BeanAlumnos - PreDestroy");
 	}
 
 }
