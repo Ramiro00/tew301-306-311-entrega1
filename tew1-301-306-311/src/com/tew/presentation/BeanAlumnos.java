@@ -166,4 +166,8 @@ public class BeanAlumnos implements Serializable {
 		System.out.println("BeanAlumnos - PreDestroy");
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/origin/Generales

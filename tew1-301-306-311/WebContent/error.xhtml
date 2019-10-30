@@ -11,15 +11,17 @@
 <f:view locale="#{settings.locale}">
 
     <h:head>
-        <title>Piloto de TEW</title>
+        <title>#{msgs.tituloHead}</title>
     </h:head>
     <h:body>
-        <center>
-            <h1>Gestioneitor 2.1!</h1>
-            <br />
-            <h2>Aplicación de gestión de alumnos</h2>
-        </center>
-        <br />
+        <h:form id="form-cabecera">
+            <center>
+                <h1>#{msgs.tituloAplicacion1}</h1>
+                <img src="../images/logotipo.png"
+                    alt="logotipo inmobiliaria" height="90" />
+                <h2>#{msgs.tituloAplicacion2}</h2>
+            </center>
+        </h:form>
         <br />
         <br />
         <h1>Ha ocurrido un error en el proceso de su petición</h1>
