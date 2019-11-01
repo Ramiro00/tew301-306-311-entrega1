@@ -12,7 +12,7 @@
     <ui:define name="cuerpo">
         <h:form>
             <p:dataTable id="tablaListado" var="cita"
-                value="#{controller.alumnos}" border="1">
+                value="#{controller.cita}" border="1">
                 <p:column>
                     <f:facet name="header">#{msgs.tablaCitaIdPiso}</f:facet>#{cita.idPiso}</p:column>
                 <p:column>
@@ -23,15 +23,9 @@
                     <f:facet name="header">#{msgs.tablaCitaEstado}</f:facet>#{cita.estado}</p:column>
                 <p:column>
                     <f:facet name="header">#{msgs.tablaCitaVisita}</f:facet>
-                    <p:confirm>#{cita.tablaCitaVisita}</p:confirm>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">#{msgs.tablaEditar}</f:facet>
-                    <p:commandLink action="editar" type="submit"
-                        value="#{msgs.tablaEditar}"
-                        actionListener="#{alumno.setAlumno(valumno)}"
-                        immediate="true">
-                    </p:commandLink>
+                    <p:selectBooleanCheckbox
+                        value="#{selectBooleanView.value1}"
+                        itemLabel="Basic" />
                 </p:column>
             </p:dataTable>
         </h:form>

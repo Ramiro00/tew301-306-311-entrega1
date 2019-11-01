@@ -2,8 +2,6 @@ package com.tew.business;
 
 import java.util.List;
 
-import javax.persistence.EntityExistsException;
-
 import com.tew.model.Cita;
 
 /**
@@ -24,6 +22,5 @@ import com.tew.model.Cita;
 public interface CitasService {
 
 	List<Cita> getCitas() throws Exception;
-	void saveCita(Cita cita) throws EntityExistsException;
 
 }

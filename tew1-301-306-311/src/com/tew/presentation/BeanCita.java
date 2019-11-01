@@ -31,10 +31,11 @@ public class BeanCita extends Cita implements Serializable {
 		setCita(cita.getCita());
 	}
 
-	private void iniciaCita(ActionEvent event) {
-
+	public void iniciaCita(ActionEvent event) {
+	    FacesContext facesContext = FacesContext.getCurrentInstance();
+	    @SuppressWarnings("unused")
+		ResourceBundle bundle = 
+	    		facesContext.getApplication().getResourceBundle(facesContext, "msgs");
+	    setIdCliente(0);
 	}
-
-	
-
 }

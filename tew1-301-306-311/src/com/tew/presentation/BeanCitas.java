@@ -1,8 +1,11 @@
 package com.tew.presentation;
 
 import java.io.Serializable;
+import java.util.ResourceBundle;
 
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import com.tew.business.CitasService;
 import com.tew.infrastructure.Factories;
@@ -22,7 +25,7 @@ public class BeanCitas implements Serializable {
 	private Cita[] citas = null;
 
 	// uso de inteccción de dependencia
-	@ManagedProperty(value = "#{cita}")
+	@ManagedProperty(value = "#{alumno}")
 	private BeanCita cita;
 
 	public BeanCita getCita() {
@@ -49,6 +52,15 @@ public class BeanCitas implements Serializable {
 			e.printStackTrace();
 			return "error";
 		}
+	}
+	
+	public void inicaCita(ActionEvent event) {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		// Obtenemos el archivo de propiedades correspondiente al idioma que
+		// tengamos seleccionado y que viene envuelto en facesContext
+		@SuppressWarnings("unused")
+		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
+		cita.setIdPiso(0);
 	}
 
 }
