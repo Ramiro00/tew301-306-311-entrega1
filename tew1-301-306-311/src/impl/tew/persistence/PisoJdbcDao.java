@@ -370,4 +370,72 @@ public class PisoJdbcDao implements PisoDao {
 		return piso;
 	}
 
+	@Override
+	public List<Piso> getPisos(int min, int max) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		List<Piso> pisos = new ArrayList<Piso>();
+
+		try {
+			// En una implemenntaci��n m��s sofisticada estas constantes habr��a
+			// que sacarlas a un sistema de configuraci��n:
+			// xml, properties, descriptores de despliege, etc
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+
+			// Obtenemos la conexi��n a la base de datos.
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("select * from PISOS WHERE Precio>" + min + "AND Precio<" + max);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Piso piso = new Piso();
+				piso.setId(rs.getInt("ID"));
+				piso.setIdagente(rs.getInt("IDAgente"));
+				piso.setPrecio(rs.getInt("Precio"));
+				piso.setDireccion(rs.getString("Direccion"));
+				piso.setCiudad(rs.getString("Ciudad"));
+				piso.setAno(rs.getInt("Ano"));
+				piso.setEstado(rs.getInt("Estado"));
+				piso.setVisita(pisovisitado(rs.getInt("ID"), 1));
+				pisos.add(piso);
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+		}
+
+		return pisos;
+
+	}
+
 }

@@ -12,16 +12,21 @@
 	<ui:define name="cuerpo">
 		<h:form>
 			
-
+			<p:inputText id="minFilter" style="width:115px" placeholder="#{msgs.min}">
+               				<f:convertNumber currencySymbol="$" type="currency"/>
+            </p:inputText>
+            <p:inputText id="maxFilter" style="width:115px" placeholder="#{msgs.max}">               			
+            </p:inputText>
+            <p:commandButton value="Buscar" id="ajax" update="tablaListado" action="#{control.filtrar}" style="margin-right:20px;" styleClass="ui-priority-primary" >
+            	<f:param name="action" value="minFilter" />
+            	<f:param name="action2" value="maxFilter" />
+            </p:commandButton>
 			<p:dataTable id="tablaListado" var="vpiso"
-				value="#{control.pisos}" border="1"
-				emptyMessage="#{msgs.tablaVacia}" style="margin-bottom:0">
+				value="#{control.pisos}" border="1" rowKey="#{vpiso.id}"
+				emptyMessage="#{msgs.tablaVacia}">
+				
 				<f:facet name="header">
-            		<p:outputPanel>
-               			<h:outputText value="#{precio}" />
-                		<p:inputText id="minFilter" onkeyup="PF('tablaListado').filter()" style="width:150px" placeholder="#{msgs.min}"/>
-                		<p:inputText id="maxFilter" onkeyup="PF('tablaListado').filter()" style="width:150px" placeholder="#{msgs.max}"/>
-            		</p:outputPanel>
+            		#{msgs.titulotablapisos}
        			</f:facet>
 
 				<p:column>
@@ -32,11 +37,11 @@
 					<f:facet name="header">#{msgs.tablaIDAgente}</f:facet>#{vpiso.idagente}
                 </p:column>
 
-				<p:column filterby="#{vpiso.precio}" >
+				<p:column filterby="#{vpiso.precio}" filterFunction="#{control.filterByPrice}">
 					
 					<f:facet name="header">#{msgs.tablaPrecio}
-               		</f:facet>
-                	
+               			
+                	</f:facet>              	
                		#{vpiso.precio}
                	</p:column>
 
@@ -52,15 +57,17 @@
 					<f:facet name="header">#{msgs.tablaAno}</f:facet>#{vpiso.ano}
                 </p:column>
 
-				<p:column>
+				<p:column >
 					<f:facet name="header">#{msgs.tablaEstado}</f:facet>#{vpiso.sestado}
                 </p:column>
-                <p:column selectionMode="multiple">
+                <p:column >
                 	<f:facet name="header">#{msgs.tablaSeleccionar}</f:facet>
+                	<p:selectBooleanCheckbox value="#{vpiso.visita}">
+                	 </p:selectBooleanCheckbox>
                 </p:column>
 
 			</p:dataTable>
-			   		<p:commandButton value="#{msgs.botonSalvar}"
+			   		<p:commandButton id="Guardar" value="#{msgs.botonSalvar}"
             		action="#{control.guardarSeleccion}" onclick="casa" process="@form">
         		</p:commandButton>
 		</h:form>

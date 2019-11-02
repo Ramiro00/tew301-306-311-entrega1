@@ -28,4 +28,6 @@ public interface PisoDao {
 
 	Piso findById(int id);
 
+	List<Piso> getPisos(int min, int max);
+
 }

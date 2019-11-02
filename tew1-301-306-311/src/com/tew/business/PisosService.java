@@ -34,4 +34,6 @@ public interface PisosService {
 
 	void deletePiso(int id) throws EntityNotFoundException;
 
+	List<Piso> getPisos(int min, int max);
+
 }

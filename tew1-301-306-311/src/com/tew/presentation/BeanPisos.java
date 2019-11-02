@@ -1,7 +1,8 @@
 package com.tew.presentation;
 
 import java.io.Serializable;
-
+import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,8 @@ import javax.annotation.PreDestroy;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
+
 import com.tew.business.PisosService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Piso;
@@ -24,6 +27,7 @@ public class BeanPisos implements Serializable {
 	// dejar los avalores en un objeto existente.
 
 	private Piso[] pisos = null;
+	private Piso[] pisosfiltrados = null;
 
 	// uso de inyección de dependencia
 	@ManagedProperty(value = "#{piso}")
@@ -78,17 +82,16 @@ public class BeanPisos implements Serializable {
 
 	}
 
-	public String filterminPrice(int min) {
+	public String filtrar() {
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String min = params.get("action");
+		String max = params.get("action2");
+
 		PisosService service;
 		try {
 			service = Factories.services.createPisosService();
-			Piso[] p = (Piso[]) service.getPisos().toArray(new Piso[0]);
-			for (int i = 0; i < p.length; i++) {
-				if (p[i].getPrecio() > min) {
-					pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
-				}
 
-			}
+			Piso[] p = (Piso[]) service.getPisos(Integer.parseInt(min), Integer.parseInt(max)).toArray(new Piso[0]);
 
 			return "exito";
 
@@ -99,14 +102,14 @@ public class BeanPisos implements Serializable {
 
 	}
 
-	public String filtermaxPrice(int max) {
+	public String filterminPrice(int min) {
 		PisosService service;
 		try {
 			service = Factories.services.createPisosService();
 			Piso[] p = (Piso[]) service.getPisos().toArray(new Piso[0]);
 			for (int i = 0; i < p.length; i++) {
-				if (p[i].getPrecio() < max) {
-					pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
+				if (p[i].getPrecio() > min) {
+
 				}
 
 			}

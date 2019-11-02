@@ -41,4 +41,10 @@ public class SimplePisosService implements PisosService {
 	public Piso findById(int id) throws EntityNotFoundException {
 		return new PisosBuscar().find(id);
 	}
+
+	@Override
+	public List<Piso> getPisos(int min, int max) {
+		// TODO Auto-generated method stub
+		return new PisosListado().getPisos(min, max);
+	}
 }
