@@ -45,10 +45,15 @@ public class BeanCitas implements Serializable {
 
 	public void inicaCitas(ActionEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		// Obtenemos el archivo de propiedades correspondiente al idioma que
-		// tengamos seleccionado y que viene envuelto en facesContext
-		@SuppressWarnings("unused")
+		/*
+		 * Obtenemos el archivo de propiedades correspondiente al idioma que tengamos
+		 * seleccionado y que viene envuelto en facesContext
+		 */
 		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
+		cita.setIdPiso(Integer.valueOf((String) bundle.getObject("valorDefectoIdPiso")));
+		cita.setIdCliente(Integer.valueOf((String) bundle.getObject("valorDefectoIdCliente")));
+		cita.setEstado(Integer.valueOf((String) bundle.getObject("valorDefectEstado")));
+		cita.setCita(Long.valueOf((Long) bundle.getObject("valorDefectCita")));
 	}
 
 	public String listado() {

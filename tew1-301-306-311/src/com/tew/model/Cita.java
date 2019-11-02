@@ -37,5 +37,4 @@ public class Cita {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-
 }
