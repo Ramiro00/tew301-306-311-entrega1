@@ -22,4 +22,9 @@ public class SimpleServicesFactory implements ServicesFactory {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public SignupService createSignupService() {
+		return new SimpleSignupService();
+	}
 }

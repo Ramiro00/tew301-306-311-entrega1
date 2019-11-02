@@ -16,14 +16,12 @@
 		<center>
 			<p:growl id="mensajes" showDetail="false" />
 			<h:form id="form-principal">
-				<ui:include src="/snippets/form-login.xhtml" />
-				<p:commandButton value="#{msgs.login_form_button}"
-					action="#{login.verify}" update=":mensajes">
-				</p:commandButton>
-				<br></br><br></br> 
+				<ui:include src="/snippets/form-signup.xhtml" />
+				<br></br>
 				<p:commandButton value="#{msgs.signup_form_button}"
-					action="signup">
+					action="#{signup.registrarse}" update=":mensajes">
 				</p:commandButton>
+
 			</h:form>
 		</center>
 	</ui:define>
