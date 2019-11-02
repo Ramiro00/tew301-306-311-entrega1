@@ -7,27 +7,26 @@
 
 	<ui:define name="titulo">
     #{msgs.tituloOperacionListado}
-  </ui:define>
+  	</ui:define>
 
 	<ui:define name="cuerpo">
 		<h:form>
 			
 			<p:inputText id="minFilter" style="width:115px" placeholder="#{msgs.min}">
-               				<f:convertNumber currencySymbol="$" type="currency"/>
+               				
             </p:inputText>
-            <p:inputText id="maxFilter" style="width:115px" placeholder="#{msgs.max}">               			
+            <p:inputText id="maxFilter" style="width:115px" placeholder="#{msgs.max}">     
+                      			
             </p:inputText>
-            <p:commandButton value="Buscar" id="ajax" update="tablaListado" action="#{control.filtrar}" style="margin-right:20px;" styleClass="ui-priority-primary" >
-            	<f:param name="action" value="minFilter" />
-            	<f:param name="action2" value="maxFilter" />
+            <p:commandButton value="Buscar" id="ajax">
+            	
             </p:commandButton>
-			<p:dataTable id="tablaListado" var="vpiso"
+            
+			<p:dataTable id="c" var="vpiso"
 				value="#{control.pisos}" border="1" rowKey="#{vpiso.id}"
 				emptyMessage="#{msgs.tablaVacia}">
 				
-				<f:facet name="header">
-            		#{msgs.titulotablapisos}
-       			</f:facet>
+				<f:facet name="header">#{msgs.titulotablapisos}</f:facet>
 
 				<p:column>
 					<f:facet name="header">#{msgs.tablaID}</f:facet>#{vpiso.id}
@@ -37,13 +36,15 @@
 					<f:facet name="header">#{msgs.tablaIDAgente}</f:facet>#{vpiso.idagente}
                 </p:column>
 
-				<p:column filterby="#{vpiso.precio}" filterFunction="#{control.filterByPrice}">
-					
-					<f:facet name="header">#{msgs.tablaPrecio}
-               			
-                	</f:facet>              	
-               		#{vpiso.precio}
+				<p:column>	
+					<f:facet name="header">#{msgs.tablaPrecio}</f:facet>#{vpiso.precio}
                	</p:column>
+               	
+               	<p:column name="header" headerText="#{msgs.tablaPrecio}" filterBy="#{vpiso.precio}" filterFunction="#{control.filterByPrice}">
+            		<h:outputText value="#{vpiso.precio}">
+                		<f:convertNumber currencySymbol="$" type="currency"/>
+            		</h:outputText>
+       	 		</p:column>
 
 				<p:column>
 					<f:facet name="header">#{msgs.tablaDireccion}</f:facet>#{vpiso.direccion}
@@ -65,6 +66,7 @@
                 	<p:selectBooleanCheckbox value="#{vpiso.visita}">
                 	 </p:selectBooleanCheckbox>
                 </p:column>
+              
 
 			</p:dataTable>
 			   		<p:commandButton id="Guardar" value="#{msgs.botonSalvar}"

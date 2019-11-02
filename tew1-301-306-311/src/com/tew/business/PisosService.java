@@ -36,4 +36,6 @@ public interface PisosService {
 
 	List<Piso> getPisos(int min, int max);
 
+	List<Piso> getPisos(String login);
+
 }

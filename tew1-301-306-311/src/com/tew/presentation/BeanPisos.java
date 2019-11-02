@@ -15,6 +15,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 import com.tew.business.PisosService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Piso;
+import com.tew.model.User;
 
 @ManagedBean(name = "control")
 @SessionScoped
@@ -39,6 +40,13 @@ public class BeanPisos implements Serializable {
 
 	public void setPiso(BeanPiso piso) {
 		this.piso = piso;
+	}
+
+	@ManagedProperty(value = "#{signup}")
+	private BeanSignUp signup;
+
+	public BeanSignUp getSignUp() {
+		return signup;
 	}
 
 	/*
@@ -70,60 +78,18 @@ public class BeanPisos implements Serializable {
 
 	public String listado() {
 		PisosService service;
+		User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("LOGGEDIN_USER");
+
 		try {
 			service = Factories.services.createPisosService();
 			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
+			System.out.println(user.getLogin());
 			return "exito";
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
 		}
-
-	}
-
-	public String filtrar() {
-		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		String min = params.get("action");
-		String max = params.get("action2");
-
-		PisosService service;
-		try {
-			service = Factories.services.createPisosService();
-
-			Piso[] p = (Piso[]) service.getPisos(Integer.parseInt(min), Integer.parseInt(max)).toArray(new Piso[0]);
-
-			return "exito";
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "error";
-		}
-
-	}
-
-	public String filterminPrice(int min) {
-		PisosService service;
-		try {
-			service = Factories.services.createPisosService();
-			Piso[] p = (Piso[]) service.getPisos().toArray(new Piso[0]);
-			for (int i = 0; i < p.length; i++) {
-				if (p[i].getPrecio() > min) {
-
-				}
-
-			}
-
-			return "exito";
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "error";
-		}
-
-	}
-
-	public void guardarSeleccion() {
 
 	}
 
@@ -160,6 +126,7 @@ public class BeanPisos implements Serializable {
 		PisosService service;
 		try {
 			service = Factories.services.createPisosService();
+			piso.setIdagente(FacesContext.getCurrentInstance().get);
 			service.savePiso(piso);
 
 			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
@@ -170,6 +137,19 @@ public class BeanPisos implements Serializable {
 			return "error";
 		}
 
+	}
+
+	public boolean filterByPrice(Object value, Object filter, Locale locale) {
+		String filterText = (filter == null) ? null : filter.toString().trim();
+		if (filterText == null || filterText.equals("")) {
+			return true;
+		}
+
+		if (value == null) {
+			return false;
+		}
+
+		return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
 	}
 
 	@PostConstruct

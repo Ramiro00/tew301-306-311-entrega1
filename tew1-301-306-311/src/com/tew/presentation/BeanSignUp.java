@@ -53,6 +53,11 @@ public class BeanSignUp extends Cliente implements Serializable {
 		}
 	}
 
+	public User getUserInSession() {
+		Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		return (User) session.get("LOGGEDIN_USER");
+	}
+
 	private void putUserInSession(User user) {
 		Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		session.put("LOGGEDIN_USER", user);

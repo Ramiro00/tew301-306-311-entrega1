@@ -16,7 +16,7 @@ public class BeanSettings implements Serializable {
 	private static final Locale ENGLISH = new Locale("en");
 	private static final Locale SPANISH = new Locale("es");
 	private Locale locale = new Locale("es");
-	// uso de inyeccion de dependencia
+
 	@ManagedProperty(value = "#{piso}")
 	private BeanPiso piso;
 
@@ -28,7 +28,6 @@ public class BeanSettings implements Serializable {
 		this.piso = piso;
 	}
 
-	// uso de inyección de dependencia
 	@ManagedProperty(value = "#{cita}")
 	private BeanCita cita;
 

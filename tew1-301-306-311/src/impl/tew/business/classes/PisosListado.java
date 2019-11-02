@@ -40,4 +40,9 @@ public class PisosListado {
 		PisoDao dao = Factories.persistence.createPisoDao();
 		return dao.getPisos(min, max);
 	}
+
+	public List<Piso> getPisos(String login) {
+		PisoDao dao = Factories.persistence.createPisoDao();
+		return dao.getPisos(login);
+	}
 }

@@ -12,13 +12,13 @@
     </application>
 
     <managed-bean>
-<<<<<<< HEAD
         <managed-bean-name>control</managed-bean-name>
         <managed-bean-class>com.tew.presentation.BeanPisos</managed-bean-class>
-=======
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
         <managed-bean-name>settings</managed-bean-name>
         <managed-bean-class>com.tew.presentation.BeanSettings</managed-bean-class>
->>>>>>> refs/remotes/origin/master
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 
@@ -159,16 +159,7 @@
             <to-view-id>/restricted/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
-
-<<<<<<< HEAD
-    
-=======
-        <navigation-case>
-            <from-outcome>editar</from-outcome>
-            <to-view-id>/restricted/editForm.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
+ 
 
     <navigation-rule>
         <from-view-id>/restricted/altaForm.xhtml</from-view-id>
@@ -187,6 +178,4 @@
             <to-view-id>/restricted/listado.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
->>>>>>> refs/remotes/origin/master
 </faces-config>

@@ -438,4 +438,10 @@ public class PisoJdbcDao implements PisoDao {
 
 	}
 
+	@Override
+	public List<Piso> getPisos(String login) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

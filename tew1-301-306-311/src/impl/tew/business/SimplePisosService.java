@@ -43,8 +43,14 @@ public class SimplePisosService implements PisosService {
 	}
 
 	@Override
+	public List<Piso> getPisos(String login) {
+		// TODO Auto-generated method stub
+		return new PisosListado().getPisos(login);
+	}
+
+	@Override
 	public List<Piso> getPisos(int min, int max) {
 		// TODO Auto-generated method stub
-		return new PisosListado().getPisos(min, max);
+		return null;
 	}
 }

@@ -1,61 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14468168361820" configfile="/tew1-301-306-311/WebContent/WEB-INF/faces-config.xml">
-<<<<<<< HEAD
-  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1553" id="pf15716879667636" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15716879667638 pf157169084440217 pf157169084440218 pf15724190856480 pf15724688641230 pf15724688641231 pf15724688641232 pf15724688641233 pf15724688641234 pf15724689775918 pf15726348700480" path="*"/>
-  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="338" y="1756" id="pf157168796676311" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf157169115675331 pf157169115675332 pf15724688641235 pf15724688641236" inlinks="pf15716879667638 pf15724688641231" path="/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/opciones.xhtml" x="554" y="1979" id="pf157169084440222" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf157169084440217 pf157169115675331 pf15724688641232 pf15724688641235 pf15726348700480" path="/restricted/opciones.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/altaForm.xhtml" x="338" y="1330" id="pf157169084440324" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf157169084440325" inlinks="pf157169084440218 pf15724688641233" path="/restricted/altaForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/listado.xhtml" x="554" y="1211" id="pf157169084440326" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" outlinks="pf157169084440327 pf157169084440328" inlinks="pf157169084440327 pf157169084440325 pf157169084440329 pf15724688641234 pf15724689775918" path="/restricted/listado.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/editForm.xhtml" x="338" y="178" id="pf157169084440330" referenceLink="//@navigationRule.6/@fromViewId|" outlinks="pf157169084440329" inlinks="pf157169084440328" path="/restricted/editForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/index.xhtml" x="554" y="1595" id="pf157169115675433" referenceLink="//@navigationRule.3/@navigationCase.1/@toViewId|" inlinks="pf157169115675332 pf15724688641236" path="/restricted/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" x="338" y="562" id="pf15724190856481" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15724190856480" path="error.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="faces/restricted/error.xhtml" x="338" y="946" id="pf15724688641237" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf15724688641230" path="/faces/restricted/error.xhtml"/>
-  <links id="pf15716879667638" target="pf157168796676311" source="pf15716879667636" outcome="login"/>
-  <links id="pf157169084440217" target="pf157169084440222" source="pf15716879667636" outcome="casa"/>
-  <links id="pf157169084440218" target="pf157169084440324" source="pf15716879667636" outcome="alta"/>
-  <links id="pf157169084440328" target="pf157169084440330" source="pf157169084440326" outcome="editar"/>
-  <links id="pf157169084440325" target="pf157169084440326" source="pf157169084440324" outcome="exito" fromaction="#{control.salva}"/>
-  <links id="pf157169084440329" target="pf157169084440326" source="pf157169084440330" outcome="exito" fromaction="#{control.salva}"/>
-  <links id="pf157169115675331" target="pf157169084440222" source="pf157168796676311" outcome="success" fromaction="#{login.verify}"/>
-  <links id="pf157169115675332" target="pf157169115675433" source="pf157168796676311" outcome="login" fromaction="#{login.verify}"/>
-  <links id="pf15724190856480" target="pf15724190856481" source="pf15716879667636" outcome="error"/>
-  <links id="pf15724688641230" target="pf15724688641237" source="pf15716879667636" outcome="error"/>
-  <links id="pf15724688641231" target="pf157168796676311" source="pf15716879667636" outcome="login"/>
-  <links id="pf15724688641232" target="pf157169084440222" source="pf15716879667636" outcome="guardavisitas"/>
-  <links id="pf15724688641233" target="pf157169084440324" source="pf15716879667636" outcome="alta"/>
-  <links id="pf15724688641234" target="pf157169084440326" source="pf15716879667636" outcome="exito" fromaction="#{control.listado}"/>
-  <links id="pf15724688641235" target="pf157169084440222" source="pf157168796676311" outcome="success" fromaction="#{login.verify}"/>
-  <links id="pf15724688641236" target="pf157169115675433" source="pf157168796676311" outcome="login" fromaction="#{login.verify}"/>
-  <links id="pf157169084440327" target="pf157169084440326" source="pf157169084440326" outcome="exito" fromaction="#{control.baja(vpiso)}">
-    <bendPoints d1Height="-36" d2Height="-36"/>
-    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
-    <bendPoints d1Width="-64" d2Width="-64"/>
-  </links>
-  <links id="pf15724689775918" target="pf157169084440326" source="pf15716879667636" outcome="exito" fromaction="#{control.listado}"/>
-  <links id="pf15726348700480" target="pf157169084440222" source="pf15716879667636" outcome="casa"/>
-=======
-  <nodes xsi:type="pageflow:PFPage" name="*" id="pf15716879667636" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15716879667638 pf157169084440216 pf157169084440217 pf157169084440218 pf157169084440219 pf15726084421180" path="*"/>
-  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf157168796676311" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15726092624314 pf15726092624315" inlinks="pf15716879667638" path="/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/opciones.xhtml" id="pf157169084440222" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf157169084440217 pf15726091901022 pf15726092624314" path="/restricted/opciones.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="faces/restricted/error.xhtml" id="pf157169084440323" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf157169084440216" path="/faces/restricted/error.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/altaForm.xhtml" id="pf157169084440324" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf15726092624326" inlinks="pf157169084440218" path="/restricted/altaForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/listado.xhtml" id="pf157169084440326" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf15726092624327 pf15726092624328" inlinks="pf157169084440219 pf15726092624327 pf15726092624326 pf15726092624329" path="/restricted/listado.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="signup.xhtml" id="pf15726084421191" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" outlinks="pf15726091901022 pf15726091901033" inlinks="pf15726084421180 pf15726091901033" path="/signup.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/index.xhtml" id="pf157260926243210" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" inlinks="pf15726092624315" path="/restricted/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/editForm.xhtml" id="pf157260926243211" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf15726092624329" inlinks="pf15726092624328" path="/restricted/editForm.xhtml"/>
-  <links id="pf15716879667638" target="pf157168796676311" source="pf15716879667636" outcome="login"/>
-  <links id="pf157169084440216" target="pf157169084440323" source="pf15716879667636" outcome="error"/>
-  <links id="pf157169084440217" target="pf157169084440222" source="pf15716879667636" outcome="casa"/>
-  <links id="pf157169084440218" target="pf157169084440324" source="pf15716879667636" outcome="alta"/>
-  <links id="pf157169084440219" target="pf157169084440326" source="pf15716879667636" outcome="exito" fromaction="#{controller.listado}"/>
-  <links id="pf15726084421180" target="pf15726084421191" source="pf15716879667636" outcome="signup"/>
-  <links id="pf15726091901022" target="pf157169084440222" source="pf15726084421191" outcome="success" fromaction="#{signup.registrarse}"/>
-  <links id="pf15726091901033" target="pf15726084421191" source="pf15726084421191" outcome="signup" fromaction="#{signup.registrarse}"/>
-  <links id="pf15726092624314" target="pf157169084440222" source="pf157168796676311" outcome="success" fromaction="#{login.verify}"/>
-  <links id="pf15726092624315" target="pf157260926243210" source="pf157168796676311" outcome="login" fromaction="#{login.verify}"/>
-  <links id="pf15726092624327" target="pf157169084440326" source="pf157169084440326" outcome="exito" fromaction="#{controller.baja(valumno)}"/>
-  <links id="pf15726092624328" target="pf157260926243211" source="pf157169084440326" outcome="editar"/>
-  <links id="pf15726092624326" target="pf157169084440326" source="pf157169084440324" outcome="exito" fromaction="#{controller.salva}"/>
-  <links id="pf15726092624329" target="pf157169084440326" source="pf157260926243211" outcome="exito" fromaction="#{controller.salva}"/>
->>>>>>> refs/remotes/origin/master
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15727139183541" configfile="/tew1-301-306-311/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf15727139752182" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15727139752183 pf15727139752184 pf15727139752195 pf15727139752196 pf15727139752197 pf15727139752198 pf15727139752199 pf157271397521910 pf157271397521911 pf157271397521912 pf157271397521913 pf157271397521914 pf157271397521915 pf157271397521916 pf157271397521917 pf157271397521918 pf157271397521919 pf157271397521920" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" id="pf157271397521921" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15727139752183" path="error.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf157271397521922" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf157271397521923 pf157271397521924 pf157271397521925 pf157271397521926" inlinks="pf15727139752184 pf157271397521911 pf157271397521917" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/opciones.xhtml" id="pf157271397521927" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf15727139752195 pf15727139752196 pf15727139752199 pf157271397521923 pf157271397521912 pf157271397521918 pf157271397521928 pf157271397521925" path="/restricted/opciones.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/altaForm.xhtml" id="pf157271397521929" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf157271407349539" inlinks="pf15727139752197 pf157271397521913 pf157271397521919" path="/restricted/altaForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/listado.xhtml" id="pf157271397521931" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf15727139752198 pf157271397521914 pf157271397521920 pf157271407349539 pf157271407349540" path="/restricted/listado.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/index.xhtml" id="pf157271397521933" referenceLink="//@navigationRule.5/@navigationCase.1/@toViewId|" inlinks="pf157271397521924 pf157271397521926" path="/restricted/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="faces/error.xhtml" id="pf157271397521934" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf157271397521910" path="/faces/error.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="faces/restricted/error.xhtml" id="pf157271397522035" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf157271397521915" path="/faces/restricted/error.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="signup.xhtml" id="pf157271397522036" referenceLink="//@navigationRule.4/@navigationCase.1/@toViewId|" outlinks="pf157271397521928 pf157271397522037" inlinks="pf157271397521916 pf157271397522037" path="/signup.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/editForm.xhtml" id="pf157271407349541" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf157271407349540" path="/restricted/editForm.xhtml"/>
+  <links id="pf15727139752183" target="pf157271397521921" source="pf15727139752182" outcome="error"/>
+  <links id="pf15727139752184" target="pf157271397521922" source="pf15727139752182" outcome="login"/>
+  <links id="pf15727139752195" target="pf157271397521927" source="pf15727139752182" outcome="casa"/>
+  <links id="pf15727139752196" target="pf157271397521927" source="pf15727139752182" outcome="guardavisitas"/>
+  <links id="pf15727139752197" target="pf157271397521929" source="pf15727139752182" outcome="alta"/>
+  <links id="pf15727139752198" target="pf157271397521931" source="pf15727139752182" outcome="exito" fromaction="#{control.listado}"/>
+  <links id="pf15727139752199" target="pf157271397521927" source="pf15727139752182" outcome="exito" fromaction="#{control.salva}"/>
+  <links id="pf157271397521923" target="pf157271397521927" source="pf157271397521922" outcome="success" fromaction="#{login.verify}"/>
+  <links id="pf157271397521924" target="pf157271397521933" source="pf157271397521922" outcome="login" fromaction="#{login.verify}"/>
+  <links id="pf157271397521910" target="pf157271397521934" source="pf15727139752182" outcome="error"/>
+  <links id="pf157271397521911" target="pf157271397521922" source="pf15727139752182" outcome="login"/>
+  <links id="pf157271397521912" target="pf157271397521927" source="pf15727139752182" outcome="casa"/>
+  <links id="pf157271397521913" target="pf157271397521929" source="pf15727139752182" outcome="alta"/>
+  <links id="pf157271397521914" target="pf157271397521931" source="pf15727139752182" outcome="exito" fromaction="#{control3.listado}"/>
+  <links id="pf157271397521915" target="pf157271397522035" source="pf15727139752182" outcome="error"/>
+  <links id="pf157271397521916" target="pf157271397522036" source="pf15727139752182" outcome="signup"/>
+  <links id="pf157271397521917" target="pf157271397521922" source="pf15727139752182" outcome="login"/>
+  <links id="pf157271397521918" target="pf157271397521927" source="pf15727139752182" outcome="casa"/>
+  <links id="pf157271397521919" target="pf157271397521929" source="pf15727139752182" outcome="alta"/>
+  <links id="pf157271397521920" target="pf157271397521931" source="pf15727139752182" outcome="exito" fromaction="#{control.listado}"/>
+  <links id="pf157271397521928" target="pf157271397521927" source="pf157271397522036" outcome="success" fromaction="#{signup.registrarse}"/>
+  <links id="pf157271397522037" target="pf157271397522036" source="pf157271397522036" outcome="signup" fromaction="#{signup.registrarse}"/>
+  <links id="pf157271397521925" target="pf157271397521927" source="pf157271397521922" outcome="success" fromaction="#{login.verify}"/>
+  <links id="pf157271397521926" target="pf157271397521933" source="pf157271397521922" outcome="login" fromaction="#{login.verify}"/>
+  <links id="pf157271407349539" target="pf157271397521931" source="pf157271397521929" outcome="exito" fromaction="#{controller.salva}"/>
+  <links id="pf157271407349540" target="pf157271397521931" source="pf157271407349541" outcome="exito" fromaction="#{controller.salva}"/>
 </pageflow:Pageflow>
