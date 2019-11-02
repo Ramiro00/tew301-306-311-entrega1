@@ -9,7 +9,7 @@ import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-@ManagedBean
+@ManagedBean(name = "settings")
 @SessionScoped
 public class BeanSettings implements Serializable {
 	private static final long serialVersionUID = 2L;
@@ -44,10 +44,7 @@ public class BeanSettings implements Serializable {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 			if (cita != null)
 				if (cita.getCita() == 0) // valores por defecto del cita, si no NO inicializar
-					cita.iniciaCita(null);
-			if (cita != null)
-				if (cita.getCita() == 0) // valores por defecto del cita, si no NO inicializar
-					cita.iniciaCita(null);
+					cita.iniciaCita(event);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -59,10 +56,7 @@ public class BeanSettings implements Serializable {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 			if (cita != null)
 				if (cita.getCita() == 0) // valores por defecto del cita, si no NO inicializar
-					cita.iniciaCita(null);
-			if (cita != null)
-				if (cita.getCita() == 0) // valores por defecto del cita, si no NO inicializar
-					cita.iniciaCita(null);
+					cita.iniciaCita(event);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -83,6 +77,7 @@ public class BeanSettings implements Serializable {
 		System.out.println("BeanSettings - PostConstruct");
 		cita = (BeanCita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get(new String("cita"));
+		// si no existe lo creamos e inicializamos
 		if (cita == null) {
 			System.out.println("BeanSettings - No existia");
 			cita = new BeanCita();
@@ -95,7 +90,7 @@ public class BeanSettings implements Serializable {
 		cita = (BeanCita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get(new String("cita"));
 		if (cita != null) {
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cita", cita);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("settings", cita);
 		}
 	}
 
