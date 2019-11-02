@@ -23,6 +23,7 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     
+    
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
@@ -38,6 +39,10 @@
 			<to-view-id>/restricted/opciones.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>guardavisitas</from-outcome>
+			<to-view-id>/restricted/opciones.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>alta</from-outcome>
 			<to-view-id>/restricted/altaForm.xhtml</to-view-id>
 		</navigation-case>
@@ -46,6 +51,11 @@
 			<from-outcome>exito</from-outcome>
 			<to-view-id>/restricted/listado.xhtml</to-view-id>
 		</navigation-case>
+        <navigation-case>
+       		<from-action>#{control.salva}</from-action>
+            <from-outcome>exito</from-outcome>
+            <to-view-id>/restricted/opciones.xhtml</to-view-id>
+        </navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>
@@ -102,36 +112,6 @@
         </navigation-case>
     </navigation-rule>
 
-    <navigation-rule>
-        <from-view-id>/restricted/listado.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{control.baja(vpiso)}</from-action>
-            <from-outcome>exito</from-outcome>
-            <to-view-id>/restricted/listado.xhtml</to-view-id>
-        </navigation-case>
 
-        <navigation-case>
-            <from-outcome>editar</from-outcome>
-            <to-view-id>/restricted/editForm.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-        <from-view-id>/restricted/altaForm.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{control.salva}</from-action>
-            <from-outcome>exito</from-outcome>
-            <to-view-id>/restricted/listado.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
-        <from-view-id>/restricted/editForm.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{control.salva}</from-action>
-            <from-outcome>exito</from-outcome>
-            <to-view-id>/restricted/listado.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
     
 </faces-config>

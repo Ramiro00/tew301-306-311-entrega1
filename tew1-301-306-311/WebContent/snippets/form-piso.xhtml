@@ -4,9 +4,10 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://java.sun.com/jsf/core">
     
-    <h:panelGrid id="Grid" columns="2" cellpadding="5">
-  #{msgs.direccion} 
-  <h:panelGroup>
+    <h:panelGrid id="Grid" columns="2" cellpadding="10">
+    
+  		#{msgs.direccion} 
+ 		 <h:panelGroup>
             <p:inputText value="#{piso.direccion}" required="true"
                 requiredMessage="#{msgs.formAlta_Direccion_requiredMessage}"
                 validatorMessage="#{msgs.formAlta_Direccion_validatorMessage}"
@@ -16,8 +17,8 @@
             <p:message for="nombre" />
         </h:panelGroup>
   
-  #{msgs.ciudad} 
-  <h:panelGroup>
+  		#{msgs.ciudad} 
+ 		 <h:panelGroup>
             <p:inputText value="#{piso.ciudad}" required="true"
                 requiredMessage="#{msgs.formAlta_Ciudad_requiredMessage}"
                 validatorMessage="#{msgs.formAlta_Ciudad_validatorMessage}"
@@ -27,24 +28,30 @@
             <p:message for="apellidos" />
         </h:panelGroup>
   
-  #{msgs.anyo}
-  <h:panelGroup>
-            <p:inputText value="#{piso.anyo}" required="true"
+  		#{msgs.anyo}
+  		<h:panelGroup>
+            <p:inputText value="#{piso.ano}" required="true"
                 requiredMessage="#{msgs.formAlta_Anyo_requiredMessage}"
                 validatorMessage="#{msgs.formAlta_Anyo_validatorMessage}"
                 id="iduser">
-                <f:validateLength minimum="2" maximum="4" />
+                <f:validateLength maximum="4" />
             </p:inputText>
             <p:message for="iduser" />
-        </h:panelGroup>  
+   		</h:panelGroup>
+   
+   		#{msgs.precio}
+  		<h:panelGroup>
+            <p:inputText value="#{piso.precio}" required="true"
+                requiredMessage="#{msgs.formAlta_Precio_requiredMessage}"
+                validatorMessage="#{msgs.formAlta_Precio_validatorMessage}"
+                id="precio">
+                <f:validateLength maximum="6" />
+            </p:inputText>
+            <p:message for="precio" />
+   		</h:panelGroup>    
   
-  #{msgs.estado}
-  <h:panelGroup>
-   <!-- <p:inputText value="#{piso.estado}" required="true"
-                requiredMessage="#{msgs.formAlta_Estado_requiredMessage}"
-                validatorMessage="#{msgs.formAlta_Estado_validatorMessage}"
-                id="correo">
-                 </p:inputText> -->
+ 		 #{msgs.estado}
+  		<h:panelGroup>
             <p:selectOneMenu value="#{piso.estado}" style="width:150px">
                 <f:selectItem itemLabel="Selecciona Estado" itemValue="" noSelectionOption="true" />
                 <f:selectItem itemLabel="A reformar" itemValue="1"/>
@@ -55,9 +62,9 @@
             </p:selectOneMenu>
            
             
-        </h:panelGroup>
+  		</h:panelGroup>
         <p:commandButton value="#{msgs.botonSalvar}"
-            action="#{controller.salva}" update="Grid" process="@form">
+            action="#{control.salva}" update="Grid" process="@form">
         </p:commandButton>
     </h:panelGrid>
 </ui:composition>

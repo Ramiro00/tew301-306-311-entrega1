@@ -16,9 +16,15 @@ public class SimpleServicesFactory implements ServicesFactory {
 		return new SimpleLoginService();
 	}
 
+	@Override
 	public CitasService createCitasService() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public SignupService CreateSignupService() {
+		return new SimpleSignupService();
 	}
 
 }

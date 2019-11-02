@@ -9,7 +9,7 @@ import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-@ManagedBean(name = "settings")
+@ManagedBean
 @SessionScoped
 public class BeanSettings implements Serializable {
 	private static final long serialVersionUID = 2L;

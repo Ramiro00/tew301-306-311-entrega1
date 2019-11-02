@@ -6,7 +6,6 @@ import java.util.List;
 import com.tew.business.PisosService;
 import com.tew.business.exception.EntityAlreadyExistsException;
 import com.tew.business.exception.EntityNotFoundException;
-import com.tew.model.Alumno;
 import com.tew.model.Piso;
 
 /**

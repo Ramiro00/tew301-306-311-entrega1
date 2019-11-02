@@ -4,6 +4,10 @@ public class Cliente {
 
 	private int id;
 
+	public Cliente(String nombre2, String apellidos2, String email2, String password2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -48,5 +52,15 @@ public class Cliente {
 	private String Nombre;
 	private String Apellidos;
 	private String email;
+	private String password;
+
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 }

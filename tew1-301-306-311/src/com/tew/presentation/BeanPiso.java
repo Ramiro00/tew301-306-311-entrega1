@@ -1,13 +1,12 @@
 package com.tew.presentation;
 
 import java.io.Serializable;
+
 import java.util.ResourceBundle;
 
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-
-import com.tew.model.Alumno;
 import com.tew.model.Piso;
 
 @ManagedBean(name = "piso")
@@ -30,6 +29,8 @@ public class BeanPiso extends Piso implements Serializable {
 		setCiudad(piso.getCiudad());
 		setAno(piso.getAno());
 		setEstado(piso.getEstado());
+		setSestado(piso.getSestado());
+		setVisita(piso.isVisita());
 	}
 
 	// Iniciamos los datos del piso con los valores por defecto del archivo de
@@ -45,6 +46,6 @@ public class BeanPiso extends Piso implements Serializable {
 		setCiudad(bundle.getString("valorDefectoCiudad"));
 		setAno(Integer.valueOf((String) bundle.getObject("valorDefectoAnyo")));
 		setEstado(Integer.valueOf((String) bundle.getObject("valorDefectoEstado")));
-
+		setVisita(false);
 	}
 }

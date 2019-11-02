@@ -1,7 +1,7 @@
 package com.tew.model;
 
 public class Alumno {
-	private Long id;
+	private int id;
 	private String nombre;
 	private String apellidos;
 	private String iduser;
@@ -10,32 +10,40 @@ public class Alumno {
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getApellidos() {
 		return apellidos;
 	}
+
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
+
 	public String getIduser() {
 		return iduser;
 	}
+
 	public void setIduser(String iduser) {
 		this.iduser = iduser;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public void setId(Long id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
-	public Long getId() {
+
+	public int getId() {
 		return id;
 	}
 }
