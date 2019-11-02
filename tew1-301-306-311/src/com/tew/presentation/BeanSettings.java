@@ -9,7 +9,7 @@ import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-@ManagedBean(name="settings")
+@ManagedBean
 @SessionScoped
 public class BeanSettings implements Serializable {
 	private static final long serialVersionUID = 2L;
@@ -18,23 +18,22 @@ public class BeanSettings implements Serializable {
 	private Locale locale = new Locale("es");
 
 	// uso de inyección de dependencia
-	@ManagedProperty(value = "#{cita}")
-	private BeanCita cita;
+	@ManagedProperty(value = "#{alumno}")
+	private BeanAlumno alumno;
 
-	public BeanCita getCita() {
-		return cita;
+	public BeanAlumno getAlumno() {
+		return alumno;
 	}
 
-	public void setCita(BeanCita cita) {
-		this.cita = cita;
+	public void setAlumno(BeanAlumno alumno) {
+		this.alumno = alumno;
 	}
 
 	public Locale getLocale() {
-		/*
-		 * Aqui habria que cambiar algo de código para coger locale del navegador la
-		 * primera vez que se accede a getLocale(), de momento dejamos como idioma de
-		 * partida “es”
-		 */
+		// Aqui habria que cambiar algo de código para coger locale del
+		// navegador
+		// la primera vez que se accede a getLocale(), de momento dejamos como
+		// idioma de partida “es”
 		return (locale);
 	}
 
@@ -42,9 +41,9 @@ public class BeanSettings implements Serializable {
 		locale = SPANISH;
 		try {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-			if (cita != null)
-				if (cita.getCita() == 0) // valores por defecto del cita, si no NO inicializar
-					cita.iniciaCita(event);
+			if (alumno != null)
+				if (alumno.getId()==null) //valores por defecto del alumno, si no NO inicializar
+					alumno.iniciaAlumno(null);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -54,43 +53,35 @@ public class BeanSettings implements Serializable {
 		locale = ENGLISH;
 		try {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-			if (cita != null)
-				if (cita.getCita() == 0) // valores por defecto del cita, si no NO inicializar
-					cita.iniciaCita(event);
+			if (alumno != null)
+				if (alumno.getId()==null) //valores por defecto del alumno, si no NO inicializar
+					alumno.iniciaAlumno(null);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	/*
-	 * Se inicia correctamente el Managed Bean inyectado si JSF lo hubiera creado y
-	 * en caso contrario se crea. hay que tener en cuenta que es un Bean de sesión)
-	 * Se usa @PostConstruct, ya que en el contructor no se sabe todavía siel MBean
-	 * ya estaba construido y en @PostConstruct SI.
-	 */
+	// Se inicia correctamente el Managed Bean inyectado si JSF lo hubiera
+	// creado
+	// y en caso contrario se crea.
+	// (hay que tener en cuenta que es un Bean de sesión)
+
+	// Se usa @PostConstruct, ya que en el contructor no se sabe todavía si
+	// el MBean ya estaba construido y en @PostConstruct SI.
 	@PostConstruct
 	public void init() {
-		/*
-		 * Buscamos el cita en la sesión. Esto es un patrón factoría claramente si no
-		 * existe lo creamos e inicializamos
-		 */
 		System.out.println("BeanSettings - PostConstruct");
-		cita = (BeanCita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-				.get(new String("cita"));
+		// Buscamos el alumno en la sesión. Esto es un patrón factoría
+		// claramente.
+		alumno = (BeanAlumno) FacesContext.getCurrentInstance()
+				.getExternalContext().getSessionMap().get(new String("alumno"));
+
 		// si no existe lo creamos e inicializamos
-		if (cita == null) {
+		if (alumno == null) {
 			System.out.println("BeanSettings - No existia");
-			cita = new BeanCita();
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cita", cita);
-		}
-		/*
-		 * Buscamos la cita en la sesión. Esto es un patrón factoría claramente si no
-		 * existe lo creamos e inicializamos
-		 */
-		cita = (BeanCita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-				.get(new String("cita"));
-		if (cita != null) {
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("settings", cita);
+			alumno = new BeanAlumno();
+			FacesContext.getCurrentInstance().getExternalContext()
+					.getSessionMap().put("alumno", alumno);
 		}
 	}
 
