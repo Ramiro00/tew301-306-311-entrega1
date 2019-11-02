@@ -1,7 +1,6 @@
 package com.tew.presentation;
 
 import java.io.Serializable;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +20,7 @@ import com.tew.model.Cita;
  * avalores en un objeto existente.
  * 
  */
-@ManagedBean
+@ManagedBean(name = "control3")
 @SessionScoped
 public class BeanCitas implements Serializable {
 	private static final long serialVersionUID = 7944042841591604009L;
@@ -45,6 +44,7 @@ public class BeanCitas implements Serializable {
 	}
 
 	public void inicaCitas(ActionEvent event) {
+		System.out.println("iniciaCitas start");
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		/*
 		 * Obtenemos el archivo de propiedades correspondiente al idioma que tengamos
@@ -55,14 +55,17 @@ public class BeanCitas implements Serializable {
 		cita.setIdCliente(Integer.valueOf((String) bundle.getObject("valorDefectoIdCliente")));
 		cita.setEstado(Integer.valueOf((String) bundle.getObject("valorDefectEstado")));
 		cita.setCita(Long.valueOf((String) bundle.getObject("valorDefectCita")));
+		System.out.println("iciciacitas end");
 	}
 
 	public String listado() {
+		System.out.println("inicio listado");
 		CitasService service;
 		try {
 			// Acceso a la implementacion de la capa de negocio a traves de la factoria
 			service = Factories.services.createCitasService();
 			citas = (Cita[]) service.getCitas().toArray(new Cita[0]);
+			System.out.println("fin listado");
 			return "exito";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,11 +91,12 @@ public class BeanCitas implements Serializable {
 			cita = new BeanCita();
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cita", cita);
 		}
+		System.out.println("fin init");
 	}
 
 	@PreDestroy
 	public void end() {
-		System.out.println("BeanPisos - PreDestroy");
+		System.out.println("BeanCitas - PreDestroy");
 	}
 
 }

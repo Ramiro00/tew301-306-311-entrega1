@@ -16,6 +16,7 @@ public class BeanCita extends Cita implements Serializable {
 	private static final long serialVersionUID = 6611899L;
 	
 	public BeanCita() {
+		System.out.println("Contructor ");
 		iniciaCita(null);
 	}
 	
@@ -25,13 +26,16 @@ public class BeanCita extends Cita implements Serializable {
 	 * editar en BeanCitas.
 	 */
 	public void setCita(Cita cita) {
+		System.out.println("inicia setCita");
 		setIdPiso(cita.getIdPiso());
 		setIdCliente(cita.getIdCliente());
 		setEstado(cita.getEstado());
 		setCita(cita.getCita());
+		System.out.println("fin setCita");
 	}
 
 	public void iniciaCita(ActionEvent event) {
+		System.out.println("start iciniaCita");
 	    FacesContext facesContext = FacesContext.getCurrentInstance();
 		ResourceBundle bundle = 
 	    		facesContext.getApplication().getResourceBundle(facesContext, "msgs");
@@ -39,5 +43,6 @@ public class BeanCita extends Cita implements Serializable {
 		setIdCliente(Integer.valueOf((String) bundle.getObject("valorDefectoIdCliente")));
 		setEstado(Integer.valueOf((String) bundle.getObject("valorDefectEstado")));
 		setCita(Long.valueOf((String) bundle.getObject("valorDefectCita")));
+		System.out.println("end IniciaCita");
 	}
 }
