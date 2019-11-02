@@ -11,7 +11,7 @@
 
     <ui:define name="cuerpo">
         <h:form>
-            <p:dataTable id="p" var="vcita"
+            <p:dataTable id="tablaListado" var="vcita"
                 value="#{control3.citas}" border="1">
                 <p:column>
                     <f:facet name="header">#{msgs.tablaCitaIdPiso}</f:facet>#{vcita.idPiso}</p:column>
