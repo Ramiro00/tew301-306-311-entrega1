@@ -1,6 +1,7 @@
 package com.tew.presentation;
 
 import java.io.Serializable;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
@@ -20,7 +21,7 @@ import com.tew.model.Cita;
  * avalores en un objeto existente.
  * 
  */
-@ManagedBean(name = "control")
+@ManagedBean
 @SessionScoped
 public class BeanCitas implements Serializable {
 	private static final long serialVersionUID = 7944042841591604009L;
@@ -53,7 +54,7 @@ public class BeanCitas implements Serializable {
 		cita.setIdPiso(Integer.valueOf((String) bundle.getObject("valorDefectoIdPiso")));
 		cita.setIdCliente(Integer.valueOf((String) bundle.getObject("valorDefectoIdCliente")));
 		cita.setEstado(Integer.valueOf((String) bundle.getObject("valorDefectEstado")));
-		cita.setCita(Long.valueOf((Long) bundle.getObject("valorDefectCita")));
+		cita.setCita(Long.valueOf((String) bundle.getObject("valorDefectCita")));
 	}
 
 	public String listado() {
@@ -77,7 +78,7 @@ public class BeanCitas implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		System.out.println("BeanPisos - PostConstruct");
+		System.out.println("BeanCitas - PostConstruct");
 		// Buscamos el alumno en la sesión. Esto es un patrón factoría claramente.
 		cita = (BeanCita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get(new String("cita"));

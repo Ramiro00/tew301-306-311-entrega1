@@ -38,6 +38,6 @@ public class BeanCita extends Cita implements Serializable {
 		setIdPiso(Integer.valueOf((String) bundle.getObject("valorDefectoIdPiso")));
 		setIdCliente(Integer.valueOf((String) bundle.getObject("valorDefectoIdCliente")));
 		setEstado(Integer.valueOf((String) bundle.getObject("valorDefectEstado")));
-		setCita(Long.valueOf((Long) bundle.getObject("valorDefectCita")));
+		setCita(Long.valueOf((String) bundle.getObject("valorDefectCita")));
 	}
 }
