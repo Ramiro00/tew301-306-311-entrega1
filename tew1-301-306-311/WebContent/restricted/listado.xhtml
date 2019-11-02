@@ -11,16 +11,6 @@
 
 	<ui:define name="cuerpo">
 		<h:form>
-			
-			<p:inputText id="minFilter" style="width:115px" placeholder="#{msgs.min}">
-               				
-            </p:inputText>
-            <p:inputText id="maxFilter" style="width:115px" placeholder="#{msgs.max}">     
-                      			
-            </p:inputText>
-            <p:commandButton value="Buscar" id="ajax">
-            	
-            </p:commandButton>
             
 			<p:dataTable id="c" var="vpiso"
 				value="#{control.pisos}" border="1" rowKey="#{vpiso.id}"
@@ -32,17 +22,15 @@
 					<f:facet name="header">#{msgs.tablaID}</f:facet>#{vpiso.id}
                 </p:column>
 
-				<p:column>
-					<f:facet name="header">#{msgs.tablaIDAgente}</f:facet>#{vpiso.idagente}
-                </p:column>
-
-				<p:column>	
-					<f:facet name="header">#{msgs.tablaPrecio}</f:facet>#{vpiso.precio}
-               	</p:column>
-               	
-               	<p:column name="header" headerText="#{msgs.tablaPrecio}" filterBy="#{vpiso.precio}" filterFunction="#{control.filterByPrice}">
+				<p:column name="header" headerText="#{msgs.tablaPreciomin}" filterBy="#{vpiso.precio}" filterFunction="#{control.filterByPrice}">
             		<h:outputText value="#{vpiso.precio}">
-                		<f:convertNumber currencySymbol="$" type="currency"/>
+                		<f:convertNumber currencySymbol="€" type="currency"/>
+            		</h:outputText>
+       	 		</p:column>
+               	
+               	<p:column name="header" headerText="#{msgs.tablaPreciomax}" filterBy="#{vpiso.precio}" filterFunction="#{control.filterByPrice2}">
+            		<h:outputText value="#{vpiso.precio}">
+                		<f:convertNumber currencySymbol="€" type="currency"/>
             		</h:outputText>
        	 		</p:column>
 
@@ -69,7 +57,7 @@
               
 
 			</p:dataTable>
-			   		<p:commandButton id="Guardar" value="#{msgs.botonSalvar}"
+			   	<p:commandButton id="Guardar" value="#{msgs.botonSalvar}"
             		action="#{control.guardarSeleccion}" onclick="casa" process="@form">
         		</p:commandButton>
 		</h:form>

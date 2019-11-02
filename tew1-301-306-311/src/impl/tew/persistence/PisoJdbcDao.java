@@ -1,13 +1,13 @@
 package impl.tew.persistence;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.tew.model.Piso;
 import com.tew.persistence.PisoDao;
 import com.tew.persistence.exception.AlreadyPersistedException;
@@ -216,7 +216,7 @@ public class PisoJdbcDao implements PisoDao {
 			ps = con.prepareStatement("insert into PISOS (IDAgente, Precio, Direccion, Ciudad, Ano, Estado) "
 					+ "values (?, ?, ?, ?, ?, ?)");
 
-			ps.setInt(1, 1);
+			ps.setInt(1, p.getIdagente());
 			ps.setInt(2, p.getPrecio());
 			ps.setString(3, p.getDireccion());
 			ps.setString(4, p.getCiudad());

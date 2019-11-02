@@ -28,7 +28,6 @@ public class BeanPisos implements Serializable {
 	// dejar los avalores en un objeto existente.
 
 	private Piso[] pisos = null;
-	private Piso[] pisosfiltrados = null;
 
 	// uso de inyección de dependencia
 	@ManagedProperty(value = "#{piso}")
@@ -126,7 +125,7 @@ public class BeanPisos implements Serializable {
 		PisosService service;
 		try {
 			service = Factories.services.createPisosService();
-			piso.setIdagente(FacesContext.getCurrentInstance().get);
+			piso.setIdagente(2);
 			service.savePiso(piso);
 
 			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
@@ -150,6 +149,19 @@ public class BeanPisos implements Serializable {
 		}
 
 		return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
+	}
+
+	public boolean filterByPrice2(Object value, Object filter, Locale locale) {
+		String filterText = (filter == null) ? null : filter.toString().trim();
+		if (filterText == null || filterText.equals("")) {
+			return true;
+		}
+
+		if (value == null) {
+			return false;
+		}
+
+		return ((Comparable) value).compareTo(Integer.valueOf(filterText)) < 0;
 	}
 
 	@PostConstruct

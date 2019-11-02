@@ -8,6 +8,15 @@ public class Cliente implements Serializable {
 	private String apellidos;
 	private String email;
 	private String password;
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Cliente() {
 	};
