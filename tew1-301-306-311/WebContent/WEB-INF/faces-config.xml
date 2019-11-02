@@ -18,7 +18,7 @@
     </managed-bean>
 
     <managed-bean>
-        <managed-bean-name>control</managed-bean-name>
+        <managed-bean-name>control3</managed-bean-name>
         <managed-bean-class>com.tew.presentation.BeanCitas</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
@@ -42,9 +42,9 @@
             <to-view-id>/restricted/altaForm.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>#{control.listado}</from-action>
+            <from-action>#{control3.listado}</from-action>
             <from-outcome>exito</from-outcome>
-            <to-view-id>/restricted/listadoC.xhtml</to-view-id>
+            <to-view-id>/restricted/listado.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 

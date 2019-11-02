@@ -11,30 +11,21 @@
 
     <ui:define name="cuerpo">
         <h:form>
-            <p:dataTable id="tablaListado" var="valumno"
-                value="#{controller.alumnos}" border="1">
+            <p:dataTable id="tablaListado" var="vcita"
+                value="#{control.citas}" border="1">
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaNombre}</f:facet>#{valumno.nombre}</p:column>
+                    <f:facet name="header">#{msgs.tablaCitaIdPiso}</f:facet>#{vcita.idPiso}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaApellidos}</f:facet>#{valumno.apellidos}</p:column>
+                    <f:facet name="header">#{msgs.tablaCitaIdCli}</f:facet>#{vcita.idCliente}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaIdUser}</f:facet>#{valumno.iduser}</p:column>
+                    <f:facet name="header">#{msgs.tablaCitaFecHor}</f:facet>#{vcita.fechaHoraCita}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaCorreo}</f:facet>#{valumno.email}</p:column>
+                    <f:facet name="header">#{msgs.tablaCitaEstado}</f:facet>#{vcita.estado}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaBaja}</f:facet>
-                    <p:commandLink action="#{controller.baja(valumno)}"
-                        type="submit" value="#{msgs.tablaBaja}"
-                        immediate="true" update="tablaListado">
-                    </p:commandLink>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">#{msgs.tablaEditar}</f:facet>
-                    <p:commandLink action="editar" type="submit"
-                        value="#{msgs.tablaEditar}"
-                        actionListener="#{alumno.setAlumno(valumno)}"
-                        immediate="true">
-                    </p:commandLink>
+                    <f:facet name="header">#{msgs.tablaCitaVisita}</f:facet>
+                    <p:selectBooleanCheckbox
+                        value="#{selectBooleanView.value1}"
+                        itemLabel="Basic" />
                 </p:column>
             </p:dataTable>
         </h:form>

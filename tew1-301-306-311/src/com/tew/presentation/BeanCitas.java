@@ -18,7 +18,7 @@ import com.tew.model.Cita;
  * avalores en un objeto existente.
  * 
  */
-@ManagedBean(name = "control")
+@ManagedBean
 @SessionScoped
 public class BeanCitas implements Serializable {
 	private static final long serialVersionUID = 7944042841591604009L;
