@@ -24,7 +24,7 @@
     </managed-bean>
 
     <managed-bean>
-        <managed-bean-name>controllerC</managed-bean-name>
+        <managed-bean-name>control</managed-bean-name>
         <managed-bean-class>com.tew.presentation.BeanCitas</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
@@ -53,7 +53,7 @@
             <to-view-id>/restricted/listado.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>#{controllerC.listado}</from-action>
+            <from-action>#{control.listado}</from-action>
             <from-outcome>exito</from-outcome>
             <to-view-id>/restricted/listadoCitas.xhtml</to-view-id>
         </navigation-case>
@@ -74,7 +74,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/restricted/listado.xhtml</from-view-id>
+        <from-view-id>/restricted/listadoCitas.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{controller.baja(valumno)}</from-action>
             <from-outcome>exito</from-outcome>

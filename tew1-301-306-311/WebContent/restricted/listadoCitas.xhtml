@@ -11,16 +11,16 @@
 
     <ui:define name="cuerpo">
         <h:form>
-            <p:dataTable id="tablaListado" var="cita"
-                value="#{controller.cita}" border="1">
+            <p:dataTable id="tablaListado" var="vcita"
+                value="#{control.citas}" border="1">
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaCitaIdPiso}</f:facet>#{cita.idPiso}</p:column>
+                    <f:facet name="header">#{msgs.tablaCitaIdPiso}</f:facet>#{vcita.idPiso}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaCitaIdCli}</f:facet>#{cita.idCliente}</p:column>
+                    <f:facet name="header">#{msgs.tablaCitaIdCli}</f:facet>#{vcita.idCliente}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaCitaFecHor}</f:facet>#{cita.fechaHoraCita}</p:column>
+                    <f:facet name="header">#{msgs.tablaCitaFecHor}</f:facet>#{vcita.fechaHoraCita}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaCitaEstado}</f:facet>#{cita.estado}</p:column>
+                    <f:facet name="header">#{msgs.tablaCitaEstado}</f:facet>#{vcita.estado}</p:column>
                 <p:column>
                     <f:facet name="header">#{msgs.tablaCitaVisita}</f:facet>
                     <p:selectBooleanCheckbox
