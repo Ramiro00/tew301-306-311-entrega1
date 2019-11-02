@@ -3,6 +3,8 @@ package com.tew.presentation;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -18,7 +20,7 @@ import com.tew.model.Cita;
  * avalores en un objeto existente.
  * 
  */
-@ManagedBean
+@ManagedBean(name = "control")
 @SessionScoped
 public class BeanCitas implements Serializable {
 	private static final long serialVersionUID = 7944042841591604009L;
@@ -47,7 +49,6 @@ public class BeanCitas implements Serializable {
 		// tengamos seleccionado y que viene envuelto en facesContext
 		@SuppressWarnings("unused")
 		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
-		cita.setIdPiso(0);
 	}
 
 	public String listado() {
@@ -61,6 +62,31 @@ public class BeanCitas implements Serializable {
 			e.printStackTrace();
 			return "error";
 		}
+	}
+	/*
+	 * Se inicia correctamente el MBean inyectado si JSF lo hubiera crea y en caso
+	 * contrario se crea. (hay que tener en cuenta que es un Bean de sesión) Se
+	 * usa @PostConstruct, ya que en el contructor no se sabe todavía si el Managed
+	 * Bean ya estaba construido y en @PostConstruct SI.
+	 */
+
+	@PostConstruct
+	public void init() {
+		System.out.println("BeanPisos - PostConstruct");
+		// Buscamos el alumno en la sesión. Esto es un patrón factoría claramente.
+		cita = (BeanCita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.get(new String("cita"));
+		// si no existe lo creamos e inicializamos
+		if (cita == null) {
+			System.out.println("BeanCitas - No existia");
+			cita = new BeanCita();
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cita", cita);
+		}
+	}
+
+	@PreDestroy
+	public void end() {
+		System.out.println("BeanPisos - PreDestroy");
 	}
 
 }

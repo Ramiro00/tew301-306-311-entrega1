@@ -17,6 +17,7 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 
+  
     <managed-bean>
         <managed-bean-name>control3</managed-bean-name>
         <managed-bean-class>com.tew.presentation.BeanCitas</managed-bean-class>

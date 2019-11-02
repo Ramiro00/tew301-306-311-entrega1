@@ -37,7 +37,7 @@ public class CitasJdbcDao implements CitaDao {
 			// Obtenemos la conexion a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("SELECT * FROM PUBLIC.PISOPARAVISITAR");
+			ps = con.prepareStatement("SELECT * FROM PISOPARAVISITAR");
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
