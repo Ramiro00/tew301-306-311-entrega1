@@ -8,6 +8,8 @@ public interface ServicesFactory {
 	LoginService createLoginService();
 
 	CitasService createCitasService();
+	
+	SignupService createSignupService();
 
 	PisosService createPisosService();
 

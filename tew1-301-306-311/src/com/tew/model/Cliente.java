@@ -1,43 +1,39 @@
 package com.tew.model;
 
-public class Cliente {
+import java.io.Serializable;
 
-	private int id;
+public class Cliente implements Serializable {
 
-	public Cliente(String nombre2, String apellidos2, String email2, String password2) {
-		// TODO Auto-generated constructor stub
-	}
+	private String nombre;
+	private String apellidos;
+	private String email;
+	private String password;
 
-	public int getId() {
-		return id;
-	}
+	public Cliente() {
+	};
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
+	public Cliente(String nombre, String apellidos, String email, String password) {
+		super();
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.password = password;
 	}
 
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.nombre = nombre;
 	}
 
 	public String getApellidos() {
-		return Apellidos;
+		return apellidos;
 	}
 
 	public void setApellidos(String apellidos) {
-		Apellidos = apellidos;
+		this.apellidos = apellidos;
 	}
 
 	public String getEmail() {
@@ -48,19 +44,11 @@ public class Cliente {
 		this.email = email;
 	}
 
-	private String login;
-	private String Nombre;
-	private String Apellidos;
-	private String email;
-	private String password;
-
 	public String getPassword() {
-		// TODO Auto-generated method stub
-		return this.password;
+		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 }

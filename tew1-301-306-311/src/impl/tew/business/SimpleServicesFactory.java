@@ -27,4 +27,8 @@ public class SimpleServicesFactory implements ServicesFactory {
 		return new SimpleSignupService();
 	}
 
+	@Override
+	public SignupService createSignupService() {
+		return new SimpleSignupService();
+	}
 }

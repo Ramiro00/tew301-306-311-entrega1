@@ -1,9 +1,11 @@
 package com.tew.presentation;
 
 import java.io.Serializable;
+import java.util.ResourceBundle;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import com.tew.model.Cita;
@@ -29,10 +31,11 @@ public class BeanCita extends Cita implements Serializable {
 		setCita(cita.getCita());
 	}
 
-	private void iniciaCita(ActionEvent event) {
-
+	public void iniciaCita(ActionEvent event) {
+	    FacesContext facesContext = FacesContext.getCurrentInstance();
+	    @SuppressWarnings("unused")
+		ResourceBundle bundle = 
+	    		facesContext.getApplication().getResourceBundle(facesContext, "msgs");
+	    setIdCliente(0);
 	}
-
-	
-
 }

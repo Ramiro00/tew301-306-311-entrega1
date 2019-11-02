@@ -36,7 +36,7 @@ public class BeanSignUp extends Cliente implements Serializable {
 	}
 
 	public String registrarse() {
-		SignupService signup = Factories.services.CreateSignupService();
+		SignupService signup = Factories.services.createSignupService();
 		User user = signup.registrarse(new Cliente(getNombre(), getApellidos(), getEmail(), getPassword()));
 		if (user != null) {
 			putUserInSession(user);
