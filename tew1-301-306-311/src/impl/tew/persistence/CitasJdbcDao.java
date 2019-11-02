@@ -33,10 +33,11 @@ public class CitasJdbcDao implements CitaDao {
 			String SQL_DRV = "org.hsqldb.jdbcDriver";
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
 
+			//SELECT * FROM "PUBLIC"."PISOPARAVISITAR"
 			// Obtenemos la conexion a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("select * from alumno");
+			ps = con.prepareStatement("SELECT * FROM PUBLIC.PISOPARAVISITAR");
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -46,6 +47,7 @@ public class CitasJdbcDao implements CitaDao {
 				cita.setCita(rs.getLong("FECHAHORACITA"));
 				cita.setEstado(rs.getInt("ESTADO"));
 				citas.add(cita);
+				System.out.println(rs.getInt("IDPISO") + " - " + rs.getInt("IDCLIENTE"));
 			}
 
 		} catch (ClassNotFoundException e) {

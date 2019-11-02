@@ -9,8 +9,6 @@ import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import com.sun.org.glassfish.gmbal.ManagedAttribute;
-
 @ManagedBean
 @SessionScoped
 public class BeanSettings implements Serializable {
@@ -20,20 +18,11 @@ public class BeanSettings implements Serializable {
 	private Locale locale = new Locale("es");
 
 	// uso de inyección de dependencia
-	@ManagedProperty(value = "#{alumno}")
-	private BeanAlumno alumno;
+	@ManagedProperty(value = "#{cita}")
 	private BeanCita cita;
-
-	public BeanAlumno getAlumno() {
-		return alumno;
-	}
 
 	public BeanCita getCita() {
 		return cita;
-	}
-
-	public void setAlumno(BeanAlumno alumno) {
-		this.alumno = alumno;
 	}
 
 	public void setCita(BeanCita cita) {
@@ -53,11 +42,11 @@ public class BeanSettings implements Serializable {
 		locale = SPANISH;
 		try {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-			if (alumno != null)
-				if (alumno.getId() == null) // valores por defecto del alumno, si no NO inicializar
-					alumno.iniciaAlumno(null);
 			if (cita != null)
-				if (cita.getCita() == 0) // valores por defecto del alumno, si no NO inicializar
+				if (cita.getCita() == 0) // valores por defecto del cita, si no NO inicializar
+					cita.iniciaCita(null);
+			if (cita != null)
+				if (cita.getCita() == 0) // valores por defecto del cita, si no NO inicializar
 					cita.iniciaCita(null);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -68,11 +57,11 @@ public class BeanSettings implements Serializable {
 		locale = ENGLISH;
 		try {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-			if (alumno != null)
-				if (alumno.getId() == null) // valores por defecto del alumno, si no NO inicializar
-					alumno.iniciaAlumno(null);
 			if (cita != null)
-				if (cita.getCita() == 0) // valores por defecto de la cita, si no NO inicializar
+				if (cita.getCita() == 0) // valores por defecto del cita, si no NO inicializar
+					cita.iniciaCita(null);
+			if (cita != null)
+				if (cita.getCita() == 0) // valores por defecto del cita, si no NO inicializar
 					cita.iniciaCita(null);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -88,26 +77,24 @@ public class BeanSettings implements Serializable {
 	@PostConstruct
 	public void init() {
 		/*
-		 * Buscamos el alumno en la sesión. Esto es un patrón factoría claramente
-		 * si no existe lo creamos e inicializamos
+		 * Buscamos el cita en la sesión. Esto es un patrón factoría claramente si no
+		 * existe lo creamos e inicializamos
 		 */
 		System.out.println("BeanSettings - PostConstruct");
-		alumno = (BeanAlumno) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-				.get(new String("alumno"));
-		if (alumno == null) {
+		cita = (BeanCita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.get(new String("cita"));
+		if (cita == null) {
 			System.out.println("BeanSettings - No existia");
-			alumno = new BeanAlumno();
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("alumno", alumno);
+			cita = new BeanCita();
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cita", cita);
 		}
 		/*
-		 * Buscamos la cita en la sesión. Esto es un patrón factoría claramente
-		 * si no existe lo creamos e inicializamos
+		 * Buscamos la cita en la sesión. Esto es un patrón factoría claramente si no
+		 * existe lo creamos e inicializamos
 		 */
 		cita = (BeanCita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get(new String("cita"));
 		if (cita != null) {
-			System.out.println("BeanSettings - No existia");
-			cita = new BeanCita();
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cita", cita);
 		}
 	}
