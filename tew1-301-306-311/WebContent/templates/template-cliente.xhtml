@@ -18,22 +18,16 @@
                     alt="logotipo inmobiliaria" height="90" />
                 <h2>#{msgs.tituloAplicacion2}</h2>
             </center>
-            <!--             <table border="5" align="center">
-                <tr>
-                    <th class="title"><ui:insert name="titulo">#{msgs.tituloDefectoCabecera}</ui:insert>
-                    </th>
-                </tr>
-            </table> -->
+ 
             <br />
             <p:menubar>
                 <p:submenu label="#{msgs.tituloOpciones}"
                     icon="ui-icon-document">
                     <p:menuitem value="#{msgs.enlaceListado1}"
-                        action="#{control.listado}" />
+                        action="#{control.listadocliente}" />
                     <p:separator />
                     <p:menuitem value="#{msgs.enlaceListado2}"
                         action="#{control3.listado}" />
-                    <p:separator />
                 </p:submenu>
                 <p:submenu style="float:right"
                     label="#{msgs.textoIdioma}" icon="ui-icon-document">
@@ -44,6 +38,8 @@
                         actionListener="#{settings.setEnglish}"
                         update="@all" />
                 </p:submenu>
+             
+                
             </p:menubar>
             <br />
         </h:form>

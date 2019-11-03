@@ -1,7 +1,5 @@
 package com.tew.persistence;
 
-import com.tew.persistence.AlumnoDao;
-
 /**
  * Interfaz de la factoria que suministra implementaciones reales de la fachada
  * de persistencia para cada Entidad del Modelo (en este caso solo hay una:
@@ -12,9 +10,9 @@ import com.tew.persistence.AlumnoDao;
  */
 public interface PersistenceFactory {
 
-	AlumnoDao createAlumnoDao();
-
 	CitaDao createCitaDao();
 
 	ClienteDao createClienteDao();
+
+	PisoDao createPisoDao();
 }
