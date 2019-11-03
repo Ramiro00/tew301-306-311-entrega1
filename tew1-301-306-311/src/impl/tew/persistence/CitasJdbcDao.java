@@ -27,6 +27,7 @@ public class CitasJdbcDao implements CitaDao {
 		List<Cita> citas = new ArrayList<Cita>();
 
 		try {
+			System.out.println("conexión DB");
 			// En una implemenntacian mas sofisticada estas constantes habria
 			// que sacarlas a un sistema de configuracion:
 			// xml, properties, descriptores de despliege, etc

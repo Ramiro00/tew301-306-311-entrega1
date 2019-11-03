@@ -59,13 +59,12 @@ public class BeanCitas implements Serializable {
 	}
 
 	public String listado() {
-		System.out.println("inicio listado");
 		CitasService service;
 		try {
 			// Acceso a la implementacion de la capa de negocio a traves de la factoria
 			service = Factories.services.createCitasService();
-			citas = (Cita[]) service.getCitas().toArray(new Cita[0]);
-			System.out.println("fin listado");
+			System.out.println("crear cita");
+			//citas = (Cita[]) service.getCitas().toArray(new Cita[0]);
 			return "exito";
 		} catch (Exception e) {
 			e.printStackTrace();
