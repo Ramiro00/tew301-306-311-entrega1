@@ -20,7 +20,8 @@ import com.tew.model.Cita;
  * avalores en un objeto existente.
  * 
  */
-@ManagedBean(name = "control")
+//(name = "control3")
+@ManagedBean
 @SessionScoped
 public class BeanCitas implements Serializable {
 	private static final long serialVersionUID = 7944042841591604009L;
@@ -50,10 +51,11 @@ public class BeanCitas implements Serializable {
 		 * seleccionado y que viene envuelto en facesContext
 		 */
 		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
-		cita.setIdPiso(Integer.valueOf((String) bundle.getObject("valorDefectoIdPiso")));
-		cita.setIdCliente(Integer.valueOf((String) bundle.getObject("valorDefectoIdCliente")));
-		cita.setEstado(Integer.valueOf((String) bundle.getObject("valorDefectEstado")));
-		cita.setCita(Long.valueOf((Long) bundle.getObject("valorDefectCita")));
+		cita.setIdPiso(Integer.valueOf((String) bundle.getObject("valorDefectoCIdPiso")));
+		cita.setIdCliente(Integer.valueOf((String) bundle.getObject("valorDefectoCIdCliente")));
+		cita.setCita(Long.valueOf((String) bundle.getObject("valorDefectCCita")));
+		cita.setEstado(Integer.valueOf((String) bundle.getObject("valorDefectCEstado")));
+		System.out.println("Valores defecto :" + cita.toString());
 	}
 
 	public String listado() {
@@ -61,7 +63,9 @@ public class BeanCitas implements Serializable {
 		try {
 			// Acceso a la implementacion de la capa de negocio a traves de la factoria
 			service = Factories.services.createCitasService();
+			System.out.println("Crear cita");
 			citas = (Cita[]) service.getCitas().toArray(new Cita[0]);
+			System.out.println("Cita creada");
 			return "exito";
 		} catch (Exception e) {
 			e.printStackTrace();

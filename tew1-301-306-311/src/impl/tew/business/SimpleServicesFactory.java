@@ -7,24 +7,25 @@ import com.tew.business.ServicesFactory;
 
 public class SimpleServicesFactory implements ServicesFactory {
 
-	@Override
-	public AlumnosService createAlumnosService() {
-		return new SimpleAlumnosService();
-	}
 
 	@Override
 	public LoginService createLoginService() {
-	 return new SimpleLoginService();
+		return new SimpleLoginService();
 	}
 
 	@Override
 	public CitasService createCitasService() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SimpleCitasService();
 	}
-	
+
+
 	@Override
 	public SignupService createSignupService() {
 		return new SimpleSignupService();
+	}
+
+	@Override
+	public AlumnosService createAlumnosService() {
+		return new SimpleAlumnosService();
 	}
 }
