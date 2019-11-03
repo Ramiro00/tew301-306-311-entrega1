@@ -12,7 +12,7 @@ import javax.faces.event.ActionEvent;
 @ManagedBean(name = "settings")
 @SessionScoped
 public class BeanSettings implements Serializable {
-	private static final long serialVersionUID = 2L;
+	private static final long serialVersionUID = 4187748103468265913L;
 	private static final Locale ENGLISH = new Locale("en");
 	private static final Locale SPANISH = new Locale("es");
 	private Locale locale = new Locale("es");

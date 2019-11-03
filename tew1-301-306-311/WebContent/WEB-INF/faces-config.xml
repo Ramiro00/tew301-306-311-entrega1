@@ -18,8 +18,14 @@
     </managed-bean>
 
     <managed-bean>
-        <managed-bean-name>control3</managed-bean-name>
+        <managed-bean-name>control</managed-bean-name>
         <managed-bean-class>com.tew.presentation.BeanCitas</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>control3</managed-bean-name>
+        <managed-bean-class>com.tew.presentation.BeanPisos</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 
@@ -95,22 +101,4 @@
             <to-view-id>/restricted/listado.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
-
-    <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{login.verify}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/restricted/opciones.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{login.verify}</from-action>
-            <from-outcome>login</from-outcome>
-            <to-view-id>/restricted/index.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-
-
-
 </faces-config>
