@@ -114,23 +114,15 @@ public class BeanSettings implements Serializable {
 
 		if (piso == null) {
 			System.out.println("BeanSettings - No existia");
+			piso = new BeanPiso();
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("piso", piso);
 		}
 
 		if (cita == null) {
 
 			System.out.println("BeanSettings - No existia");
-			piso = new BeanPiso();
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("piso", piso);
 			cita = new BeanCita();
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cita", cita);
-		}
-		/*
-		 * Buscamos la cita en la sesión. Esto es un patrón factoría claramente si no
-		 * existe lo creamos e inicializamos
-		 */
-		if (cita != null) {
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("settings", cita);
-
 		}
 	}
 
