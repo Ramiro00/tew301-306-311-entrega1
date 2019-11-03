@@ -10,10 +10,10 @@ public class PisosBuscar {
 	public Piso find(int id) throws EntityNotFoundException {
 		PisoDao dao = Factories.persistence.createPisoDao();
 		Piso a = dao.findById(id);
-		if ( a == null) {
-			throw new EntityNotFoundException("No se ha encontrado el alumno");
+		if (a == null) {
+			throw new EntityNotFoundException("No se ha encontrado el piso");
 		}
-		
+
 		return a;
 	}
 

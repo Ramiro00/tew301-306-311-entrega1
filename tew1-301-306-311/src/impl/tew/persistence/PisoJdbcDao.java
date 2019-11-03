@@ -24,13 +24,8 @@ public class PisoJdbcDao implements PisoDao {
 		List<Piso> pisos = new ArrayList<Piso>();
 
 		try {
-			// En una implemenntaci��n m��s sofisticada estas constantes habr��a
-			// que sacarlas a un sistema de configuraci��n:
-			// xml, properties, descriptores de despliege, etc
 			String SQL_DRV = "org.hsqldb.jdbcDriver";
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
-
-			// Obtenemos la conexi��n a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
 			ps = con.prepareStatement("select * from PISOS");
@@ -45,7 +40,71 @@ public class PisoJdbcDao implements PisoDao {
 				piso.setCiudad(rs.getString("Ciudad"));
 				piso.setAno(rs.getInt("Ano"));
 				piso.setEstado(rs.getInt("Estado"));
-				piso.setVisita(pisovisitado(rs.getInt("ID"), 1));
+				// piso.setVisita(pisovisitado(rs.getInt("ID"), 1));
+				pisos.add(piso);
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+		}
+
+		return pisos;
+	}
+
+	@Override
+	public List<Piso> getPisos(String login) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		List<Piso> pisos = new ArrayList<Piso>();
+
+		try {
+
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("select * from PISOS");
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Piso piso = new Piso();
+				piso.setId(rs.getInt("ID"));
+				piso.setIdagente(rs.getInt("IDAgente"));
+				piso.setPrecio(rs.getInt("Precio"));
+				piso.setDireccion(rs.getString("Direccion"));
+				piso.setCiudad(rs.getString("Ciudad"));
+				piso.setAno(rs.getInt("Ano"));
+				piso.setEstado(rs.getInt("Estado"));
+				piso.setVisita(pisovisitado(rs.getInt("ID"), login));
 				pisos.add(piso);
 			}
 
@@ -83,27 +142,22 @@ public class PisoJdbcDao implements PisoDao {
 
 	}
 
-	private boolean pisovisitado(int idpiso, int idcliente) {
+	private boolean pisovisitado(int idpiso, String login) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = null;
-
+		int idcliente = getIdCliente(login);
 		boolean visitado = false;
 
 		try {
-			// En una implemenntaci��n m��s sofisticada estas constantes habr��a
-			// que sacarlas a un sistema de configuraci��n:
-			// xml, properties, descriptores de despliege, etc
 			String SQL_DRV = "org.hsqldb.jdbcDriver";
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
-
-			// Obtenemos la conexi��n a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("select * from PISOPARAVISITAR WHERE IDPiso=" + idpiso + " AND IDCliente="
-					+ idcliente + "AND Estado=" + 3);
+			ps = con.prepareStatement("select * from PISOPARAVISITAR WHERE IDPiso= ?  AND IDCliente= ?");
+			ps.setInt(1, idpiso);
+			ps.setInt(2, idcliente);
 			rs = ps.executeQuery();
-
 			while (rs.next()) {
 				visitado = true;
 			}
@@ -142,6 +196,64 @@ public class PisoJdbcDao implements PisoDao {
 
 	}
 
+	private int getIdCliente(String login) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = null;
+		int id = 0;
+		login = "user2@micorreo.com";
+		try {
+
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("select ID from CLIENTES WHERE Login = ?");
+			ps.setString(1, login);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				id = rs.getInt("ID");
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+		}
+
+		System.out.println(id);
+
+		return id;
+
+	}
+
 	@Override
 	public void update(Piso p) throws NotPersistedException {
 		PreparedStatement ps = null;
@@ -149,13 +261,8 @@ public class PisoJdbcDao implements PisoDao {
 		int rows = 0;
 
 		try {
-			// En una implementaci��n m��s sofisticada estas constantes habr��a
-			// que sacarlas a un sistema de configuraci��n:
-			// xml, properties, descriptores de despliege, etc
 			String SQL_DRV = "org.hsqldb.jdbcDriver";
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
-
-			// Obtenemos la conexi��n a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
 			ps = con.prepareStatement("update PISOS "
@@ -198,25 +305,22 @@ public class PisoJdbcDao implements PisoDao {
 	}
 
 	@Override
-	public void save(Piso p) throws AlreadyPersistedException {
+	public void save(Piso p, String login) throws AlreadyPersistedException {
 		PreparedStatement ps = null;
 		Connection con = null;
 		int rows = 0;
+		login = "user1@micorreo.com";
 
 		try {
-			// En una implementaci��n m��s sofisticada estas constantes habr��a
-			// que sacarlas a un sistema de configuraci��n:
-			// xml, properties, descriptores de despliege, etc
+
 			String SQL_DRV = "org.hsqldb.jdbcDriver";
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
-
-			// Obtenemos la conexi��n a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
 			ps = con.prepareStatement("insert into PISOS (IDAgente, Precio, Direccion, Ciudad, Ano, Estado) "
 					+ "values (?, ?, ?, ?, ?, ?)");
 
-			ps.setInt(1, p.getIdagente());
+			ps.setInt(1, getIdAgente(login));
 			ps.setInt(2, p.getPrecio());
 			ps.setString(3, p.getDireccion());
 			ps.setString(4, p.getCiudad());
@@ -253,30 +357,124 @@ public class PisoJdbcDao implements PisoDao {
 
 	}
 
-	@Override
-	public void delete(int id) throws NotPersistedException {
+	private int getIdAgente(String login) {
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		Connection con = null;
-		int rows = 0;
-
+		int id = 0;
+		login = "user1@micorreo.com";
 		try {
-			// En una implementaci��n m��s sofisticada estas constantes habr��a
-			// que sacarlas a un sistema de configuraci��n:
-			// xml, properties, descriptores de despliege, etc
+
 			String SQL_DRV = "org.hsqldb.jdbcDriver";
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
 
-			// Obtenemos la conexi��n a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("delete from PISOS where id = ?");
+			ps = con.prepareStatement("select ID from AGENTES WHERE Login = ?");
+			ps.setString(1, login);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				id = rs.getInt("ID");
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+		}
+
+		return id;
+
+	}
+
+	@Override
+	public void delete(int id, String login) throws NotPersistedException {
+		PreparedStatement ps = null;
+		Connection con = null;
+		int rows = 0;
+		try {
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("delete from PISOS where ID = ?");
 
 			ps.setLong(1, id);
 
 			rows = ps.executeUpdate();
 			if (rows != 1) {
-				throw new NotPersistedException("Piso " + id + " not found");
+				throw new NotPersistedException("Piso " + id + " no encontrado");
 			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+		}
+
+	}
+
+	@Override
+	public void deletevisitas(int id, String login) throws NotPersistedException {
+		PreparedStatement ps = null;
+		Connection con = null;
+		int rows = 0;
+		try {
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("delete from PISOPARAVISITAR where IDPiso = ?");
+
+			ps.setLong(1, id);
+
+			rows = ps.executeUpdate();
+			if (rows != 1) {
+				System.out.println("Visitas no encontradas");
+			} else
+				System.out.print("Visitas borradas!");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -311,13 +509,8 @@ public class PisoJdbcDao implements PisoDao {
 		Piso piso = null;
 
 		try {
-			// En una implementaci��n m��s sofisticada estas constantes habr��a
-			// que sacarlas a un sistema de configuraci��n:
-			// xml, properties, descriptores de despliege, etc
 			String SQL_DRV = "org.hsqldb.jdbcDriver";
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
-
-			// Obtenemos la conexi��n a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
 			ps = con.prepareStatement("select * from PISOS where id = ?");
@@ -368,80 +561,6 @@ public class PisoJdbcDao implements PisoDao {
 		}
 
 		return piso;
-	}
-
-	@Override
-	public List<Piso> getPisos(int min, int max) {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		Connection con = null;
-
-		List<Piso> pisos = new ArrayList<Piso>();
-
-		try {
-			// En una implemenntaci��n m��s sofisticada estas constantes habr��a
-			// que sacarlas a un sistema de configuraci��n:
-			// xml, properties, descriptores de despliege, etc
-			String SQL_DRV = "org.hsqldb.jdbcDriver";
-			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
-
-			// Obtenemos la conexi��n a la base de datos.
-			Class.forName(SQL_DRV);
-			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("select * from PISOS WHERE Precio>" + min + "AND Precio<" + max);
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				Piso piso = new Piso();
-				piso.setId(rs.getInt("ID"));
-				piso.setIdagente(rs.getInt("IDAgente"));
-				piso.setPrecio(rs.getInt("Precio"));
-				piso.setDireccion(rs.getString("Direccion"));
-				piso.setCiudad(rs.getString("Ciudad"));
-				piso.setAno(rs.getInt("Ano"));
-				piso.setEstado(rs.getInt("Estado"));
-				piso.setVisita(pisovisitado(rs.getInt("ID"), 1));
-				pisos.add(piso);
-			}
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			throw new PersistenceException("Driver not found", e);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new PersistenceException("Invalid SQL or database schema", e);
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-		}
-
-		return pisos;
-
-	}
-
-	@Override
-	public List<Piso> getPisos(String login) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

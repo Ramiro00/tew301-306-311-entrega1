@@ -1,8 +1,8 @@
 package com.tew.presentation;
 
 import java.io.Serializable;
+
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
@@ -10,8 +10,6 @@ import javax.annotation.PreDestroy;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.AjaxBehaviorEvent;
-
 import com.tew.business.PisosService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Piso;
@@ -21,15 +19,10 @@ import com.tew.model.User;
 @SessionScoped
 public class BeanPisos implements Serializable {
 	private static final long serialVersionUID = 55555L;
-	// Se añade este atributo de entidad para recibir el alumno concreto
-	// selecionado de la tabla o de un formulario
-	// Es necesario inicializarlo para que al entrar desde el formulario de
-	// AltaForm.xml se puedan
-	// dejar los avalores en un objeto existente.
 
 	private Piso[] pisos = null;
 
-	// uso de inyección de dependencia
+	// Uso, inyecci�n de dependencia
 	@ManagedProperty(value = "#{piso}")
 	private BeanPiso piso;
 
@@ -62,8 +55,6 @@ public class BeanPisos implements Serializable {
 
 	public void iniciaPisos(ActionEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		// Obtenemos el archivo de propiedades correspondiente al idioma que
-		// tengamos seleccionado y que viene envuelto en facesContext
 		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
 		piso.setId(Integer.valueOf((String) bundle.getObject("valorDefectoPisoId")));
 		piso.setIdagente(Integer.valueOf((String) bundle.getObject("valorDefectoIdAgente")));
@@ -75,14 +66,27 @@ public class BeanPisos implements Serializable {
 		piso.setVisita(false);
 	}
 
-	public String listado() {
-		PisosService service;
-		User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("LOGGEDIN_USER");
+	public String listadoagente() {
 
+		PisosService service;
 		try {
 			service = Factories.services.createPisosService();
 			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
-			System.out.println(user.getLogin());
+			return "exito";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+
+	}
+
+	public String listadocliente() {
+
+		PisosService service;
+		try {
+			service = Factories.services.createPisosService();
+			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
 			return "exito";
 
 		} catch (Exception e) {
@@ -96,7 +100,10 @@ public class BeanPisos implements Serializable {
 		PisosService service;
 		try {
 			service = Factories.services.createPisosService();
-			service.deletePiso(piso.getId());
+			service = Factories.services.createPisosService();
+			User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("LOGGEDIN_USER");
+			service.deletePiso(piso.getId(), user.getLogin());
 			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
 			return "exito";
 
@@ -125,8 +132,9 @@ public class BeanPisos implements Serializable {
 		PisosService service;
 		try {
 			service = Factories.services.createPisosService();
-			piso.setIdagente(2);
-			service.savePiso(piso);
+			User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+					.get("LOGGEDIN_USER");
+			service.savePiso(piso, user.getLogin());
 
 			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
 			return "exito";
@@ -138,7 +146,9 @@ public class BeanPisos implements Serializable {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public boolean filterByPrice(Object value, Object filter, Locale locale) {
+
 		String filterText = (filter == null) ? null : filter.toString().trim();
 		if (filterText == null || filterText.equals("")) {
 			return true;
@@ -148,10 +158,12 @@ public class BeanPisos implements Serializable {
 			return false;
 		}
 
-		return ((Comparable) value).compareTo(Integer.valueOf(filterText)) > 0;
+		return ((Comparable<Integer>) value).compareTo(Integer.valueOf(filterText)) > 0;
 	}
 
+	@SuppressWarnings("unchecked")
 	public boolean filterByPrice2(Object value, Object filter, Locale locale) {
+
 		String filterText = (filter == null) ? null : filter.toString().trim();
 		if (filterText == null || filterText.equals("")) {
 			return true;
@@ -161,7 +173,23 @@ public class BeanPisos implements Serializable {
 			return false;
 		}
 
-		return ((Comparable) value).compareTo(Integer.valueOf(filterText)) < 0;
+		return ((Comparable<Integer>) value).compareTo(Integer.valueOf(filterText)) < 0;
+	}
+
+	public String guardarSeleccion() {
+
+		PisosService service;
+		User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("LOGGEDIN_USER");
+		user.setLogin("user1@micorreo.com");
+		try {
+			service = Factories.services.createPisosService();
+			pisos = (Piso[]) service.getPisos(user.getLogin()).toArray(new Piso[0]);
+			return "exito";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
 	}
 
 	@PostConstruct

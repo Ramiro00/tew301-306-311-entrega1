@@ -7,12 +7,12 @@ import com.tew.persistence.exception.NotPersistedException;
 
 public class PisosBaja {
 
-	public void delete(int id) throws EntityNotFoundException {
+	public void delete(int id, String login) throws EntityNotFoundException {
 		PisoDao dao = Factories.persistence.createPisoDao();
 		try {
-			dao.delete(id);
-		}
-		catch (NotPersistedException ex) {
+			dao.deletevisitas(id, login);
+			dao.delete(id, login);
+		} catch (NotPersistedException ex) {
 			throw new EntityNotFoundException("Piso no eliminado " + id, ex);
 		}
 	}

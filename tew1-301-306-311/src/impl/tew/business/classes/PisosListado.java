@@ -21,24 +21,9 @@ import com.tew.persistence.PisoDao;
 public class PisosListado {
 
 	public List<Piso> getPisos() throws Exception {
-		// Aqu?????? iria l??????gica de negocio que ejecutase alg??????n proceso ...
-		// ... en este caso el ejemplo estan sencillo que no hay nada que hacer
-
-		// Acceso a la capa de persistencia a traves de su fachada
-		// La fachada se obtiene de la factor??????a
 		PisoDao dao = Factories.persistence.createPisoDao();
 		return dao.getPisos();
 
-		// Aqu?????? podr??????a ir m??????s l??????gica de negocio que procesase los
-		// datos traidos
-		// de persistencia
-		// ...
-	}
-
-	public List<Piso> getPisos(int min, int max) {
-		// TODO Auto-generated method stub
-		PisoDao dao = Factories.persistence.createPisoDao();
-		return dao.getPisos(min, max);
 	}
 
 	public List<Piso> getPisos(String login) {

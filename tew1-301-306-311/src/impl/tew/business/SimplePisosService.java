@@ -4,17 +4,9 @@ import impl.tew.business.classes.*;
 
 import java.util.List;
 import com.tew.business.PisosService;
-import com.tew.business.exception.EntityAlreadyExistsException;
 import com.tew.business.exception.EntityNotFoundException;
 import com.tew.model.Piso;
 
-/**
- * Clase de implementación (una de las posibles) del interfaz de la fachada de
- * servicios
- * 
- * @author Enrique
- * 
- */
 public class SimplePisosService implements PisosService {
 
 	@Override
@@ -23,18 +15,13 @@ public class SimplePisosService implements PisosService {
 	}
 
 	@Override
-	public void savePiso(Piso piso) throws EntityAlreadyExistsException {
-		new PisosAlta().save(piso);
-	}
-
-	@Override
 	public void updatePiso(Piso piso) throws EntityNotFoundException {
 		new PisosUpdate().update(piso);
 	}
 
 	@Override
-	public void deletePiso(int id) throws EntityNotFoundException {
-		new PisosBaja().delete(id);
+	public void deletePiso(int id, String login) throws EntityNotFoundException {
+		new PisosBaja().delete(id, login);
 	}
 
 	@Override
@@ -44,13 +31,13 @@ public class SimplePisosService implements PisosService {
 
 	@Override
 	public List<Piso> getPisos(String login) {
-		// TODO Auto-generated method stub
 		return new PisosListado().getPisos(login);
 	}
 
 	@Override
-	public List<Piso> getPisos(int min, int max) {
-		// TODO Auto-generated method stub
-		return null;
+	public void savePiso(Piso p, String login) {
+		new PisosAlta().save(p, login);
+
 	}
+
 }

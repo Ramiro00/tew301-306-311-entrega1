@@ -1,6 +1,7 @@
 package com.tew.presentation;
 
 import java.io.Serializable;
+
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -13,8 +14,6 @@ import javax.faces.event.ActionEvent;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Cliente;
 import com.tew.model.User;
-
-import impl.tew.business.LoginService;
 import impl.tew.business.SignupService;
 
 @ManagedBean(name = "signup")
