@@ -30,22 +30,14 @@ public class BeanSettings implements Serializable {
 
 	@ManagedProperty(value = "#{cita}")
 	private BeanCita cita;
-
-	public BeanCita getCita() {
-		return cita;
-	}
-
-	public void setCita(BeanCita cita) {
-		this.cita = cita;
-	}
+	// uso de inyección de dependencia
 
 	public Locale getLocale() {
 
-		/*
-		 * Aqui habria que cambiar algo de código para coger locale del navegador la
-		 * primera vez que se accede a getLocale(), de momento dejamos como idioma de
-		 * partida “es”
-		 */
+		// Aqui habria que cambiar algo de código para coger locale del
+		// navegador
+		// la primera vez que se accede a getLocale(), de momento dejamos como
+		// idioma de partida “es”
 		return (locale);
 	}
 
@@ -91,32 +83,19 @@ public class BeanSettings implements Serializable {
 		}
 	}
 
-	/*
-	 * Se inicia correctamente el Managed Bean inyectado si JSF lo hubiera creado y
-	 * en caso contrario se crea. hay que tener en cuenta que es un Bean de sesión)
-	 * Se usa @PostConstruct, ya que en el contructor no se sabe todavía siel MBean
-	 * ya estaba construido y en @PostConstruct SI.
-	 */
-
 	@PostConstruct
 	public void init() {
-		/*
-		 * Buscamos el cita en la sesión. Esto es un patrón factoría claramente si no
-		 * existe lo creamos e inicializamos
-		 */
 		System.out.println("BeanSettings - PostConstruct");
-
-		// Buscamos el alumno en la sesiÃ³n. Esto es un patron factoria
-		// claramente.
 
 		piso = (BeanPiso) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get(new String("piso"));
 		cita = (BeanCita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get(new String("cita"));
-		// si no existe lo creamos e inicializamos
 
 		if (piso == null) {
+
 			System.out.println("BeanSettings - No existia");
+
 		}
 
 		if (cita == null) {

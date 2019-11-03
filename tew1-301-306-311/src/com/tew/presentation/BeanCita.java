@@ -33,9 +33,11 @@ public class BeanCita extends Cita implements Serializable {
 
 	public void iniciaCita(ActionEvent event) {
 	    FacesContext facesContext = FacesContext.getCurrentInstance();
-	    @SuppressWarnings("unused")
 		ResourceBundle bundle = 
 	    		facesContext.getApplication().getResourceBundle(facesContext, "msgs");
-	    setIdCliente(0);
+		setIdPiso(Integer.valueOf((String) bundle.getObject("valorDefectoIdPiso")));
+		setIdCliente(Integer.valueOf((String) bundle.getObject("valorDefectoIdCliente")));
+		setEstado(Integer.valueOf((String) bundle.getObject("valorDefectEstado")));
+		setCita(Long.valueOf((Long) bundle.getObject("valorDefectCita")));
 	}
 }

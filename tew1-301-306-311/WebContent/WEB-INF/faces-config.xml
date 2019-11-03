@@ -88,74 +88,8 @@
 		</navigation-case>
 	</navigation-rule>
 
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>error</from-outcome>
-            <to-view-id>/faces/error.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>login</from-outcome>
-            <to-view-id>/index.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>casa</from-outcome>
-            <to-view-id>/restricted/opciones.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>alta</from-outcome>
-            <to-view-id>/restricted/altaForm.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{control3.listado}</from-action>
-            <from-outcome>exito</from-outcome>
-            <to-view-id>/restricted/listado.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>error</from-outcome>
-            <to-view-id>/faces/restricted/error.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>signup</from-outcome>
-            <to-view-id>/signup.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>login</from-outcome>
-            <to-view-id>/index.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>casa</from-outcome>
-            <to-view-id>/restricted/opciones.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>alta</from-outcome>
-            <to-view-id>/restricted/altaForm.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{control.listado}</from-action>
-            <from-outcome>exito</from-outcome>
-            <to-view-id>/restricted/listado.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
 
 
-    <navigation-rule>
-        <from-view-id>/signup.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{signup.registrarse}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/restricted/opciones.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{signup.registrarse}</from-action>
-            <from-outcome>signup</from-outcome>
-            <to-view-id>/signup.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
@@ -170,16 +104,6 @@
             <to-view-id>/restricted/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
- 
-
-    <navigation-rule>
-        <from-view-id>/restricted/altaForm.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{controller.salva}</from-action>
-            <from-outcome>exito</from-outcome>
-            <to-view-id>/restricted/listado.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/restricted/editForm.xhtml</from-view-id>
@@ -189,4 +113,5 @@
             <to-view-id>/restricted/listado.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
 </faces-config>
