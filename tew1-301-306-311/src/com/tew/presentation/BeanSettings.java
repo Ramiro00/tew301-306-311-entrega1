@@ -18,16 +18,13 @@ public class BeanSettings implements Serializable {
 	private Locale locale = new Locale("es");
 
 	// uso de inyección de dependencia
-/*	@ManagedProperty(value = "#{piso}")
-	private BeanPiso piso;
-
-	public BeanPiso getPiso() {
-		return piso;
-	}
-
-	public void setPiso(BeanPiso piso) {
-		this.piso = piso;
-	}*/
+	/*
+	 * @ManagedProperty(value = "#{piso}") private BeanPiso piso;
+	 * 
+	 * public BeanPiso getPiso() { return piso; }
+	 * 
+	 * public void setPiso(BeanPiso piso) { this.piso = piso; }
+	 */
 
 	@ManagedProperty(value = "#{cita}")
 	private BeanCita cita;
@@ -54,11 +51,9 @@ public class BeanSettings implements Serializable {
 		locale = SPANISH;
 		try {
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-/*			if (piso != null) {
-				if (piso.getId() == 0) {
-					piso.iniciaPiso(event);
-				}
-			}*/
+			/*
+			 * if (piso != null) { if (piso.getId() == 0) { piso.iniciaPiso(event); } }
+			 */
 
 			if (cita != null) {
 				if (cita.getCita() == 0) {
@@ -74,12 +69,10 @@ public class BeanSettings implements Serializable {
 	public void setEnglish(ActionEvent event) {
 		locale = ENGLISH;
 		try {
-/*			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-			if (piso != null) {
-				if (piso.getId() == 0) {
-					piso.iniciaPiso(event);
-				}
-			}*/
+			/*
+			 * FacesContext.getCurrentInstance().getViewRoot().setLocale(locale); if (piso
+			 * != null) { if (piso.getId() == 0) { piso.iniciaPiso(event); } }
+			 */
 
 			if (cita != null) {
 				if (cita.getCita() == 0) {
@@ -110,22 +103,28 @@ public class BeanSettings implements Serializable {
 		// Buscamos el alumno en la sesiÃ³n. Esto es un patron factoria
 		// claramente.
 
-/*		piso = (BeanPiso) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-				.get(new String("piso"));*/
+		/*
+		 * piso = (BeanPiso)
+		 * FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+		 * .get(new String("piso"));
+		 */
 		cita = (BeanCita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get(new String("cita"));
 		// si no existe lo creamos e inicializamos
 
-/*		if (piso == null) {
-			System.out.println("BeanSettings - No existia");
-		}*/
+		/*
+		 * if (piso == null) { System.out.println("BeanSettings - No existia"); <<<<<<<
+		 * HEAD }
+		 */
 
 		if (cita == null) {
 
 			System.out.println("BeanSettings - No existia");
-/*			piso = new BeanPiso();
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("settings", piso);
-*/			cita = new BeanCita();
+			/*
+			 * piso = new BeanPiso();
+			 * FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(
+			 * "settings", piso);
+			 */ cita = new BeanCita();
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cita", cita);
 		}
 		/*
@@ -136,7 +135,6 @@ public class BeanSettings implements Serializable {
 				.get(new String("cita"));
 		if (cita != null) {
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("settings", cita);
-
 		}
 	}
 
