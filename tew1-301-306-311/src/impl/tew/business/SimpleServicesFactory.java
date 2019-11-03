@@ -1,10 +1,15 @@
 package impl.tew.business;
 
-import com.tew.business.CitasService;
 import com.tew.business.PisosService;
+import com.tew.business.CitasService;
 import com.tew.business.ServicesFactory;
 
 public class SimpleServicesFactory implements ServicesFactory {
+
+	@Override
+	public PisosService createPisosService() {
+		return new SimplePisosService();
+	}
 
 	@Override
 	public LoginService createLoginService() {
@@ -18,13 +23,12 @@ public class SimpleServicesFactory implements ServicesFactory {
 	}
 
 	@Override
-	public SignupService createSignupService() {
+	public SignupService CreateSignupService() {
 		return new SimpleSignupService();
 	}
 
 	@Override
-	public PisosService createPisosService() {
-		// TODO Auto-generated method stub
-		return new SimplePisosService();
+	public SignupService createSignupService() {
+		return new SimpleSignupService();
 	}
 }

@@ -13,4 +13,6 @@ public interface ServicesFactory {
 
 	PisosService createPisosService();
 
+	SignupService CreateSignupService();
+
 }
