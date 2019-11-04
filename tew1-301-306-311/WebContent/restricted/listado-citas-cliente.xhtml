@@ -11,14 +11,14 @@
 
     <ui:define name="cuerpo">
         <h:form>
-            <p:dataTable id="lisCitCli" var="vcita" value="#{control3.cita}"
+            <p:dataTable id="lisCitCli" var="vcita" value="#{control3.citas}"
                 border="1" rowKey="#{vcita.idPiso}"
                 emptyMessage="#{msgs.tablaVacia}">
 
                 <f:facet name="header">#{msgs.titulotablacitascliente}</f:facet>
                 <p:column>
                     <f:facet name="header">#{msgs.tablaCitaConfirma}</f:facet>
-                    <h:commandLink action="#{control3.confirma (vcita)}"
+                    <h:commandLink action="#{control3.confirmaVisita (vcita)}"
                         type="submit" value="#{msgs.enlaceConfirmar}"
                         immediate="true">
                     </h:commandLink>

@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.tew.business.exception.EntityNotFoundException;
 import com.tew.model.Cita;
+import com.tew.model.Piso;
 import com.tew.persistence.CitaDao;
 import com.tew.persistence.exception.AlreadyPersistedException;
 import com.tew.persistence.exception.PersistenceException;
@@ -62,30 +63,56 @@ public class CitasJdbcDao implements CitaDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new PersistenceException("Invalid SQL or database schema", e);
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
+		} finally { 
+			if (ps != null) { try { ps.close(); } catch (Exception ex) { }};
+			if (ps != null) { try {	ps.close(); } catch (Exception ex) { }};
+			if (con != null) { try {con.close();} catch (Exception ex) { }};
 		}
 		return citas;
+	}
+	
+	@Override
+	public List<Piso> getPisos(String id) {
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		List<Piso> pisos = new ArrayList<Piso>();
+
+		try {
+
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("SELECT id, direccion, cuidad, ano WHERE idAgente =" + id);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Piso piso = new Piso();
+				piso.setId(rs.getInt("ID"));
+				piso.setIdagente(rs.getInt("IDAgente"));
+				piso.setDireccion(rs.getString("Direccion"));
+				piso.setCiudad(rs.getString("Ciudad"));
+				piso.setAno(rs.getInt("Ano"));
+				pisos.add(piso);
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally { 
+			if (ps != null) { try { ps.close(); } catch (Exception ex) { }};
+			if (ps != null) { try {	ps.close(); } catch (Exception ex) { }};
+			if (con != null) { try {con.close();} catch (Exception ex) { }};
+		}
+
+		return pisos;
+
 	}
 
 	@Override
@@ -118,28 +145,10 @@ public class CitasJdbcDao implements CitaDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new PersistenceException("Invalid SQL or database schema", e);
-		} finally {
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
+		} finally { 
+			if (ps != null) { try { ps.close(); } catch (Exception ex) { }};
+			if (ps != null) { try {	ps.close(); } catch (Exception ex) { }};
+			if (con != null) { try {con.close();} catch (Exception ex) { }};
 		}
 	}
 
@@ -175,36 +184,41 @@ public class CitasJdbcDao implements CitaDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new PersistenceException("Invalid SQL or database schema", e);
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
+		} finally { 
+			if (ps != null) { try { ps.close(); } catch (Exception ex) { }};
+			if (ps != null) { try {	ps.close(); } catch (Exception ex) { }};
+			if (con != null) { try {con.close();} catch (Exception ex) { }};
 		}
 
 		return citas;
 	}
 
 	@Override
-	public void confirmaVisita(int idPiso, int IdCliente, String login) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
+	public void confirmaVisita(Cita c) throws EntityNotFoundException {
+		PreparedStatement ps = null;
+		Connection con = null;
+
+		try {
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("UPDATE PISOPARAVISITAR SET estado = 2 WHERE idPiso =" + c.getIdPiso()
+					+ " AND idClienete = " + c.getIdCliente());
+			ps.executeUpdate();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally { 
+			if (ps != null) { try { ps.close(); } catch (Exception ex) { }};
+			if (ps != null) { try {	ps.close(); } catch (Exception ex) { }};
+			if (con != null) { try {con.close();} catch (Exception ex) { }};
+		}
 		
 	}
 

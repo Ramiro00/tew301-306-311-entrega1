@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tew.business.exception.EntityNotFoundException;
 import com.tew.model.Cita;
+import com.tew.model.Piso;
 import com.tew.persistence.exception.AlreadyPersistedException;
 
 /**
@@ -21,8 +22,11 @@ public interface CitaDao {
 
 	List<Cita> getCitas(String login);
 
-	void confirmaVisita(int idPiso, int IdCliente, String login) throws EntityNotFoundException;
-
+	
 	void save(Cita c) throws AlreadyPersistedException;
+
+	List<Piso> getPisos(String id);
+
+	void confirmaVisita(Cita c) throws EntityNotFoundException;
 
 }

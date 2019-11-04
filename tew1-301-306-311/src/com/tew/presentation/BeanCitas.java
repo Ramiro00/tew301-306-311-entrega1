@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import com.tew.business.CitasService;
-import com.tew.business.PisosService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Cita;
 
@@ -21,7 +20,7 @@ import com.tew.model.Cita;
  * avalores en un objeto existente.
  * 
  */
-@ManagedBean (name = "control3")
+@ManagedBean(name = "control3")
 @SessionScoped
 public class BeanCitas implements Serializable {
 	private static final long serialVersionUID = 7944042841591604009L;
@@ -32,7 +31,6 @@ public class BeanCitas implements Serializable {
 	@ManagedProperty(value = "#{cita}")
 	private BeanCita cita;
 
-
 	public BeanCita getCita() {
 		return cita;
 	}
@@ -40,14 +38,14 @@ public class BeanCitas implements Serializable {
 	public void setCita(BeanCita cita) {
 		this.cita = cita;
 	}
-	
+
 	@ManagedProperty(value = "#{signup}")
 	private BeanSignUp signup;
 
 	public BeanSignUp getSignUp() {
 		return signup;
 	}
-	
+
 	/*
 	 * Se quita el constructor de inicia
 	 */
@@ -55,7 +53,6 @@ public class BeanCitas implements Serializable {
 	public Cita[] getCitas() {
 		return (citas);
 	}
-
 
 	public void iniciaCitas(ActionEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -83,18 +80,20 @@ public class BeanCitas implements Serializable {
 			return "error";
 		}
 	}
-	
-	
-	public String confirmacitas() {
-		try {
 
+	public String confirmacitas(Cita cita) {
+		CitasService service;
+		try {
+			service = Factories.services.createCitasService();
+			service.confirmaVisita(cita);
+			citas = (Cita[]) service.getCitas().toArray(new Cita[0]);
 			return "exito";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
 		}
 	}
-	
+
 	/*
 	 * Se inicia correctamente el MBean inyectado si JSF lo hubiera crea y en caso
 	 * contrario se crea. (hay que tener en cuenta que es un Bean de sesión) Se
