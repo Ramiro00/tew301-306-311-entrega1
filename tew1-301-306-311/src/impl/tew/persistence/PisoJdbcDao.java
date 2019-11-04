@@ -502,10 +502,6 @@ public class PisoJdbcDao implements PisoDao {
 			ps.setLong(1, id);
 
 			rows = ps.executeUpdate();
-			if (rows != 1) {
-				System.out.println("Visitas no encontradas");
-			} else
-				System.out.print("Visitas borradas!");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
