@@ -1,8 +1,5 @@
 package com.tew.business;
 
-import impl.tew.business.LoginService;
-import impl.tew.business.SignupService;
-
 public interface ServicesFactory {
 
 	LoginService createLoginService();
@@ -14,5 +11,7 @@ public interface ServicesFactory {
 	PisosService createPisosService();
 
 	SignupService CreateSignupService();
+	
+	DatosService CreateDatosService();
 
 }

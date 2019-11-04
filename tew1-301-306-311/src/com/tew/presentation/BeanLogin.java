@@ -11,10 +11,9 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.tew.business.LoginService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.User;
-
-import impl.tew.business.LoginService;
 
 @ManagedBean(name="login")
 public class BeanLogin implements Serializable {
@@ -77,6 +76,6 @@ public class BeanLogin implements Serializable {
 
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "casa";
+		return "logout";
 	}
 }

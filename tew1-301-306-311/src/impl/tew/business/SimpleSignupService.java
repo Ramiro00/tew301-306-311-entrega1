@@ -2,6 +2,7 @@ package impl.tew.business;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 
+import com.tew.business.SignupService;
 import com.tew.business.exception.EntityAlreadyExistsException;
 
 import com.tew.model.Cliente;

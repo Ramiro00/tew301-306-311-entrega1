@@ -6,7 +6,7 @@ public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 8832795593566819719L;
 	
-	private long ID;
+	private int ID;
 	private String nombre;
 	private String apellidos;
 	private String email;
@@ -38,11 +38,11 @@ public class Cliente implements Serializable {
 		this.password = password;
 	}
 
-	public long getID() {
+	public int getID() {
 		return ID;
 	}
 
-	public void setID(long iD) {
+	public void setID(int iD) {
 		ID = iD;
 	}
 	
