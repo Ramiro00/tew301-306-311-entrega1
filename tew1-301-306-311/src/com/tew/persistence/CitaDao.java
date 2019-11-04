@@ -29,4 +29,6 @@ public interface CitaDao {
 
 	void confirmaVisita(Cita c) throws EntityNotFoundException;
 
+	void deleteAll();
+
 }

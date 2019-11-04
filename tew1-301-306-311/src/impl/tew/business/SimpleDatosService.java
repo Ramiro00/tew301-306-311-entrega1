@@ -121,21 +121,21 @@ public class SimpleDatosService implements DatosService{
 		cita1.setIdCliente(c1.getID());
 		cita1.setIdPiso(pisos.get(0).getId());
 		cita1.setEstado(2);
-		cita1.setCita(1571799652);
+		cita1.setFechaHoraCita(1571799652);
 		
 		Cita cita2 = new Cita();
 		
 		cita2.setIdCliente(c1.getID());
 		cita2.setIdPiso(pisos.get(1).getId());
 		cita2.setEstado(3);
-		cita2.setCita(1571759394);
+		cita2.setFechaHoraCita(1571759394);
 		
 	Cita cita3 = new Cita();
 		
 		cita3.setIdCliente(c2.getID());
 		cita3.setIdPiso(pisos.get(0).getId());
 		cita3.setEstado(1);
-		cita3.setCita(1573459884);
+		cita3.setFechaHoraCita(1573459884);
 		
 		
 		
