@@ -17,4 +17,6 @@ public interface PersistenceFactory {
 	CitaDao createCitaDao();
 
 	ClienteDao createClienteDao();
+
+	AgenteDao createAgenteDao();
 }

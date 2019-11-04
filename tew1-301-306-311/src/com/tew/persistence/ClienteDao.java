@@ -9,5 +9,5 @@ import com.tew.persistence.exception.NotPersistedException;
 public interface ClienteDao {
 
 	void save(Cliente c) throws AlreadyPersistedException, SQLIntegrityConstraintViolationException;
-	Cliente findById(Long id);
+	Cliente findByLogin(String login);
 }

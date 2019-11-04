@@ -20,19 +20,20 @@ import javax.servlet.http.HttpSession;
 @WebFilter(
 		dispatcherTypes = {DispatcherType.REQUEST }
 		, 
-		description = "Filtro de seguridad", 
-		urlPatterns = { "/faces/restricted/*" }, 
+		description = "Filtro de seguridad agentes", 
+		urlPatterns = { "/faces/agente/*" }, 
 		initParams = { 
-				@WebInitParam(name = "LoginParam", value = "/faces/index.html", description = "Pagina de Logeo")
+				@WebInitParam(name = "LoginParam", value = "/faces/index.xhtml", description = "Pagina de Logeo")
 		})
-public class LoginFilter implements Filter {
+
+public class LoginFilterAgente implements Filter {
 
 	 FilterConfig config = null;
 	 
 	/**
 	 * Default constructor. 
 	 */
-	public LoginFilter() {
+	public LoginFilterAgente() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -68,7 +69,7 @@ public class LoginFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
-		if (session.getAttribute("LOGGEDIN_USER") == null) {
+		if (session.getAttribute("LOGGEDIN_AGENTE") == null) {
 			String loginForm = config.getInitParameter("LoginParam");
 			// Si no hay login, redirección al formulario de login
 			res.sendRedirect(req.getContextPath() + loginForm);

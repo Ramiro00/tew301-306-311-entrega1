@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14468168361820" configfile="/tew1-301-306-311/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="*" id="pf15716879667636" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15716879667638 pf157169084440216 pf157169084440217 pf157169084440218 pf157169084440219 pf15726084421180" path="*"/>
-  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf157168796676311" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15726092624314 pf15726092624315" inlinks="pf15716879667638" path="/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/opciones.xhtml" id="pf157169084440222" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf157169084440217 pf15726091901022 pf15726092624314" path="/restricted/opciones.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="faces/restricted/error.xhtml" id="pf157169084440323" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf157169084440216" path="/faces/restricted/error.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/altaForm.xhtml" id="pf157169084440324" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf15726092624326" inlinks="pf157169084440218" path="/restricted/altaForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/listado.xhtml" id="pf157169084440326" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf15726092624327 pf15726092624328" inlinks="pf157169084440219 pf15726092624327 pf15726092624326 pf15726092624329" path="/restricted/listado.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="signup.xhtml" id="pf15726084421191" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" outlinks="pf15726091901022 pf15726091901033" inlinks="pf15726084421180 pf15726091901033" path="/signup.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/index.xhtml" id="pf157260926243210" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" inlinks="pf15726092624315" path="/restricted/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="restricted/editForm.xhtml" id="pf157260926243211" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf15726092624329" inlinks="pf15726092624328" path="/restricted/editForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1340" id="pf15716879667636" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15716879667638 pf157169084440216 pf157169084440218 pf157169084440219 pf15726084421180" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="338" y="370" id="pf157168796676311" referenceLink="//@navigationRule.2/@navigationCase.2/@toViewId|" outlinks="pf15728611767860 pf15728611767861 pf15728611767862" inlinks="pf15716879667638 pf15728611767862" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/opciones.xhtml" x="554" y="1340" id="pf157169084440222" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf15726091901022" path="/restricted/opciones.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="faces/restricted/error.xhtml" x="338" y="754" id="pf157169084440323" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf157169084440216" path="/error.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/altaForm.xhtml" x="338" y="1543" id="pf157169084440324" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf15726092624326" inlinks="pf157169084440218" path="/restricted/altaForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/listado.xhtml" x="554" y="1745" id="pf157169084440326" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf15726092624327 pf15726092624328" inlinks="pf157169084440219 pf15726092624327 pf15726092624326 pf15726092624329" path="/restricted/listado.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="signup.xhtml" x="338" y="1138" id="pf15726084421191" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" outlinks="pf15726091901022 pf15726091901033" inlinks="pf15726084421180 pf15726091901033" path="/signup.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/index.xhtml" x="122" y="1836" id="pf157260926243210" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="restricted/editForm.xhtml" x="338" y="1948" id="pf157260926243211" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf15726092624329" inlinks="pf15726092624328" path="/restricted/editForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cliente/indexCliente.xhtml" x="554" y="178" id="pf15728611767873" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf15728611767860" path="/cliente/indexCliente.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="agente/indexAgente.xhtml" x="554" y="562" id="pf15728611767874" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" inlinks="pf15728611767861" path="/agente/indexAgente.xhtml"/>
   <links id="pf15716879667638" target="pf157168796676311" source="pf15716879667636" outcome="login"/>
   <links id="pf157169084440216" target="pf157169084440323" source="pf15716879667636" outcome="error"/>
-  <links id="pf157169084440217" target="pf157169084440222" source="pf15716879667636" outcome="casa"/>
   <links id="pf157169084440218" target="pf157169084440324" source="pf15716879667636" outcome="alta"/>
   <links id="pf157169084440219" target="pf157169084440326" source="pf15716879667636" outcome="exito" fromaction="#{controller.listado}"/>
   <links id="pf15726084421180" target="pf15726084421191" source="pf15716879667636" outcome="signup"/>
   <links id="pf15726091901022" target="pf157169084440222" source="pf15726084421191" outcome="success" fromaction="#{signup.registrarse}"/>
-  <links id="pf15726091901033" target="pf15726084421191" source="pf15726084421191" outcome="signup" fromaction="#{signup.registrarse}"/>
-  <links id="pf15726092624314" target="pf157169084440222" source="pf157168796676311" outcome="success" fromaction="#{login.verify}"/>
-  <links id="pf15726092624315" target="pf157260926243210" source="pf157168796676311" outcome="login" fromaction="#{login.verify}"/>
-  <links id="pf15726092624327" target="pf157169084440326" source="pf157169084440326" outcome="exito" fromaction="#{controller.baja(valumno)}"/>
   <links id="pf15726092624328" target="pf157260926243211" source="pf157169084440326" outcome="editar"/>
   <links id="pf15726092624326" target="pf157169084440326" source="pf157169084440324" outcome="exito" fromaction="#{controller.salva}"/>
   <links id="pf15726092624329" target="pf157169084440326" source="pf157260926243211" outcome="exito" fromaction="#{controller.salva}"/>
+  <links id="pf15728611767860" target="pf15728611767873" source="pf157168796676311" outcome="cliente" fromaction="#{login.verify}"/>
+  <links id="pf15728611767861" target="pf15728611767874" source="pf157168796676311" outcome="agente" fromaction="#{login.verify}"/>
+  <links id="pf15726091901033" target="pf15726084421191" source="pf15726084421191" outcome="signup" fromaction="#{signup.registrarse}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf15726092624327" target="pf157169084440326" source="pf157169084440326" outcome="exito" fromaction="#{controller.baja(valumno)}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf15728611767862" target="pf157168796676311" source="pf157168796676311" outcome="login" fromaction="#{login.verify}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
 </pageflow:Pageflow>

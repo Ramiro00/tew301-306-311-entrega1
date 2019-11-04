@@ -27,7 +27,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>error</from-outcome>
-			<to-view-id>/faces/restricted/error.xhtml</to-view-id>
+			<to-view-id>/error.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>signup</from-outcome>
@@ -36,10 +36,6 @@
 		<navigation-case>
 			<from-outcome>login</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>casa</from-outcome>
-			<to-view-id>/restricted/opciones.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>alta</from-outcome>
@@ -65,51 +61,56 @@
 			<to-view-id>/signup.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
-		<navigation-rule>
-			<from-view-id>/index.xhtml</from-view-id>
-			<navigation-case>
-				<from-action>#{login.verify}</from-action>
-				<from-outcome>success</from-outcome>
-				<to-view-id>/restricted/opciones.xhtml</to-view-id>
-			</navigation-case>
-			<navigation-case>
-				<from-action>#{login.verify}</from-action>
-				<from-outcome>login</from-outcome>
-				<to-view-id>/restricted/index.xhtml</to-view-id>
-			</navigation-case>
-		</navigation-rule>
 
-		<navigation-rule>
-			<from-view-id>/restricted/listado.xhtml</from-view-id>
-			<navigation-case>
-				<from-action>#{controller.baja(valumno)}</from-action>
-				<from-outcome>exito</from-outcome>
-				<to-view-id>/restricted/listado.xhtml</to-view-id>
-			</navigation-case>
+	<navigation-rule>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{login.verify}</from-action>
+			<from-outcome>cliente</from-outcome>
+			<to-view-id>/cliente/indexCliente.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{login.verify}</from-action>
+			<from-outcome>agente</from-outcome>
+			<to-view-id>/agente/indexAgente.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{login.verify}</from-action>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
-			<navigation-case>
-				<from-outcome>editar</from-outcome>
-				<to-view-id>/restricted/editForm.xhtml</to-view-id>
-			</navigation-case>
-		</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/restricted/listado.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{controller.baja(valumno)}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/restricted/listado.xhtml</to-view-id>
+		</navigation-case>
 
-		<navigation-rule>
-			<from-view-id>/restricted/altaForm.xhtml</from-view-id>
-			<navigation-case>
-				<from-action>#{controller.salva}</from-action>
-				<from-outcome>exito</from-outcome>
-				<to-view-id>/restricted/listado.xhtml</to-view-id>
-			</navigation-case>
-		</navigation-rule>
+		<navigation-case>
+			<from-outcome>editar</from-outcome>
+			<to-view-id>/restricted/editForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
-		<navigation-rule>
-			<from-view-id>/restricted/editForm.xhtml</from-view-id>
-			<navigation-case>
-				<from-action>#{controller.salva}</from-action>
-				<from-outcome>exito</from-outcome>
-				<to-view-id>/restricted/listado.xhtml</to-view-id>
-			</navigation-case>
-		</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/restricted/altaForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{controller.salva}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/restricted/listado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/restricted/editForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{controller.salva}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/restricted/listado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

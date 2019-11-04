@@ -4,17 +4,25 @@ import java.io.Serializable;
 
 public class User implements Serializable{
 
-	public User(String login, String name) {
+	
+	public User(String login) {
 		super();
 		this.login = login;
-		this.name = name;
 	}
+
+	public User(String login, boolean agente) {
+		super();
+		this.login = login;
+		Agente = agente;
+	}
+
+
 
 	private static final long serialVersionUID = 1L;
 
 	private String login;
+	private boolean Agente;
 	
-	private String name;
 
 	public String getLogin() {
 		return login;
@@ -24,12 +32,12 @@ public class User implements Serializable{
 		this.login = login;
 	}
 
-	public String getName() {
-		return name;
+	public boolean isAgente() {
+		return Agente;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setAgente(boolean agente) {
+		Agente = agente;
 	}
 	
 }

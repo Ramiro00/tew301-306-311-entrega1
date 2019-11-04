@@ -19,18 +19,18 @@ public class BeanLogin implements Serializable {
 	private static final long serialVersionUID = 3523454636417208464L;
 	private String name = "";
 	private String password = "";
-	
+
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -44,8 +44,14 @@ public class BeanLogin implements Serializable {
 		LoginService login = Factories.services.createLoginService();
 		User user = login.verify(name, password);
 		if (user != null) {
-			putUserInSession(user);
-			return "success";
+			if(user.isAgente()) {
+				putAgenteInSession(user);
+				return "agente";
+			}
+			else {
+				putClienteInSession(user);
+				return "cliente";
+			}
 		}
 		// si el usuario no se encuentra
 		// se prepara el mensaje que saldra en la vista del cliente
@@ -55,9 +61,14 @@ public class BeanLogin implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		return "login";
 	}
-	private void putUserInSession(User user) {
+	private void putClienteInSession(User user) {
 		Map<String, Object> session =
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		session.put("LOGGEDIN_USER", user);
+		session.put("LOGGEDIN_CLIENTE", user);
+	}
+	private void putAgenteInSession(User user) {
+		Map<String, Object> session =
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		session.put("LOGGEDIN_AGENTE", user);
 	}
 }
