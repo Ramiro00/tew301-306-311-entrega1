@@ -20,9 +20,10 @@
 				<p:commandButton value="#{msgs.login_form_button}"
 					action="#{login.verify}" update=":mensajes">
 				</p:commandButton>
-				<br></br><br></br> 
-				<p:commandButton value="#{msgs.signup_form_button}"
-					action="signup">
+			</h:form>
+			<br></br> <br></br>
+			<h:form id="form-signup">
+				<p:commandButton value="#{msgs.signup_form_button}" action="signup">
 				</p:commandButton>
 			</h:form>
 		</center>

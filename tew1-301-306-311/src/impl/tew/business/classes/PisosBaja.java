@@ -16,4 +16,9 @@ public class PisosBaja {
 			throw new EntityNotFoundException("Piso no eliminado " + id, ex);
 		}
 	}
+
+	public void deleteAll(){
+		PisoDao dao = Factories.persistence.createPisoDao();
+		dao.deleteAll();
+	}
 }

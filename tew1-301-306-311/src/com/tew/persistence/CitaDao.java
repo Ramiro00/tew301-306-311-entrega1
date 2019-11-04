@@ -20,4 +20,6 @@ public interface CitaDao {
 
 	void save(Cita c) throws AlreadyPersistedException;
 
+	void deleteAll();
+
 }

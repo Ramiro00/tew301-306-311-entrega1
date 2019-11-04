@@ -1,4 +1,4 @@
-package impl.tew.business;
+package com.tew.business;
 
 import com.tew.model.Cliente;
 import com.tew.model.User;

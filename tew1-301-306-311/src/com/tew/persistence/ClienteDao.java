@@ -9,4 +9,5 @@ public interface ClienteDao {
 
 	void save(Cliente c) throws AlreadyPersistedException, SQLIntegrityConstraintViolationException;
 	Cliente findByLogin(String login);
+	void deleteAll();
 }

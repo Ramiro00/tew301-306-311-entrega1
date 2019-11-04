@@ -85,7 +85,7 @@ public class ClienteJdbcDao implements ClienteDao{
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				cliente = new Cliente();
-				cliente.setID(rs.getLong("ID"));
+				cliente.setID(rs.getInt("ID"));
 				cliente.setNombre(rs.getString("NOMBRE"));
 				cliente.setApellidos(rs.getString("APELLIDOS"));
 				cliente.setEmail(rs.getString("EMAIL"));
@@ -109,4 +109,38 @@ public class ClienteJdbcDao implements ClienteDao{
 		return cliente;
 	}
 	
+	@Override
+	public void deleteAll(){
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("delete from CLIENTES");
+			ps.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+		}
+	}
 }

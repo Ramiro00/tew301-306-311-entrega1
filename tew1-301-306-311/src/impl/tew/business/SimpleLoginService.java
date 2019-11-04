@@ -1,5 +1,11 @@
 package impl.tew.business;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
+import com.tew.business.LoginService;
 import com.tew.business.exception.EntityNotFoundException;
 import com.tew.model.Agente;
 import com.tew.model.Cliente;
@@ -11,7 +17,14 @@ import impl.tew.business.classes.ClientesBuscar;
 public class SimpleLoginService implements LoginService{
 
 	public User verify(String login, String password) {
-		return validLogin(login, password);
+		MessageDigest digest = null;
+		try {
+			digest = MessageDigest.getInstance("SHA-256");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+		return validLogin(login, new String(Base64.getEncoder().encode(hash)));
 	}
 
 	private User validLogin(String login, String password) {

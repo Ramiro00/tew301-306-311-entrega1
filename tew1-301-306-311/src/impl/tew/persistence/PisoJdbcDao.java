@@ -451,6 +451,41 @@ public class PisoJdbcDao implements PisoDao {
 		}
 
 	}
+	
+	@Override
+	public void deleteAll(){
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("delete from PISOS");
+			ps.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+		}
+	}
 
 	@Override
 	public void deletevisitas(int id, String login) throws NotPersistedException {
