@@ -8,10 +8,6 @@ import javax.annotation.PreDestroy;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @ManagedBean(name = "settings")
 @SessionScoped
@@ -64,7 +60,7 @@ public class BeanSettings implements Serializable {
 			}
 
 			if (cita != null) {
-				if (cita.getCita() == 0) {
+				if (cita.getIdPiso() == 0) {
 					cita.iniciaCita(event);
 				}
 			}
@@ -85,7 +81,7 @@ public class BeanSettings implements Serializable {
 			}
 
 			if (cita != null) {
-				if (cita.getCita() == 0) {
+				if (cita.getIdPiso() == 0) {
 					cita.iniciaCita(event);
 				}
 			}
@@ -136,5 +132,4 @@ public class BeanSettings implements Serializable {
 		System.out.println("BeanSettings - PreDestroy");
 	}
 
-	
 }

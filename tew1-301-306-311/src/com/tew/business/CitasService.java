@@ -2,7 +2,9 @@ package com.tew.business;
 
 import java.util.List;
 
+import com.tew.business.exception.EntityNotFoundException;
 import com.tew.model.Cita;
+import com.tew.model.Piso;
 
 /**
  * Este es el interfaz que ofrecera cualquier implementacion de la clase
@@ -23,4 +25,9 @@ public interface CitasService {
 
 	List<Cita> getCitas() throws Exception;
 
+	List<Cita> getCitas(String login) throws Exception;
+	
+	void confirmaVisita(Cita c) throws EntityNotFoundException;
+
+	List<Piso> getPisos(String id);
 }
