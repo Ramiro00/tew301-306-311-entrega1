@@ -23,4 +23,5 @@ public interface CitasService {
 
 	List<Cita> getCitas() throws Exception;
 
+	List<Cita> getCitas(String login) throws Exception;
 }

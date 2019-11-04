@@ -14,4 +14,8 @@ public class SimpleCitasService implements CitasService {
 		return new CitasListado().getCitas();
 	}
 
+	@Override
+	public List<Cita> getCitas(String login){
+		return new CitasListado().getCitas(login);
+	}
 }

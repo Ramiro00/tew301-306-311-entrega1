@@ -1,7 +1,14 @@
 package impl.tew.persistence;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.tew.model.Cita;
 import com.tew.persistence.CitaDao;
@@ -27,14 +34,8 @@ public class CitasJdbcDao implements CitaDao {
 		List<Cita> citas = new ArrayList<Cita>();
 
 		try {
-			// En una implemenntacian mas sofisticada estas constantes habria
-			// que sacarlas a un sistema de configuracion:
-			// xml, properties, descriptores de despliege, etc
 			String SQL_DRV = "org.hsqldb.jdbcDriver";
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
-
-			//SELECT * FROM "PUBLIC"."PISOPARAVISITAR"
-			// Obtenemos la conexion a la base de datos.
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
 			ps = con.prepareStatement("SELECT * FROM PISOPARAVISITAR");
@@ -44,10 +45,14 @@ public class CitasJdbcDao implements CitaDao {
 				Cita cita = new Cita();
 				cita.setIdPiso(rs.getInt("IDPISO"));
 				cita.setIdCliente(rs.getInt("IDCLIENTE"));
-				cita.setCita(rs.getLong("FECHAHORACITA"));
+				cita.setFechaHoraCita(rs.getLong("FECHAHORACITA"));
 				cita.setEstado(rs.getInt("ESTADO"));
+				
+/*				DateTimeFormatter formato = DateTimeFormatter.ofPattern( "MMdduuHHmmss" ) ;
+				LocalDateTime ldt = LocalDateTime.parse(String.valueOf(rs.getLong("FECHAHORACITA")) , formato ) ;
+				cita.setFecha(ldt.toString());*/
+				
 				citas.add(cita);
-				System.out.println(rs.getInt("IDPISO") + " - " + rs.getInt("IDCLIENTE"));
 			}
 
 		} catch (ClassNotFoundException e) {
@@ -58,28 +63,14 @@ public class CitasJdbcDao implements CitaDao {
 			throw new PersistenceException("Invalid SQL or database schema", e);
 		} finally {
 			if (rs != null) {
-				try {
-					rs.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
+				try {rs.close();} catch (Exception ex) {}};
 			if (ps != null) {
 				try {
-					ps.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
+					ps.close();} catch (Exception ex) {}};
 			if (con != null) {
 				try {
-					con.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
+					con.close();} catch (Exception ex) {}};
 		}
-
 		return citas;
 	}
 
@@ -99,7 +90,7 @@ public class CitasJdbcDao implements CitaDao {
 			ps = con.prepareStatement("insert into Cita (idPiso, idCliente, cita, estado) " + "values (?, ?, ?, ?)");
 			ps.setInt(1, c.getIdPiso());
 			ps.setInt(2, c.getIdCliente());
-			ps.setLong(3, c.getCita());
+			ps.setLong(3, c.getFechaHoraCita());
 			ps.setInt(4, c.getEstado());
 
 			rows = ps.executeUpdate();
@@ -115,24 +106,62 @@ public class CitasJdbcDao implements CitaDao {
 			throw new PersistenceException("Invalid SQL or database schema", e);
 		} finally {
 			if (ps != null) {
+				try {ps.close();} catch (Exception ex) {}};
+			if (ps != null) {
 				try {
-					ps.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
+					ps.close();} catch (Exception ex) {}};
 			if (con != null) {
 				try {
-					con.close();
-				} catch (Exception ex) {
-				}
+					con.close();} catch (Exception ex) {}};
+		}
+	}
+
+	@Override
+	public List<Cita> getCitas(String login) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		List<Cita> citas = new ArrayList<Cita>();
+
+		try {
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("SELECT * FROM PISOPARAVISITAR");
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Cita cita = new Cita();
+				cita.setIdPiso(rs.getInt("IDPISO"));
+				cita.setIdCliente(rs.getInt("IDCLIENTE"));
+				cita.setFechaHoraCita(rs.getLong("FECHAHORACITA"));
+				cita.setEstado(rs.getInt("ESTADO"));
+				
+				citas.add(cita);
 			}
-			;
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (rs != null) { 
+				try { rs.close();} catch (Exception ex) {}};
+			if (ps != null) {
+				try { ps.close();} catch (Exception ex) {}};
+			if (con != null) {
+				try { con.close();} catch (Exception ex) {}};
 		}
 
+		return citas;
 	}
-	
-/*	INSERT INTO "PUBLIC"."PISOPARAVISITAR"
-	( "IDPISO", "IDCLIENTE", "FECHAHORACITA", "ESTADO" )
-	VALUES (0 ,3 ,1572358635 ,1 )*/
+
+	/*
+	 * INSERT INTO "PUBLIC"."PISOPARAVISITAR" ( "IDPISO", "IDCLIENTE",
+	 * "FECHAHORACITA", "ESTADO" ) VALUES (0 ,3 ,1572358635 ,1 )
+	 */
 }

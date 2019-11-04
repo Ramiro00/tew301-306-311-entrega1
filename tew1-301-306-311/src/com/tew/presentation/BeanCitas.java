@@ -31,11 +31,12 @@ public class BeanCitas implements Serializable {
 	@ManagedProperty(value = "#{cita}")
 	private BeanCita cita;
 
+
 	public BeanCita getCita() {
 		return cita;
 	}
 
-	public void setCta(BeanCita cita) {
+	public void setCita(BeanCita cita) {
 		this.cita = cita;
 	}
 
@@ -43,7 +44,7 @@ public class BeanCitas implements Serializable {
 		return (citas);
 	}
 
-	public void inicaCitas(ActionEvent event) {
+	public void iniciaCitas(ActionEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		/*
 		 * Obtenemos el archivo de propiedades correspondiente al idioma que tengamos
@@ -52,19 +53,16 @@ public class BeanCitas implements Serializable {
 		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
 		cita.setIdPiso(Integer.valueOf((String) bundle.getObject("valorDefectoCIdPiso")));
 		cita.setIdCliente(Integer.valueOf((String) bundle.getObject("valorDefectoCIdCliente")));
-		cita.setCita(Long.valueOf((String) bundle.getObject("valorDefectCCita")));
+		cita.setFechaHoraCita(Long.valueOf((String) bundle.getObject("valorDefectCCita")));
 		cita.setEstado(Integer.valueOf((String) bundle.getObject("valorDefectCEstado")));
-		System.out.println("Valores defecto :" + cita.toString());
 	}
 
-	public String listado() {
+	public String listadocitas() {
 		CitasService service;
 		try {
 			// Acceso a la implementacion de la capa de negocio a traves de la factoria
 			service = Factories.services.createCitasService();
-			System.out.println("Crear cita");
 			citas = (Cita[]) service.getCitas().toArray(new Cita[0]);
-			System.out.println("Cita creada");
 			return "exito";
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -7,7 +7,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-
 import com.tew.model.Cita;
 
 @ManagedBean(name = "cita")
@@ -27,16 +26,17 @@ public class BeanCita extends Cita implements Serializable {
 	public void setCita(Cita cita) {
 		setIdPiso(cita.getIdPiso());
 		setIdCliente(cita.getIdCliente());
+		setFechaHoraCita(cita.getFechaHoraCita());
 		setEstado(cita.getEstado());
-		setCita(cita.getCita());
 	}
 
 	public void iniciaCita(ActionEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
+		
 		setIdPiso(Integer.valueOf((String) bundle.getObject("valorDefectoCIdPiso")));
 		setIdCliente(Integer.valueOf((String) bundle.getObject("valorDefectoCIdCliente")));
 		setEstado(Integer.valueOf((String) bundle.getObject("valorDefectCEstado")));
-		setCita(Long.valueOf((String) bundle.getObject("valorDefectCEstado")));
+		setFechaHoraCita(Long.valueOf((String) bundle.getObject("valorDefectCCita")));
 	}
 }

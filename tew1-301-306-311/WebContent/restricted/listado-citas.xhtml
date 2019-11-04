@@ -3,16 +3,17 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
-    template="/templates/template-general.xhtml">
+    template="/templates/template-agente.xhtml">
 
     <ui:define name="titulo">
-    #{msgs.tituloOperacionListado}
-  </ui:define>
+        #{msgs.tituloOperacionListado}
+    </ui:define>
 
     <ui:define name="cuerpo">
         <h:form>
             <p:dataTable id="tablaListado" var="vcita"
-                value="#{control3.citas}" border="1">
+                value="#{control3.cita}" border="1"
+                emptyMessage="#{msgs.tablaVacia}">
                 <p:column>
                     <f:facet name="header">#{msgs.tablaCitaIdPiso}</f:facet>#{vcita.idPiso}</p:column>
                 <p:column>

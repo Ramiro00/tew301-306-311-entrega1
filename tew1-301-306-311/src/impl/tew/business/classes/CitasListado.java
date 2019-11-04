@@ -22,10 +22,13 @@ import com.tew.persistence.CitaDao;
 public class CitasListado {
 
 	public List<Cita> getCitas() throws Exception {
-
 		CitaDao dao = Factories.persistence.createCitaDao();
 		return dao.getCitas();
+	}
 
+	public List<Cita> getCitas(String login) {
+		CitaDao dao = Factories.persistence.createCitaDao();
+		return dao.getCitas(login);
 	}
 
 }

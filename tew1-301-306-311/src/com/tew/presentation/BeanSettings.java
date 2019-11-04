@@ -60,7 +60,7 @@ public class BeanSettings implements Serializable {
 			}
 
 			if (cita != null) {
-				if (cita.getCita() == 0) {
+				if (cita.getIdPiso() == 0) {
 					cita.iniciaCita(event);
 				}
 			}
@@ -81,7 +81,7 @@ public class BeanSettings implements Serializable {
 			}
 
 			if (cita != null) {
-				if (cita.getCita() == 0) {
+				if (cita.getIdPiso() == 0) {
 					cita.iniciaCita(event);
 				}
 			}

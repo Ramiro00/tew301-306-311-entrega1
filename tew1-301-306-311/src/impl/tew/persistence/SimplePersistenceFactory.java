@@ -14,6 +14,7 @@ import com.tew.persistence.PisoDao;
  */
 public class SimplePersistenceFactory implements PersistenceFactory {
 
+	@Override
 	public CitaDao createCitaDao() {
 		return new CitasJdbcDao();
 	}

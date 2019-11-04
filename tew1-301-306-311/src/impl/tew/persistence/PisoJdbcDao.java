@@ -1,13 +1,13 @@
 package impl.tew.persistence;
 
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.tew.model.Piso;
 import com.tew.persistence.PisoDao;
 import com.tew.persistence.exception.AlreadyPersistedException;
