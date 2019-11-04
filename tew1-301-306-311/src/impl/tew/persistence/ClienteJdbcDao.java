@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
-import com.tew.model.Alumno;
 import com.tew.model.Cliente;
 import com.tew.persistence.ClienteDao;
 import com.tew.persistence.exception.AlreadyPersistedException;

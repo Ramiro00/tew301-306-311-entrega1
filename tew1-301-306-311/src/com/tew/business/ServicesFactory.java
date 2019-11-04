@@ -4,13 +4,15 @@ import impl.tew.business.LoginService;
 import impl.tew.business.SignupService;
 
 public interface ServicesFactory {
-	
-	AlumnosService createAlumnosService();
 
 	LoginService createLoginService();
-	
+
 	CitasService createCitasService();
-	
+
 	SignupService createSignupService();
+
+	PisosService createPisosService();
+
+	SignupService CreateSignupService();
 
 }

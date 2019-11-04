@@ -12,14 +12,21 @@
 	</application>
 
 	<managed-bean>
-		<managed-bean-name>controller</managed-bean-name>
-		<managed-bean-class>com.tew.presentation.BeanAlumnos</managed-bean-class>
+		<managed-bean-name>settings</managed-bean-name>
+		<managed-bean-class>com.tew.presentation.BeanSettings</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 
 	<managed-bean>
-		<managed-bean-name>settings</managed-bean-name>
-		<managed-bean-class>com.tew.presentation.BeanSettings</managed-bean-class>
+		<managed-bean-name>control3</managed-bean-name>
+		<managed-bean-class>com.tew.presentation.BeanCitas</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+
+	<managed-bean>
+		<managed-bean-name>control</managed-bean-name>
+		<managed-bean-class>com.tew.presentation.BeanPisos</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 
@@ -27,24 +34,43 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>error</from-outcome>
-			<to-view-id>/error.xhtml</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>signup</from-outcome>
-			<to-view-id>/signup.xhtml</to-view-id>
+			<to-view-id>error.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>login</from-outcome>
 			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>alta</from-outcome>
-			<to-view-id>/restricted/altaForm.xhtml</to-view-id>
+			<from-outcome>signup</from-outcome>
+			<to-view-id>/signup.xhtml</to-view-id>
+		</navigation-case>
+		        <navigation-case>
+            <from-outcome>alta</from-outcome>
+            <to-view-id>/agente/altaForm.xhtml</to-view-id>
+        </navigation-case>
+		<navigation-case>
+			<from-outcome>casa</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-action>#{controller.listado}</from-action>
+			<from-outcome>guardavisitas</from-outcome>
+			<to-view-id>/cliente/indexCliente.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{control.listadocliente}</from-action>
 			<from-outcome>exito</from-outcome>
-			<to-view-id>/restricted/listado.xhtml</to-view-id>
+			<to-view-id>/cliente/listado-cliente.xhtml</to-view-id>
+		</navigation-case>
+		
+		<navigation-case>
+			<from-action>#{control.listadoagente}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/agente/listado-agente.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{control.salva}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/agente/indexAgente.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
@@ -53,7 +79,7 @@
 		<navigation-case>
 			<from-action>#{signup.registrarse}</from-action>
 			<from-outcome>success</from-outcome>
-			<to-view-id>/restricted/opciones.xhtml</to-view-id>
+			<to-view-id>/cliente/indexCliente.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-action>#{signup.registrarse}</from-action>
@@ -81,36 +107,5 @@
 		</navigation-case>
 	</navigation-rule>
 
-	<navigation-rule>
-		<from-view-id>/restricted/listado.xhtml</from-view-id>
-		<navigation-case>
-			<from-action>#{controller.baja(valumno)}</from-action>
-			<from-outcome>exito</from-outcome>
-			<to-view-id>/restricted/listado.xhtml</to-view-id>
-		</navigation-case>
-
-		<navigation-case>
-			<from-outcome>editar</from-outcome>
-			<to-view-id>/restricted/editForm.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
-	<navigation-rule>
-		<from-view-id>/restricted/altaForm.xhtml</from-view-id>
-		<navigation-case>
-			<from-action>#{controller.salva}</from-action>
-			<from-outcome>exito</from-outcome>
-			<to-view-id>/restricted/listado.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
-	<navigation-rule>
-		<from-view-id>/restricted/editForm.xhtml</from-view-id>
-		<navigation-case>
-			<from-action>#{controller.salva}</from-action>
-			<from-outcome>exito</from-outcome>
-			<to-view-id>/restricted/listado.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
 
 </faces-config>

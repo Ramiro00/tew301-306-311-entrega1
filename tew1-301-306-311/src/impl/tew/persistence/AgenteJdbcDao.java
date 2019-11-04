@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.tew.model.Agente;
-import com.tew.model.Alumno;
 import com.tew.persistence.AgenteDao;
 import com.tew.persistence.exception.AlreadyPersistedException;
 import com.tew.persistence.exception.PersistenceException;

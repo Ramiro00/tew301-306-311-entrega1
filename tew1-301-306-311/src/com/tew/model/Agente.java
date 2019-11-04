@@ -1,5 +1,6 @@
 package com.tew.model;
 
+
 import java.io.Serializable;
 
 public class Agente implements Serializable {
