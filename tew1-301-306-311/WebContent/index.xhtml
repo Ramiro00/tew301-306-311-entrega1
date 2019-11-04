@@ -17,6 +17,7 @@
 			<p:growl id="mensajes" showDetail="false" />
 			<h:form id="form-principal">
 				<ui:include src="/snippets/form-login.xhtml" />
+				<br></br>
 				<p:commandButton value="#{msgs.login_form_button}"
 					action="#{login.verify}" update=":mensajes">
 				</p:commandButton>
