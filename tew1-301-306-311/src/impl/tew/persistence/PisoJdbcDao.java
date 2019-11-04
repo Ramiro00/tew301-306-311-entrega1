@@ -40,7 +40,6 @@ public class PisoJdbcDao implements PisoDao {
 				piso.setCiudad(rs.getString("Ciudad"));
 				piso.setAno(rs.getInt("Ano"));
 				piso.setEstado(rs.getInt("Estado"));
-				// piso.setVisita(pisovisitado(rs.getInt("ID"), 1));
 				pisos.add(piso);
 			}
 
@@ -202,7 +201,6 @@ public class PisoJdbcDao implements PisoDao {
 		ResultSet rs = null;
 		Connection con = null;
 		int id = 0;
-		login = "user2@micorreo.com";
 		try {
 
 			String SQL_DRV = "org.hsqldb.jdbcDriver";
@@ -309,7 +307,6 @@ public class PisoJdbcDao implements PisoDao {
 		PreparedStatement ps = null;
 		Connection con = null;
 		int rows = 0;
-		login = "user1@micorreo.com";
 
 		try {
 
@@ -362,7 +359,6 @@ public class PisoJdbcDao implements PisoDao {
 		ResultSet rs = null;
 		Connection con = null;
 		int id = 0;
-		login = "user1@micorreo.com";
 		try {
 
 			String SQL_DRV = "org.hsqldb.jdbcDriver";
