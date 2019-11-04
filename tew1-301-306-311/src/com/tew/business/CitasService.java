@@ -2,6 +2,7 @@ package com.tew.business;
 
 import java.util.List;
 
+import com.tew.business.exception.EntityNotFoundException;
 import com.tew.model.Cita;
 
 /**
@@ -24,4 +25,6 @@ public interface CitasService {
 	List<Cita> getCitas() throws Exception;
 
 	List<Cita> getCitas(String login) throws Exception;
+	
+	void confirmaVisita(int idPiso, int IdClientem, String login) throws EntityNotFoundException;
 }

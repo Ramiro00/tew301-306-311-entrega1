@@ -63,7 +63,6 @@ public class ClienteJdbcDao implements ClienteDao{
 
 	@Override
 	public Cliente findById(Long id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

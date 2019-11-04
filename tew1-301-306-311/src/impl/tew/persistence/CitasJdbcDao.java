@@ -5,11 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.tew.business.exception.EntityNotFoundException;
 import com.tew.model.Cita;
 import com.tew.persistence.CitaDao;
 import com.tew.persistence.exception.AlreadyPersistedException;
@@ -38,21 +37,23 @@ public class CitasJdbcDao implements CitaDao {
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("SELECT * FROM PISOPARAVISITAR");
+			String consulta = "SELECT idpiso,  idcliente, direccion, fechahoracita, PISOPARAVISITAR.estado "
+					+ "FROM PISOPARAVISITAR LEFT JOIN PISOS ON PISOPARAVISITAR.IDPISO = PISOS.ID "
+					+ "WHERE PISOPARAVISITAR.estado = 1";
+
+			ps = con.prepareStatement(consulta);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
 				Cita cita = new Cita();
 				cita.setIdPiso(rs.getInt("IDPISO"));
 				cita.setIdCliente(rs.getInt("IDCLIENTE"));
+				cita.setDireccion(rs.getString("DIRECCION"));
 				cita.setFechaHoraCita(rs.getLong("FECHAHORACITA"));
 				cita.setEstado(rs.getInt("ESTADO"));
-				
-/*				DateTimeFormatter formato = DateTimeFormatter.ofPattern( "MMdduuHHmmss" ) ;
-				LocalDateTime ldt = LocalDateTime.parse(String.valueOf(rs.getLong("FECHAHORACITA")) , formato ) ;
-				cita.setFecha(ldt.toString());*/
-				
 				citas.add(cita);
+				//System.out.println("direccion" + rs.getString("DIRECCION"));
+
 			}
 
 		} catch (ClassNotFoundException e) {
@@ -63,13 +64,26 @@ public class CitasJdbcDao implements CitaDao {
 			throw new PersistenceException("Invalid SQL or database schema", e);
 		} finally {
 			if (rs != null) {
-				try {rs.close();} catch (Exception ex) {}};
+				try {
+					rs.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
 			if (ps != null) {
 				try {
-					ps.close();} catch (Exception ex) {}};
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
 			if (con != null) {
 				try {
-					con.close();} catch (Exception ex) {}};
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
 		}
 		return citas;
 	}
@@ -106,13 +120,26 @@ public class CitasJdbcDao implements CitaDao {
 			throw new PersistenceException("Invalid SQL or database schema", e);
 		} finally {
 			if (ps != null) {
-				try {ps.close();} catch (Exception ex) {}};
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
 			if (ps != null) {
 				try {
-					ps.close();} catch (Exception ex) {}};
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
 			if (con != null) {
 				try {
-					con.close();} catch (Exception ex) {}};
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
 		}
 	}
 
@@ -138,7 +165,7 @@ public class CitasJdbcDao implements CitaDao {
 				cita.setIdCliente(rs.getInt("IDCLIENTE"));
 				cita.setFechaHoraCita(rs.getLong("FECHAHORACITA"));
 				cita.setEstado(rs.getInt("ESTADO"));
-				
+
 				citas.add(cita);
 			}
 
@@ -149,15 +176,36 @@ public class CitasJdbcDao implements CitaDao {
 			e.printStackTrace();
 			throw new PersistenceException("Invalid SQL or database schema", e);
 		} finally {
-			if (rs != null) { 
-				try { rs.close();} catch (Exception ex) {}};
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
 			if (ps != null) {
-				try { ps.close();} catch (Exception ex) {}};
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
 			if (con != null) {
-				try { con.close();} catch (Exception ex) {}};
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
 		}
 
 		return citas;
+	}
+
+	@Override
+	public void confirmaVisita(int idPiso, int IdCliente, String login) throws EntityNotFoundException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/*

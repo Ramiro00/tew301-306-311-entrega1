@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import com.tew.business.CitasService;
+import com.tew.business.PisosService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Cita;
 
@@ -39,10 +40,22 @@ public class BeanCitas implements Serializable {
 	public void setCita(BeanCita cita) {
 		this.cita = cita;
 	}
+	
+	@ManagedProperty(value = "#{signup}")
+	private BeanSignUp signup;
+
+	public BeanSignUp getSignUp() {
+		return signup;
+	}
+	
+	/*
+	 * Se quita el constructor de inicia
+	 */
 
 	public Cita[] getCitas() {
 		return (citas);
 	}
+
 
 	public void iniciaCitas(ActionEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -52,6 +65,7 @@ public class BeanCitas implements Serializable {
 		 */
 		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
 		cita.setIdPiso(Integer.valueOf((String) bundle.getObject("valorDefectoCIdPiso")));
+		cita.setDireccion(bundle.getString("valorDefectoDireccion"));
 		cita.setIdCliente(Integer.valueOf((String) bundle.getObject("valorDefectoCIdCliente")));
 		cita.setFechaHoraCita(Long.valueOf((String) bundle.getObject("valorDefectCCita")));
 		cita.setEstado(Integer.valueOf((String) bundle.getObject("valorDefectCEstado")));
@@ -69,6 +83,18 @@ public class BeanCitas implements Serializable {
 			return "error";
 		}
 	}
+	
+	
+	public String confirmacitas() {
+		try {
+
+			return "exito";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	
 	/*
 	 * Se inicia correctamente el MBean inyectado si JSF lo hubiera crea y en caso
 	 * contrario se crea. (hay que tener en cuenta que es un Bean de sesión) Se
@@ -78,7 +104,7 @@ public class BeanCitas implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		System.out.println("BeanPisos - PostConstruct");
+		System.out.println("BeanCitas - PostConstruct");
 		// Buscamos el alumno en la sesión. Esto es un patrón factoría claramente.
 		cita = (BeanCita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get(new String("cita"));
@@ -92,7 +118,7 @@ public class BeanCitas implements Serializable {
 
 	@PreDestroy
 	public void end() {
-		System.out.println("BeanPisos - PreDestroy");
+		System.out.println("BeanCitas - PreDestroy");
 	}
 
 }

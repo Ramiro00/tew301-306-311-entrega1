@@ -16,7 +16,6 @@ public class PisosAlta {
 			try {
 				throw new EntityAlreadyExistsException("Piso ya existe " + p, ex);
 			} catch (EntityAlreadyExistsException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

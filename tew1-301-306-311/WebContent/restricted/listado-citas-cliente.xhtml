@@ -3,7 +3,7 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
-    template="/templates/template-agente.xhtml">
+    template="/templates/template-cliente.xhtml">
 
     <ui:define name="titulo">
         #{msgs.tituloOperacionListado}
@@ -11,23 +11,28 @@
 
     <ui:define name="cuerpo">
         <h:form>
-            <p:dataTable id="tablaListado" var="vcita"
-                value="#{control3.cita}" border="1"
+            <p:dataTable id="lisCitCli" var="vcita" value="#{control3.cita}"
+                border="1" rowKey="#{vcita.idPiso}"
                 emptyMessage="#{msgs.tablaVacia}">
+
+                <f:facet name="header">#{msgs.titulotablacitascliente}</f:facet>
+                <p:column>
+                    <f:facet name="header">#{msgs.tablaCitaConfirma}</f:facet>
+                    <h:commandLink action="#{control3.confirma (vcita)}"
+                        type="submit" value="#{msgs.enlaceConfirmar}"
+                        immediate="true">
+                    </h:commandLink>
+                </p:column>
                 <p:column>
                     <f:facet name="header">#{msgs.tablaCitaIdPiso}</f:facet>#{vcita.idPiso}</p:column>
                 <p:column>
+                    <f:facet name="header">#{msgs.tablaCitaDireccion}</f:facet>#{vcita.direccion}</p:column>
+                <p:column>
                     <f:facet name="header">#{msgs.tablaCitaIdCli}</f:facet>#{vcita.idCliente}</p:column>
                 <p:column>
-                    <f:facet name="header">#{msgs.tablaCitaFecHor}</f:facet>#{vcita.fechaHoraCita}</p:column>
+                    <f:facet name="header">#{msgs.tablaCitaFecHor}</f:facet>#{vcita.fechaHoraCitaStr}</p:column>
                 <p:column>
                     <f:facet name="header">#{msgs.tablaCitaEstado}</f:facet>#{vcita.estadoStr}</p:column>
-                <p:column>
-                    <f:facet name="header">#{msgs.tablaCitaVisita}</f:facet>
-                    <p:selectBooleanCheckbox
-                        value="#{selectBooleanView.value1}"
-                        itemLabel="Basic" />
-                </p:column>
             </p:dataTable>
         </h:form>
     </ui:define>

@@ -3,7 +3,7 @@ package com.tew.model;
 import java.io.Serializable;
 
 public class Cliente implements Serializable {
-
+	private static final long serialVersionUID = -3210131969607739652L;
 	private String nombre;
 	private String apellidos;
 	private String email;
