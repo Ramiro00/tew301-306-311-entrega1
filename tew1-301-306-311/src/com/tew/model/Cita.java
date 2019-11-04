@@ -5,7 +5,8 @@ public class Cita {
 	private int idCliente;
 	private long fechaHoraCita;
 	private int estado;
-	
+	private String estadoStr;
+		
 	public int getIdPiso() {
 		return idPiso;
 	}
@@ -29,6 +30,32 @@ public class Cita {
 	}
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+	
+/*	public String getEstadoStr() {
+		return estadoStr;
+	}*/
+	
+	public String getEstadoStr() {
+		int i = this.getEstado();
+		switch (i) {
+		case 1:
+			this.estadoStr = "Seleccionado";
+			break;
+		case 2:
+			this.estadoStr = "Citado";
+			break;
+		case 3:
+			this.estadoStr = "Acpetado";
+			break;
+		default:
+			this.estadoStr = "Seleccionadoo";
+		}
+
+		return this.estadoStr;
+	}
+	public void setEstadoStr(String estadoStr) {
+		this.estadoStr = estadoStr;
 	}
 
 }

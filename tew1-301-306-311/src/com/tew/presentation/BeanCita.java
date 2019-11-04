@@ -28,7 +28,9 @@ public class BeanCita extends Cita implements Serializable {
 		setIdCliente(cita.getIdCliente());
 		setFechaHoraCita(cita.getFechaHoraCita());
 		setEstado(cita.getEstado());
+		setEstadoStr(cita.getEstadoStr());
 	}
+
 
 	public void iniciaCita(ActionEvent event) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
