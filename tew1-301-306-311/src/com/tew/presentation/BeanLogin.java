@@ -6,7 +6,10 @@ import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.tew.infrastructure.Factories;
 import com.tew.model.User;
@@ -70,5 +73,10 @@ public class BeanLogin implements Serializable {
 		Map<String, Object> session =
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		session.put("LOGGEDIN_AGENTE", user);
+	}
+
+	public String logout() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "casa";
 	}
 }

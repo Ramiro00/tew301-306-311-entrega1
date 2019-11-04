@@ -44,13 +44,22 @@
 			<from-outcome>signup</from-outcome>
 			<to-view-id>/signup.xhtml</to-view-id>
 		</navigation-case>
-		        <navigation-case>
-            <from-outcome>alta</from-outcome>
-            <to-view-id>/agente/altaForm.xhtml</to-view-id>
-        </navigation-case>
 		<navigation-case>
-			<from-outcome>casa</from-outcome>
-			<to-view-id>/index.xhtml</to-view-id>
+			<from-action>#{signup.registrarse}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/cliente/indexCliente.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>alta</from-outcome>
+			<to-view-id>/agente/altaForm.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>casa-cliente</from-outcome>
+			<to-view-id>/cliente/indexCliente.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>casa-agente</from-outcome>
+			<to-view-id>/agente/indexAgente.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>guardavisitas</from-outcome>
@@ -61,7 +70,6 @@
 			<from-outcome>exito</from-outcome>
 			<to-view-id>/cliente/listado-cliente.xhtml</to-view-id>
 		</navigation-case>
-		
 		<navigation-case>
 			<from-action>#{control.listadoagente}</from-action>
 			<from-outcome>exito</from-outcome>
