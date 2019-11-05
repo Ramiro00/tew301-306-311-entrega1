@@ -205,7 +205,7 @@ public class CitasJdbcDao implements CitaDao {
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
 			ps = con.prepareStatement("UPDATE PISOPARAVISITAR SET estado = 2 WHERE idPiso =" + c.getIdPiso()
-					+ " AND idClienete = " + c.getIdCliente());
+					+ " AND idCliente = " + c.getIdCliente());
 			ps.executeUpdate();
 
 		} catch (ClassNotFoundException e) {

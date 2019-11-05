@@ -53,7 +53,7 @@ public class Cita {
 	public String getFechaHoraCitaStr() {
 		long fhcita = this.getFechaHoraCita();
 		Calendar fechor = Calendar.getInstance();
-		fechor.setTimeInMillis(fhcita*100);
+		fechor.setTimeInMillis(fhcita);
 		String fecha = fechor.get(Calendar.DAY_OF_MONTH) + "/" + fechor.get(Calendar.MONTH) + "/"
 				+ fechor.get(Calendar.YEAR) + " " + fechor.get(Calendar.HOUR) + ":" + fechor.get(Calendar.MINUTE);
 		this.fechaHoraCitaStr = fecha;
