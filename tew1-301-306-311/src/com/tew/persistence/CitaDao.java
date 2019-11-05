@@ -22,10 +22,9 @@ public interface CitaDao {
 
 	List<Cita> getCitas(String login);
 
+	List<Piso> getPisos();
 	
 	void save(Cita c) throws AlreadyPersistedException;
-
-	List<Piso> getPisos(String id);
 
 	void confirmaVisita(Cita c) throws EntityNotFoundException;
 

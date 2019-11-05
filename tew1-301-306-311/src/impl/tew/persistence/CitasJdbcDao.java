@@ -72,7 +72,7 @@ public class CitasJdbcDao implements CitaDao {
 	}
 	
 	@Override
-	public List<Piso> getPisos(String id) {
+	public List<Piso> getPisos() {
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -86,7 +86,8 @@ public class CitasJdbcDao implements CitaDao {
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("SELECT id, direccion, cuidad, ano WHERE idAgente =" + id);
+			String consulta = "SELECT direccion, ciudad, precio, ano, estado, idagente FROM PISOS";
+			ps = con.prepareStatement(consulta);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {

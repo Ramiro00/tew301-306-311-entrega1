@@ -1,8 +1,6 @@
 package com.tew.model;
 
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -64,7 +62,7 @@ public class Cita {
 		SimpleDateFormat jdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		jdf.setTimeZone(TimeZone.getTimeZone("GMT-4"));
 		String java_date = jdf.format(date);
-		System.out.println("\n" + java_date + "\n");
+		this.fechaHoraCitaStr = java_date;
 
 /*		long fhcita = this.getFechaHoraCita();
 		Calendar fechor = Calendar.getInstance();
@@ -74,7 +72,7 @@ public class Cita {
 		this.fechaHoraCitaStr = fecha;
 		return fechaHoraCitaStr;*/
 
-		return java_date;
+		return this.fechaHoraCitaStr;
 
 	}
 

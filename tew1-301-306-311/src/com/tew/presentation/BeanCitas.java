@@ -12,6 +12,7 @@ import javax.faces.event.ActionEvent;
 import com.tew.business.CitasService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Cita;
+import com.tew.model.Piso;
 
 /**
  * Se añade este atributo de entidad para recibir la cita en concreto

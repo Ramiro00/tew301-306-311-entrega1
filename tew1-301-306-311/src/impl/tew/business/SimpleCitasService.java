@@ -9,6 +9,7 @@ import com.tew.model.Piso;
 
 import impl.tew.business.classes.CitasConfirma;
 import impl.tew.business.classes.CitasListado;
+import impl.tew.business.classes.PisosListado;
 
 public class SimpleCitasService implements CitasService {
 
@@ -21,10 +22,10 @@ public class SimpleCitasService implements CitasService {
 	public List<Cita> getCitas(String login) {
 		return new CitasListado().getCitas(login);
 	}
-
+	
 	@Override
-	public List<Piso> getPisos(String id) {
-		return new CitasListado().getPisos(id);
+	public List<Piso> getPisos() throws Exception {
+		return new PisosListado().getPisos();
 	}
 	
 	@Override
