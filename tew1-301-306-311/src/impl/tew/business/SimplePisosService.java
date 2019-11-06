@@ -37,7 +37,11 @@ public class SimplePisosService implements PisosService {
 	@Override
 	public void savePiso(Piso p, String login) {
 		new PisosAlta().save(p, login);
+	}
 
+	@Override
+	public void duplicarpiso(Piso piso) throws EntityNotFoundException {
+		new PisosDuplicar().duplicar(piso);		
 	}
 
 }

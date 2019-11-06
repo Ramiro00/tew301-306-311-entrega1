@@ -13,12 +13,12 @@
         <h:form>
             <p:dataTable id="lisCitCli" var="vcita" value="#{control3.citas}"
                 border="1" rowKey="#{vcita.idPiso}"
-                emptyMessage="#{msgs.tablaVacia}">
+                emptyMessage="#{msgs.tablacitasVacia}">
 
                 <f:facet name="header">#{msgs.titulotablacitascliente}</f:facet>
                 <p:column>
                     <f:facet name="header">#{msgs.tablaCitaConfirma}</f:facet>
-                    <h:commandLink action="#{control3.confirmaVisita (vcita)}"
+                    <h:commandLink action="#{control3.confirmacitas (vcita)}"
                         type="submit" value="#{msgs.enlaceConfirmar}"
                         immediate="true">
                     </h:commandLink>
@@ -36,7 +36,7 @@
             </p:dataTable>
         </h:form>
     </ui:define>
-<!--     <ui:define name="pie"> -->
-<!--         <ui:include src="/snippets/pie-casa.xhtml" /> -->
-<!--     </ui:define> -->
+    <ui:define name="pie">
+        <ui:include src="/snippets/pie-casa.xhtml" />
+    </ui:define>
 </ui:composition>

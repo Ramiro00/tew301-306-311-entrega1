@@ -29,5 +29,7 @@ public interface CitasService {
 	
 	void confirmaVisita(Cita c) throws EntityNotFoundException;
 
-	List<Piso> getPisos(String id);
+	List<Piso> getPisos() throws Exception;
+
 }
+

@@ -1,13 +1,13 @@
 package impl.tew.persistence;
 
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.tew.model.Piso;
 import com.tew.persistence.PisoDao;
 import com.tew.persistence.exception.AlreadyPersistedException;
@@ -555,6 +555,66 @@ public class PisoJdbcDao implements PisoDao {
 				piso.setAno(rs.getInt("Ano"));
 				piso.setEstado(rs.getInt("Estado"));
 
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception ex) {
+				}
+			}
+			;
+		}
+
+		return piso;
+	}
+
+	@Override
+	public Piso getPiso(Piso p) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = null;
+
+		Piso piso = new Piso();
+
+		try {
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("select * from PISOS");
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				
+				piso.setId(rs.getInt("ID"));
+				piso.setIdagente(rs.getInt("IDAgente"));
+				piso.setPrecio(rs.getInt("Precio"));
+				piso.setDireccion(rs.getString("Direccion"));
+				piso.setCiudad(rs.getString("Ciudad"));
+				piso.setAno(rs.getInt("Ano"));
+				piso.setEstado(rs.getInt("Estado"));
 			}
 
 		} catch (ClassNotFoundException e) {

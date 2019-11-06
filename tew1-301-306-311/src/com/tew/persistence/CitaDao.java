@@ -22,13 +22,13 @@ public interface CitaDao {
 
 	List<Cita> getCitas(String login);
 
-	
-	void save(Cita c) throws AlreadyPersistedException;
+	List<Piso> getPisos();
 
-	List<Piso> getPisos(String id);
+	void save(Cita c) throws AlreadyPersistedException;
 
 	void confirmaVisita(Cita c) throws EntityNotFoundException;
 
 	void deleteAll();
 
 }
+

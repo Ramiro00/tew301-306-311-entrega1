@@ -72,7 +72,7 @@ public class CitasJdbcDao implements CitaDao {
 	}
 	
 	@Override
-	public List<Piso> getPisos(String id) {
+	public List<Piso> getPisos() {
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -86,7 +86,8 @@ public class CitasJdbcDao implements CitaDao {
 			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("SELECT id, direccion, cuidad, ano WHERE idAgente =" + id);
+			String consulta = "SELECT direccion, ciudad, precio, ano, estado, idagente FROM PISOS";
+			ps = con.prepareStatement(consulta);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -177,7 +178,6 @@ public class CitasJdbcDao implements CitaDao {
 
 				citas.add(cita);
 			}
-
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			throw new PersistenceException("Driver not found", e);
@@ -193,6 +193,32 @@ public class CitasJdbcDao implements CitaDao {
 		return citas;
 	}
 
+
+	@Override
+	public void deleteAll(){
+		PreparedStatement ps = null;
+		Connection con = null;
+		try {
+			String SQL_DRV = "org.hsqldb.jdbcDriver";
+			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
+			Class.forName(SQL_DRV);
+			con = DriverManager.getConnection(SQL_URL, "sa", "");
+			ps = con.prepareStatement("delete from PISOPARAVISITAR");
+			ps.executeUpdate();
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Driver not found", e);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceException("Invalid SQL or database schema", e);
+		} finally { 
+			if (ps != null) { try { ps.close(); } catch (Exception ex) { }};
+			if (ps != null) { try {	ps.close(); } catch (Exception ex) { }};
+			if (con != null) { try {con.close();} catch (Exception ex) { }};
+		}
+	}
+
 	@Override
 	public void confirmaVisita(Cita c) throws EntityNotFoundException {
 		PreparedStatement ps = null;
@@ -205,7 +231,7 @@ public class CitasJdbcDao implements CitaDao {
 			Class.forName(SQL_DRV);
 			con = DriverManager.getConnection(SQL_URL, "sa", "");
 			ps = con.prepareStatement("UPDATE PISOPARAVISITAR SET estado = 2 WHERE idPiso =" + c.getIdPiso()
-					+ " AND idClienete = " + c.getIdCliente());
+					+ " AND idCliente = " + c.getIdCliente());
 			ps.executeUpdate();
 
 		} catch (ClassNotFoundException e) {
@@ -220,41 +246,6 @@ public class CitasJdbcDao implements CitaDao {
 			if (con != null) { try {con.close();} catch (Exception ex) { }};
 		}
 		
-	}
-
-	@Override
-	public void deleteAll(){
-		PreparedStatement ps = null;
-		Connection con = null;
-		try {
-			String SQL_DRV = "org.hsqldb.jdbcDriver";
-			String SQL_URL = "jdbc:hsqldb:hsql://localhost/localDB";
-			Class.forName(SQL_DRV);
-			con = DriverManager.getConnection(SQL_URL, "sa", "");
-			ps = con.prepareStatement("delete from PISOPARAVISITAR");
-			ps.executeUpdate();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			throw new PersistenceException("Driver not found", e);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new PersistenceException("Invalid SQL or database schema", e);
-		} finally {
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception ex) {
-				}
-			}
-			;
-		}
 	}
 
 	/*

@@ -51,14 +51,14 @@ public class SimpleDatosService implements DatosService{
 
 		Cliente c1 = new Cliente();
 		c1.setNombre("Cliente1");
-		c1.setApellidos("González");
+		c1.setApellidos("Gonzï¿½lez");
 		c1.setLogin("user1@micorreo.com");
 		c1.setEmail("user1@micorreo.com");
 		c1.setPassword("clave1");
 
 		Cliente c2 = new Cliente();
 		c2.setNombre("Cliente2");
-		c2.setApellidos("Pérez");
+		c2.setApellidos("Pï¿½rez");
 		c2.setLogin("user2@micorreo.com");
 		c2.setEmail("user2@micorreo.com");
 		c2.setPassword("clave2");
@@ -86,15 +86,15 @@ public class SimpleDatosService implements DatosService{
 		Piso p2 = new Piso();
 
 		p2.setAno(2013);
-		p2.setCiudad("Gijón");
-		p2.setDireccion("Avenida Constitución 17");
+		p2.setCiudad("Gijï¿½n");
+		p2.setDireccion("Avenida Constituciï¿½n 17");
 		p2.setEstado(1);
 		p2.setPrecio(300000);
 
 		Piso p3 = new Piso();
 		
 		p3.setAno(2004);
-		p3.setCiudad("Gijón");
+		p3.setCiudad("Gijï¿½n");
 		p3.setDireccion("Calle Corrida 4");
 		p3.setEstado(2);
 		p3.setPrecio(350000);

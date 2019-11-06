@@ -21,8 +21,7 @@ public class SimpleServicesFactory implements ServicesFactory {
 
 	@Override
 	public CitasService createCitasService() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SimpleCitasService();
 	}
 
 	@Override

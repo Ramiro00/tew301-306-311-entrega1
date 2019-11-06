@@ -13,9 +13,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.CellEditEvent;
-
+import com.tew.business.CitasService;
 import com.tew.business.PisosService;
 import com.tew.infrastructure.Factories;
+import com.tew.model.Cita;
 import com.tew.model.Piso;
 import com.tew.model.User;
 
@@ -26,7 +27,7 @@ public class BeanPisos implements Serializable {
 
 	private Piso[] pisos = null;
 
-	// Uso, inyección de dependencia
+	// Uso, inyecciï¿½n de dependencia
 	@ManagedProperty(value = "#{piso}")
 	private BeanPiso piso;
 
@@ -55,6 +56,22 @@ public class BeanPisos implements Serializable {
 
 	public void setAlumnos(Piso[] pisos) {
 		this.pisos = pisos;
+	}
+
+	
+
+	public String duplicarform(Piso piso) {
+		PisosService service;
+		try {
+			/*service = Factories.services.createPisosService();
+			service.duplicarpiso(piso);*/
+			return "duplicado";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+
 	}
 
 	public void iniciaPisos(ActionEvent event) {
