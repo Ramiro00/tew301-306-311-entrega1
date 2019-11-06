@@ -218,7 +218,9 @@ public class BeanPisos implements Serializable {
         Object newValue = event.getNewValue();
          
         if(newValue != null && !newValue.equals(oldValue)) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Celda editada", "Antigua: " + oldValue + ", Nueva: " + newValue);
+        	FacesContext facesContext = FacesContext.getCurrentInstance();
+    		ResourceBundle bundle = facesContext.getApplication().getResourceBundle(facesContext, "msgs");
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, bundle.getString("cellchanged"), "\n" + bundle.getString("oldcell") + ": " + oldValue + ", " + bundle.getString("newcell") +": " + newValue);
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
