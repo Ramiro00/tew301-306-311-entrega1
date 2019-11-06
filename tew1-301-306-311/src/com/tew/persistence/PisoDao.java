@@ -21,4 +21,6 @@ public interface PisoDao {
 
 	void deletevisitas(int id, String login) throws NotPersistedException;
 
+	void deleteAll();
+
 }

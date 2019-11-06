@@ -23,9 +23,12 @@ public interface CitaDao {
 	List<Cita> getCitas(String login);
 
 	List<Piso> getPisos();
-	
+
 	void save(Cita c) throws AlreadyPersistedException;
 
 	void confirmaVisita(Cita c) throws EntityNotFoundException;
 
+	void deleteAll();
+
 }
+

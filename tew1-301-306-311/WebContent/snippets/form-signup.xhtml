@@ -64,12 +64,17 @@
 				value="#{msgs.signup_form_repeatpassword_label}" />
 		</h:panelGroup>
 		<h:panelGroup>
-			<p:password id="repeatpassword"
-				required="true"
+			<p:password id="repeatpassword" required="true"
 				requiredMessage="#{msgs.signup_form_password_required}" />
 			<p:message for="repeatpassword" />
 		</h:panelGroup>
-
 	</p:panelGrid>
-
+	<br></br>
+	<p:selectBooleanCheckbox id="lopdCheckbox" required="true"
+		validatorMessage="#{msgs.lopdvalidator}">
+		<f:validator validatorId="CheckboxValidator" />
+	</p:selectBooleanCheckbox>
+	<p:message for="lopdCheckbox" />
+	<h:outputText value="#{msgs.avisolopd}" />
+	<br></br>
 </ui:composition>

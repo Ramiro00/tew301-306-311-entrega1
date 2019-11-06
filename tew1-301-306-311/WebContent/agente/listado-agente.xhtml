@@ -3,7 +3,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	template="/templates/template-cliente.xhtml">
+	template="/templates/template-agente.xhtml">
 
 	<ui:define name="titulo">
     #{msgs.tituloOperacionListado}
@@ -49,7 +49,13 @@
 				<p:column >
 					<f:facet name="header">#{msgs.tablaEstado}</f:facet>#{vpiso.sestado}
                 </p:column>
-         
+                <p:column >
+                	<f:facet name="header">#{msgs.tablaBajar}</f:facet>
+                	<h:commandLink action="#{control.baja (vpiso)}" type="submit"
+ 						value="#{msgs.tablaBajar}" immediate="true">
+ 					</h:commandLink>
+                </p:column>
+              
 
 			</p:dataTable>
 		</h:form>
@@ -61,6 +67,6 @@
 	<ui:define name="pie">
 
         
-		<ui:include src="/snippets/pie-casa.xhtml" />
+		<ui:include src="/snippets/pie-agente.xhtml" />
 	</ui:define>
 </ui:composition>

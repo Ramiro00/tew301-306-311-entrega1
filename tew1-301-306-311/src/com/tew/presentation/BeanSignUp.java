@@ -10,13 +10,13 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import com.tew.business.LoginService;
+import com.tew.business.SignupService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Cliente;
 import com.tew.model.User;
 
-import impl.tew.business.SignupService;
-
-@ManagedBean(name = "signup")
+@ManagedBean(name="signup")
 @SessionScoped
 public class BeanSignUp extends Cliente implements Serializable {
 	private static final long serialVersionUID = 8948269713447154938L;
@@ -36,8 +36,14 @@ public class BeanSignUp extends Cliente implements Serializable {
 
 	public String registrarse() {
 		SignupService signup = Factories.services.createSignupService();
-		User user = signup.registrarse(new Cliente(getNombre(), getApellidos(), getEmail(), getPassword()));
-		if (user != null) {
+		Cliente c = new Cliente();
+		c.setNombre(getNombre());
+		c.setApellidos(getApellidos());
+		c.setEmail(getEmail());
+		c.setPassword(getPassword());
+		c.setLogin(getEmail());
+		User user = signup.registrarse(c);
+		if(user!=null) {
 			putUserInSession(user);
 			return "success";
 		} else {
@@ -53,8 +59,10 @@ public class BeanSignUp extends Cliente implements Serializable {
 	}
 
 	private void putUserInSession(User user) {
-		Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		session.put("LOGGEDIN_USER", user);
+
+		Map<String, Object> session =
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		session.put("LOGGEDIN_CLIENTE", user);
 	}
 
 }

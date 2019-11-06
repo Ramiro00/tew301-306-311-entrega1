@@ -1,5 +1,7 @@
 package impl.tew.persistence;
 
+
+import com.tew.persistence.AgenteDao;
 import com.tew.persistence.CitaDao;
 import com.tew.persistence.ClienteDao;
 import com.tew.persistence.PersistenceFactory;
@@ -22,6 +24,10 @@ public class SimplePersistenceFactory implements PersistenceFactory {
 	@Override
 	public ClienteDao createClienteDao() {
 		return new ClienteJdbcDao();
+	}
+
+	public AgenteDao createAgenteDao() {
+		return new AgenteJdbcDao();
 	}
 
 	@Override

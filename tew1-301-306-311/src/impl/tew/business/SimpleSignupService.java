@@ -1,5 +1,7 @@
 package impl.tew.business;
 
+import com.tew.business.SignupService;
+
 import com.tew.business.exception.EntityAlreadyExistsException;
 import com.tew.model.Cliente;
 import com.tew.model.User;
@@ -12,7 +14,7 @@ public class SimpleSignupService implements SignupService{
 	public User registrarse(Cliente cliente) {
 		try {
 			new ClientesAlta().save(cliente);
-			return new User(cliente.getEmail(), cliente.getNombre());
+			return new User(cliente.getEmail(), false);
 		} catch (EntityAlreadyExistsException e) {
 			return null;
 		}

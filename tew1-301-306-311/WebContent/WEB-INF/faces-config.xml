@@ -22,8 +22,8 @@
         <managed-bean-class>com.tew.presentation.BeanCitas</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
-    
-    
+
+
     <managed-bean>
         <managed-bean-name>control</managed-bean-name>
         <managed-bean-class>com.tew.presentation.BeanPisos</managed-bean-class>
@@ -34,43 +34,81 @@
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>error</from-outcome>
-            <to-view-id>error.xhtml</to-view-id>
+            <to-view-id>/error.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>login</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>casa</from-outcome>
-            <to-view-id>/restricted/opciones.xhtml</to-view-id>
+            <from-outcome>registrarse</from-outcome>
+            <to-view-id>/signup.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>guardavisitas</from-outcome>
-            <to-view-id>/restricted/opciones.xhtml</to-view-id>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{signup.registrarse}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>alta</from-outcome>
-            <to-view-id>/restricted/altaForm.xhtml</to-view-id>
+            <to-view-id>/agente/altaForm.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>casa-cliente</from-outcome>
+            <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>casa-agente</from-outcome>
+            <to-view-id>/agente/indexAgente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>guardavisitas</from-outcome>
+            <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{control.listadocliente}</from-action>
             <from-outcome>exito</from-outcome>
-            <to-view-id>/restricted/listado-cliente.xhtml</to-view-id>
+            <to-view-id>/cliente/listado-cliente.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{control.listadoagente}</from-action>
             <from-outcome>exito</from-outcome>
-            <to-view-id>/restricted/listado-agente.xhtml</to-view-id>
+            <to-view-id>/agente/listado-agente.xhtml</to-view-id>
         </navigation-case>
-        <navigation-case>
-            <from-action>#{control3.listadocitas}</from-action>
-            <from-outcome>exito</from-outcome>
-            <to-view-id>/restricted/listado-citas-cliente.xhtml</to-view-id>
-        </navigation-case>
+                
         <navigation-case>
             <from-action>#{control.salva}</from-action>
             <from-outcome>exito</from-outcome>
             <to-view-id>/restricted/opciones-agente.xhtml</to-view-id>
+        </navigation-case>
+
+<!-- Javier -->
+        <navigation-case>
+            <from-action>#{control3.listadocitas}</from-action>
+            <from-outcome>exito</from-outcome>
+            <to-view-id>/cliente/listado-citas-cliente.xhtml</to-view-id>
+        </navigation-case>
+
+    </navigation-rule>
+
+
+
+    <navigation-rule>
+        <from-view-id>/signup.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{signup.registrarse}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{signup.registrarse}</from-action>
+            <from-outcome>signup</from-outcome>
+            <to-view-id>/signup.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
@@ -78,46 +116,20 @@
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{login.verify}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/restricted/opciones-agente.xhtml</to-view-id>
+            <from-outcome>cliente</from-outcome>
+            <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
         </navigation-case>
-         <navigation-case>
-            <from-action>#{login.verify}</from-action>
-            <from-outcome>success-cliente</from-outcome>
-            <to-view-id>/restricted/opciones-cliente.xhtml</to-view-id>
-        </navigation-case>
-        
-        
-   
         <navigation-case>
             <from-action>#{login.verify}</from-action>
-            <from-outcome>login</from-outcome>
-            <to-view-id>/restricted/index.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-
-    <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>error</from-outcome>
-            <to-view-id>/faces/restricted/error.xhtml</to-view-id>
+            <from-outcome>agente</from-outcome>
+            <to-view-id>/agente/indexAgente.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
+            <from-action>#{login.verify}</from-action>
             <from-outcome>login</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
-        <navigation-case>
-            <from-outcome>casa</from-outcome>
-            <to-view-id>/restricted/opciones.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>alta</from-outcome>
-            <to-view-id>/restricted/altaForm.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{control.listado}</from-action>
-            <from-outcome>exito</from-outcome>
-            <to-view-id>/restricted/listado.xhtml</to-view-id>
-        </navigation-case>
     </navigation-rule>
+
+
 </faces-config>

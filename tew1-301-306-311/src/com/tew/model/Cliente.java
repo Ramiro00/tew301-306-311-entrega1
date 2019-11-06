@@ -3,21 +3,15 @@ package com.tew.model;
 import java.io.Serializable;
 
 public class Cliente implements Serializable {
-	private static final long serialVersionUID = -3210131969607739652L;
+
+	private static final long serialVersionUID = 8832795593566819719L;
+	
+	private int ID;
 	private String nombre;
 	private String apellidos;
 	private String email;
 	private String password;
-	
-	public Cliente(){};
-	
-	public Cliente(String nombre, String apellidos, String email, String password) {
-		super();
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.email = email;
-		this.password = password;
-	}
+	private String login;
 	
 	public String getNombre() {
 		return nombre;
@@ -43,4 +37,20 @@ public class Cliente implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+	
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	
 }

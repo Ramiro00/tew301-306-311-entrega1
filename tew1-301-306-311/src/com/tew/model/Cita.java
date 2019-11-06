@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+
 public class Cita {
 	private int idPiso;
 	private int idCliente;
@@ -53,7 +54,6 @@ public class Cita {
 	}
 
 	public String getFechaHoraCitaStr() {
-
 		// Unix seconds
 		long unix_seconds = this.getFechaHoraCita();
 		// convert seconds to milliseconds

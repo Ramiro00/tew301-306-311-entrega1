@@ -102,7 +102,7 @@ public class BeanPisos implements Serializable {
 			service = Factories.services.createPisosService();
 			service = Factories.services.createPisosService();
 			User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-					.get("LOGGEDIN_USER");
+					.get("LOGGEDIN_AGENTE");
 			service.deletePiso(piso.getId(), user.getLogin());
 			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
 			return "exito";
@@ -133,7 +133,7 @@ public class BeanPisos implements Serializable {
 		try {
 			service = Factories.services.createPisosService();
 			User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-					.get("LOGGEDIN_USER");
+					.get("LOGGEDIN_AGENTE");
 			service.savePiso(piso, user.getLogin());
 
 			pisos = (Piso[]) service.getPisos().toArray(new Piso[0]);
