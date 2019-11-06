@@ -50,6 +50,10 @@
             <redirect />
         </navigation-case>
         <navigation-case>
+            <from-outcome>duplicado</from-outcome>
+            <to-view-id>/agente/altaForm2.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-action>#{signup.registrarse}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
@@ -71,16 +75,22 @@
             <to-view-id>/cliente/indexCliente.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-action>#{control.listadocliente}</from-action>
+            <from-action>#{control.duplicarform}</from-action>
             <from-outcome>exito</from-outcome>
-            <to-view-id>/cliente/listado-cliente.xhtml</to-view-id>
+            <to-view-id>/agente/altaForm2.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-action>#{control.listadoagente}</from-action>
             <from-outcome>exito</from-outcome>
             <to-view-id>/agente/listado-agente.xhtml</to-view-id>
         </navigation-case>
-                
+
+        <navigation-case>
+            <from-action>#{control.editar}</from-action>
+            <from-outcome>exito</from-outcome>
+            <to-view-id>/agente/listado-agente.xhtml</to-view-id>
+        </navigation-case>
+                        
         <navigation-case>
             <from-action>#{control.salva}</from-action>
             <from-outcome>exito</from-outcome>

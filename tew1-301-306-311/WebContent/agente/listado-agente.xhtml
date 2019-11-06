@@ -51,11 +51,27 @@
                 </p:column>
                 <p:column >
                 	<f:facet name="header">#{msgs.tablaBajar}</f:facet>
-                	<h:commandLink action="#{control.baja (vpiso)}" type="submit"
+                	<h:commandLink action="#{control.baja(vpiso)}" type="submit"
  						value="#{msgs.tablaBajar}" immediate="true">
  					</h:commandLink>
                 </p:column>
-              
+                
+                <!-- 
+                                <p:column>
+                    <f:facet name="header">#{msgs.tablaCitaConfirma}</f:facet>
+                    <h:commandLink action="#{control3.confirmacitas (vcita)}"
+                        type="submit" value="#{msgs.enlaceConfirmar}"
+                        immediate="true">
+                    </h:commandLink>
+                </p:column>
+                 -->
+                
+                <p:column>
+                    <f:facet name="header">Duplicar</f:facet>
+                    <h:commandLink action="#{control.duplicarform(vpiso)}" type="submit"
+                        value="Duplicar" immediate="true" >
+                    </h:commandLink>
+                </p:column>              
 
 			</p:dataTable>
 		</h:form>

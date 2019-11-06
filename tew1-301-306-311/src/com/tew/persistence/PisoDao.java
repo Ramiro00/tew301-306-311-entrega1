@@ -23,4 +23,6 @@ public interface PisoDao {
 
 	void deleteAll();
 
+	Piso getPiso(Piso p);
+
 }

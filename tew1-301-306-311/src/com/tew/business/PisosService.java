@@ -33,4 +33,6 @@ public interface PisosService {
 
 	void savePiso(Piso p, String login);
 
+	void duplicarpiso(Piso piso) throws EntityNotFoundException;
+
 }
