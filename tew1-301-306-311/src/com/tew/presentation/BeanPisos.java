@@ -58,13 +58,16 @@ public class BeanPisos implements Serializable {
 		this.pisos = pisos;
 	}
 
-	
-
 	public String duplicarform(Piso piso) {
-		PisosService service;
+		
 		try {
-			/*service = Factories.services.createPisosService();
-			service.duplicarpiso(piso);*/
+		
+			this.piso.setAno(piso.getAno());
+			this.piso.setCiudad(piso.getCiudad());
+			this.piso.setDireccion(piso.getDireccion());
+			this.piso.setPrecio(piso.getPrecio());
+			this.piso.setEstado(piso.getEstado());
+			
 			return "duplicado";
 
 		} catch (Exception e) {
