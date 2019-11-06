@@ -7,9 +7,13 @@ import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+
+import org.primefaces.event.CellEditEvent;
+
 import com.tew.business.PisosService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Piso;
@@ -191,6 +195,16 @@ public class BeanPisos implements Serializable {
 			return "error";
 		}
 	}
+	
+    public void onCellEdit(CellEditEvent event) {
+        Object oldValue = event.getOldValue();
+        Object newValue = event.getNewValue();
+         
+        if(newValue != null && !newValue.equals(oldValue)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Celda editada", "Antigua: " + oldValue + ", Nueva: " + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
 
 	@PostConstruct
 	public void init() {

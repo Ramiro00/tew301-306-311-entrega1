@@ -24,8 +24,8 @@ import impl.tew.business.classes.PisosListado;
 public class SimpleDatosService implements DatosService{
 
 	public void reiniciaBaseDatos(){
-		new PisosBaja().deleteAll();
 		new CitasBaja().deleteAll();
+		new PisosBaja().deleteAll();
 		new AgentesBaja().deleteAll();
 		new ClientesBaja().deleteAll();
 		
